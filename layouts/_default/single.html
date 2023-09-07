@@ -1,0 +1,42 @@
+{{ define "main" }}
+<main class="site--main">
+    <article class="post--single" itemscope="itemscope" itemtype="http://schema.org/Article">
+        <div class="post--single__meta"><time>{{ .Date | time.Format ":date_long" }}</time></div>
+        <h2 class="post--single__title">{{ .Title }}</h2>
+        <div class="post--single__content graph">
+            {{ .Content }}
+        </div>
+        <div class="tag--list">
+            {{ range (.GetTerms "tags") }}
+            <a href="{{ .RelPermalink }}" class="artile--tag">{{ .LinkTitle }}</a>
+            {{ end }}
+        </div>
+        {{ partial "related.html" . }}
+        {{ if .Params.twitter }}
+        <div class="twitter--area">
+            <a href="{{ .Params.twitter }}" target="_blank" class="twitter--btn">Reply on twitter</a>
+        </div>
+        {{end}}
+    </article>
+    <!-- {{ if or .PrevPage .NextPage }}
+    <nav class="navigation post-navigation is-active">
+        <div class="nav-links">
+            {{ if .PrevPage }}
+            <div class="nav-previous">
+                <a class="link-reverse" href="{{ .PrevPage.Permalink }}?ref=footer">
+                    <span class="meta-nav">Previous</span><span class="post-title">{{ .PrevPage.Title }}</span>
+                </a>
+            </div>
+            {{ end }}
+            {{ if .NextPage }}
+            <div class="nav-next">
+                <a class="link-reverse" href="{{ .NextPage.Permalink }}?ref=footer">
+                    <span class="meta-nav">Next</span><span class="post-title">{{ .NextPage.Title }}</span>
+                </a>
+            </div>
+            {{ end }}
+        </div>
+    </nav>
+    {{ end }} -->
+</main>
+{{ end }}

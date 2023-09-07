@@ -1,0 +1,34 @@
+{{ define "main" }}
+{{ partial "profile.html" . }}
+
+<header class="u-backgroundColorGray tag--header">
+    <h1 class="post-title">{{.Title}}</h1>
+    {{ if .Params.description }}
+    <div class="taxonomy--description">{{ .Params.description }}</div>
+    {{ end }}
+</header>
+<div class="site--main">
+    {{ range .Data.Pages }}
+    <article class="articleItem">
+        {{ if .Params.categories }}
+        <div class="categories">
+            {{ range (.GetTerms "categories") }}
+            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            {{ end }}
+        </div>
+        {{ end}}
+        <h2 class="title">
+            <a href="{{ .Permalink }}">
+                {{ .Title }}
+            </a>
+        </h2>
+        <div class="time">{{ .Date | time.Format ":date_long" }}</div>
+        <div class="tags">
+            {{ range (.GetTerms "tags") }}
+            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            {{ end }}
+        </div>
+    </article>
+    {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,17 @@
+toggleMenu:
+    other: Toggle Menu
+
+darkMode:
+    other: Dark Mode
+
+list:
+    page:
+        one: "{{ .Count }} page"
+        other: "{{ .Count }} pages"
+
+    section:
+        other: Section
+
+    subsection:
+        one: Subsection
+        other: Subsections

@@ -1,0 +1,21 @@
+toggleMenu:
+    other: 切换菜单
+
+darkMode:
+    other: 暗色模式
+
+article:
+    back:
+        other: 返回
+
+    tableOfContents:
+        other: 目录
+
+    relatedContent:
+        other: 相关文章
+
+    lastUpdatedOn:
+        other: 最后更新于
+
+    readingTime:
+        other: "阅读时长: {{ .Count }} 分钟"

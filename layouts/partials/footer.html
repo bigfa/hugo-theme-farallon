@@ -1,0 +1,29 @@
+<footer class="site--footer">
+    Made with 💗 on {{ $logo := resources.Get "images/mac-studio.png" }}
+    <img src="{{ $logo.RelPermalink }}" class="footer--icon" />
+    <div class="copyright">
+        {{ with .Site.Params.copyright }}
+        {{ . | markdownify }}
+        {{ else }}
+        © Copyright
+        {{ now.Format "2006"}}
+        {{ end }}
+    </div>
+</footer>
+<script src="https://fatesinger.com/_/fp/js/mappack.js?ver=1669376855"></script>
+{{- $opts := dict "minify" hugo.IsProduction -}}
+{{- $script := resources.Get "ts/app.ts" | js.Build $opts -}}
+<script type="text/javascript" src="{{ $script.RelPermalink }}" defer></script>
+
+{{- $script := resources.Get "ts/map.ts" | js.Build $opts -}}
+<script type="text/javascript" src="{{ $script.RelPermalink }}" defer></script>
+
+{{ range .Site.Params.customJS }}
+{{ if ( or ( hasPrefix . "http://" ) ( hasPrefix . "https://" ) ) }}
+<!-- remote js -->
+<script src="{{ . }}"></script>
+{{ else }}
+<!-- local js -->
+<script src="{{ $.Site.BaseURL }}{{ . }}"></script>
+{{ end }}
+{{ end }}

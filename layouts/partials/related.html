@@ -1,0 +1,24 @@
+{{ $related := .Site.RegularPages.Related . | first 5 }}
+{{ with $related }}
+<div class="related--content">
+    <h3 class="related--posts__title">Related Posts</h3>
+    <div class="post--single__related">
+        {{ range . }}
+        <div class="post--single__related__item">
+            <a href="{{ .RelPermalink }}">
+                <div class="post--single__related__item__img">
+                    {{ if .Content }}
+                    {{ $urls := findRE "<img src=\"[^\"|\\\"]*\"" .Content }} {{ if $urls }} {{ $url :=index ($urls) 0
+                        }} {{ $url :=(strings.TrimPrefix "<img src=\"" $url) }}
+      {{ $url := strings.TrimRight " \"" $url }} <img src="{{ $url }}" class="cover" /> {{ end }} {{ end }}
+                </div>
+                <div class="post--single__related__item__title">
+                    {{ .Title }}</div>
+                <div class="meta">
+                    6月 27, 2023 </div>
+            </a>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

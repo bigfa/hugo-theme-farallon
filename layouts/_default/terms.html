@@ -1,0 +1,22 @@
+{{ define "main" }}
+{{ partial "profile.html" . }}
+<header class="u-backgroundColorGray tag--header">
+    <h1 class="post-title">{{.Title}}</h1>
+</header>
+<section class="site--main">
+    {{ $data := .Data }}
+    {{ range $key, $value := .Data.Terms.ByCount }}
+    <div class="category--item">
+        {{ if $value.Page.Params.image }}
+        <img src="{{ $value.Page.Params.image }}" class="category--cover">
+        {{ end }}
+        <div class="category--content">
+            <a href="{{ $value.Page.Permalink }}">
+                {{ $value.Page.Title }}<span>({{ $value.Count }})</span>
+            </a>
+            <div class="category--desc">{{ $value.Page.Params.description }}</div>
+        </div>
+    </div>
+    {{ end }}
+</section>
+{{ end }}

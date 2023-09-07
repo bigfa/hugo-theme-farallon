@@ -1,0 +1,138 @@
+.comment-form {
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 14px;
+        cursor: pointer;
+        line-height: 1.4;
+        .required {
+            color: #f00;
+        }
+    }
+    input,
+    textarea {
+        width: 100%;
+        resize: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        padding: 5px 15px;
+        font-size: 14px;
+    }
+    .submit {
+        background-color: #000;
+        color: #fff;
+        border: 0;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 8px 30px;
+        border-radius: 5px;
+        width: auto;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    }
+    p {
+        margin-bottom: 15px;
+    }
+    .comment-notes,
+    .logged-in-as {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.6);
+    }
+}
+.comment-reply-title {
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    small {
+        margin-left: auto;
+        font-weight: normal;
+        font-size: 14px;
+    }
+}
+.commentlist {
+    list-style: none;
+    .comment {
+        padding: 0px 0;
+    }
+    .comment-respond {
+        padding: 20px;
+        background-color: #fafafa;
+        border-radius: 5px;
+    }
+}
+
+.comment {
+    &:last-child {
+        & > .comment-body {
+            border-bottom: 0;
+        }
+    }
+}
+
+.comment-body {
+    padding: 25px 0;
+    border-bottom: 1px solid #eee;
+    .parent > & {
+        border-bottom: 0;
+    }
+}
+
+.comment-author {
+    display: flex;
+    align-items: center;
+    .avatar {
+        border-radius: 100%;
+        margin-right: 10px;
+    }
+    .fn {
+        font-style: normal;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    .says {
+        display: none;
+    }
+}
+
+.children {
+    margin-left: 50px;
+    .avatar {
+        width: 32px;
+        height: 32px;
+    }
+    .comment-body {
+        border-bottom: 0;
+    }
+}
+
+.comment-meta {
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    .comment-metadata {
+        margin-left: auto;
+    }
+}
+
+.comment-reply-link {
+    font-size: 12px;
+}
+
+.no--comment {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.comments--title {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.comment-respond {
+    padding-top: 30px;
+}

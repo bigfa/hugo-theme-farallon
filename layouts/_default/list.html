@@ -1,0 +1,20 @@
+{{ define "main" }}
+{{ partial "profile.html" . }}
+
+<section class="site--main">
+    {{ range .Data.Pages }}
+    <article class="articleItem">
+        <div class="title">
+            <a href="{{ .Permalink }}">
+                {{ .Title }}
+            </a>
+        </div>
+        <div class="tags">
+            {{ range (.GetTerms "tags") }}
+            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            {{ end }}
+        </div>
+    </article>
+    {{ end }}
+</section>
+{{ end }}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default " en" }}">
+
+<head>
+    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} - {{ end }}{{ .Site.Title }}{{ end }}</title>
+    {{ partial "head.html" . }}
+</head>
+
+<body>
+    <div class="main">
+        {{ partial "navigation.html" . }}
+        {{ block "main" . }}{{ end }}
+        {{ partial "footer.html" . }}
+    </div>
+</body>
+
+</html>

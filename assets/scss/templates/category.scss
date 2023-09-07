@@ -1,0 +1,30 @@
+.category--list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    .category--item {
+        border: 1px solid #eee;
+        border-radius: 2px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        .category--content {
+            flex: 1 1 auto;
+            a {
+                font-size: 16px;
+                font-weight: 600;
+                //margin-bottom: 5px;
+            }
+            .category--desc {
+                font-size: 14px;
+                color: #999;
+            }
+        }
+        .category--cover {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+    }
+}
