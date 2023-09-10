@@ -10,7 +10,6 @@
         {{ end }}
     </div>
 </footer>
-<script src="https://fatesinger.com/_/fp/js/mappack.js?ver=1669376855"></script>
 {{- $opts := dict "minify" hugo.IsProduction -}}
 {{- $script := resources.Get "ts/app.ts" | js.Build $opts -}}
 <script type="text/javascript" src="{{ $script.RelPermalink }}" defer></script>

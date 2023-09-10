@@ -3,8 +3,6 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1">
 <meta name="description"
   content="{{ if .IsHome }}{{ $.Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
-<link rel="stylesheet" href="https://fatesinger.com/_/fp/css/mapbox-gl.css?ver=1684644336" type="text/css"
-  media="screen">
 {{ $styles := resources.Get "scss/app.scss" | toCSS | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
 {{ $favicon := resources.Get "images/favicon.png" }}
