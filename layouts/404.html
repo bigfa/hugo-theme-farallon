@@ -12,9 +12,11 @@
                     $url :=(strings.TrimPrefix "<img src=\"" $url) }}
           {{ $url := strings.TrimRight " \"" $url }} <img src="{{ $url }}" class="cover" /> {{ end }} {{ end }}
                 <div class="content">
-                    <h2 class="post--title" itemprop="headline"><a href="{{ .Permalink }}">
+                    <h2 class="post--title" itemprop="headline">
+                        <a href="{{ .Permalink }}">
                             {{ .Title }}
-                        </a></h2>
+                        </a>
+                    </h2>
                     <div class="meta">
                         <svg class="icon" viewBox="0 0 1024 1024" width="16" height="16">
                             <path

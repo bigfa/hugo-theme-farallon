@@ -10,12 +10,14 @@
                     {{ if .Content }}
                     {{ $urls := findRE "<img src=\"[^\"|\\\"]*\"" .Content }} {{ if $urls }} {{ $url :=index ($urls) 0
                         }} {{ $url :=(strings.TrimPrefix "<img src=\"" $url) }}
-      {{ $url := strings.TrimRight " \"" $url }} <img src="{{ $url }}" class="cover" /> {{ end }} {{ end }}
+      {{ $url := strings.TrimRight " \"" $url }} <img src="{{ $url }}" class="cover" />
+                    {{ end }}
+                    {{ end }}
                 </div>
                 <div class="post--single__related__item__title">
-                    {{ .Title }}</div>
-                <div class="meta">
-                    6月 27, 2023 </div>
+                    {{ .Title }}
+                </div>
+                <div class="meta">{{ .Date | time.Format ":date_long" }} </div>
             </a>
         </div>
         {{ end }}

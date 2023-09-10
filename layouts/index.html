@@ -1,6 +1,8 @@
 {{ define "main" }}
 <main class="site--main">
+    {{ if $.Site.Params.showprofile }}
     {{ partial "profile.html" . }}
+    {{ end }}
     <div class="articleList">
         {{ $pages := .Site.RegularPages }}
         {{ $paginator := .Paginate ($pages) }}
@@ -13,9 +15,6 @@
                     </a>
                 </h2>
                 <div class="description">{{ .Summary | truncate 60 }}</div>
-                {{ if .Truncated }}
-                Read More…
-                {{ end }}
                 <div class="meta">
                     <svg class="icon" viewBox="0 0 1024 1024" width="16" height="16">
                         <path
