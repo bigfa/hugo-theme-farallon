@@ -112,20 +112,18 @@
 .tag--list {
     display: flex;
     align-items: center;
-    padding: 15px 0;
+    padding: 15px 0 5px;
+    flex-wrap: wrap;
     a {
         margin-right: 10px;
-        background: linear-gradient(
-            rgba(255, 79, 0, 0.1) 0%,
-            rgba(255, 79, 0, 0) 100%
-        );
+        margin-bottom: 10px;
+        background: #f2f4f6;
         font-size: 14px;
         padding: 2px 12px;
         border-radius: 5px;
-        color: rgb(255, 79, 0);
-        border: 1px solid rgba(255, 79, 0, 0.2);
+        color: rgba(0, 0, 0, 0.6);
         &:hover {
-            //background-color: #e0e0e0;
+            background-color: #e0e0e0;
         }
     }
 }
