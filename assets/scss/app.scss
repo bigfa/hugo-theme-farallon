@@ -2,7 +2,7 @@
 
 @import "modules/variable.scss";
 
-// @import "node_modules/normalize.scss/normalize.scss";
+@import "modules/normalize.scss";
 
 body {
     letter-spacing: 0;
@@ -76,6 +76,7 @@ textarea {
 
 .site--main {
     padding: 50px 80px;
+    min-height: 70vh;
 }
 
 @media (max-width: 820px) {

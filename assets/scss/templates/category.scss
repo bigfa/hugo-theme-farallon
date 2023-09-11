@@ -4,8 +4,8 @@
     grid-gap: 10px;
     .category--item {
         border: 1px solid #eee;
-        border-radius: 2px;
-        padding: 5px;
+        border-radius: 5px;
+        padding: 8px;
         display: flex;
         align-items: center;
         .category--content {
@@ -25,6 +25,24 @@
             height: 64px;
             object-fit: cover;
             margin-right: 10px;
+            border-radius: 5px;
         }
     }
+}
+
+.archive--tagList {
+    display: flex;
+    flex-wrap: wrap;
+}
+.archive--tagItem {
+    margin: 10px;
+    background-color: #f2f4f6;
+    padding: 3px 12px;
+    border-radius: 2px;
+    color: var(--jl-text-light);
+}
+
+.archive--header {
+    text-align: center;
+    padding-bottom: 20px;
 }

@@ -1,9 +1,8 @@
 {{ define "main" }}
-{{ partial "profile.html" . }}
-<header class="u-backgroundColorGray tag--header">
-    <h1 class="post-title">{{.Title}}</h1>
-</header>
 <section class="site--main">
+    <header class="archive--header">
+        <h1 class="post--single__title">{{.Title}}</h1>
+    </header>
     {{ $data := .Data }}
     {{ range $key, $value := .Data.Terms.ByCount }}
     <div class="category--item">
