@@ -1,0 +1,27 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Example Site'
+theme = 'Farallon'
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+  series = 'series'
+
+[outputs]
+  home = ['HTML', 'JSON', 'RSS']
+
+
+[Params]
+  search=false
+  description = 'A simple and fast blog framework written in Go.'
+  toc = true
+
+[menu]
+  [[menu.main]]
+  name="关于"
+  url="/about/"
+  weight="1"
+  [[menu.main]]
+  name="分类"
+  url="/categories/"
+  weight="2"
