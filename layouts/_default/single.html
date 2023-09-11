@@ -1,7 +1,9 @@
 {{ define "main" }}
 <main class="site--main">
     <article class="post--single" itemscope="itemscope" itemtype="http://schema.org/Article">
-        <div class="post--single__meta"><time>{{ .Date | time.Format ":date_long" }}</time></div>
+        <div class="post--single__meta"><time datetime="{{ time .Date }}" class="humane--time">{{ .Date | time.Format
+                ":date_long"
+                }}</time></div>
         <h2 class="post--single__title">{{ .Title }}</h2>
         <div class="post--single__content graph">
             {{ .Content }}

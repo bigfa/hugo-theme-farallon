@@ -17,7 +17,11 @@
                 <div class="post--single__related__item__title">
                     {{ .Title }}
                 </div>
-                <div class="meta">{{ .Date | time.Format ":date_long" }} </div>
+                <div class="meta">
+                    <time datetime="{{ time .Date }}" class="humane--time">{{ .Date | time.Format
+                        ":date_long"
+                        }}</time>
+                </div>
             </a>
         </div>
         {{ end }}

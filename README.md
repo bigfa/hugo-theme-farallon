@@ -12,6 +12,11 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.0.4
+
+-   增加相对时间
+-   加入示例数据
+
 ### 0.0.3
 
 -   使用`normalize.css`
