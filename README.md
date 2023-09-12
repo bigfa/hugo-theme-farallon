@@ -12,6 +12,25 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.0.6
+
+-   新增豆瓣条目支持
+
+使用方法
+
+微信扫码登录https://node.wpista.com/
+
+输入你的豆瓣数字 id，点击保存即可自动同步豆瓣记录。
+
+点击 Get integration token 会生成一个 token。
+
+在你的站点配置中加入参数
+
+```
+[params]
+    wpdToken= '上面生成的token'
+```
+
 ### 0.0.5
 
 -   修复分类页/标签页样式错误

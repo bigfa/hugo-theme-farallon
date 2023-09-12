@@ -10,6 +10,9 @@
         {{ end }}
     </div>
 </footer>
+<script type="text/javascript">
+    window.WPD_TOKEN = "{{ .Site.Params.wpdToken }}";
+</script>
 {{- $opts := dict "minify" hugo.IsProduction -}}
 {{- $script := resources.Get "ts/app.ts" | js.Build $opts -}}
 <script type="text/javascript" src="{{ $script.RelPermalink }}" defer></script>

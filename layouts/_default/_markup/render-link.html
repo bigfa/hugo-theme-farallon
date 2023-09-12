@@ -1,2 +1,12 @@
+{{ $regex := `(?i)https?:\/\/(\w+)\.douban\.com\/subject\/(\d+)` }}
+{{ $urls := findRE $regex .Destination }}
+{{ if $urls }}
+{{ $url :=index ($urls) 0 }}
+{{ $dbtype := replaceRE $regex "$1" $url }}
+{{ $dbid := replaceRE $regex "$2" $url }}
+<span class="js-db" data-id="{{ $dbid }}" data-type="{{ $dbtype }}"></span>
+{{ else }}
 <a href="{{ .Destination | safeURL }}" {{ with .Title}} title="{{ . }}" {{ end }}{{ if strings.HasPrefix
-    .Destination "http" }} target="_blank" rel="noopener" {{ end }}>{{ .Text | safeHTML }}</a>
+    .Destination "http" }} target="_blank" rel="noopener" {{ end }}>{{ .Text | safeHTML }}{{ $urls }}</a>{{ .Destination
+}}
+{{ end }}
