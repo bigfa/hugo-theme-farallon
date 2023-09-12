@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.0.5
+
+-   修复分类页/标签页样式错误
+
 ### 0.0.4
 
 -   增加相对时间

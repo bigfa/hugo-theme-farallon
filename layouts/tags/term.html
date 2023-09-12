@@ -1,11 +1,11 @@
 {{ define "main" }}
+<header class="archive-header">
+    <h1 class="post-title">{{.Title}}</h1>
+    {{ if .Params.description }}
+    <div class="taxonomy--description">{{ .Params.description }}</div>
+    {{ end }}
+</header>
 <div class="site--main">
-    <header class="u-backgroundColorGray tag--header">
-        <h1 class="post-title">{{.Title}}</h1>
-        {{ if .Params.description }}
-        <div class="taxonomy--description">{{ .Params.description }}</div>
-        {{ end }}
-    </header>
     {{ range .Data.Pages }}
     <article class="post--item">
         <div class="content">
