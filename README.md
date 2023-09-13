@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.0.7
+
+-   修改为本地获取条目，无需设置 token
+
 ### 0.0.6
 
 -   新增豆瓣条目支持

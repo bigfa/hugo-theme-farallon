@@ -4,7 +4,30 @@
 {{ $url :=index ($urls) 0 }}
 {{ $dbtype := replaceRE $regex "$1" $url }}
 {{ $dbid := replaceRE $regex "$2" $url }}
-<span class="js-db" data-id="{{ $dbid }}" data-type="{{ $dbtype }}"></span>
+{{ $dbFetch := getJSON "https://node.wpista.com/v1/outer/" $dbtype "/" $dbid
+"?token=2bfb9a8d037a7352c9d369b85d33ac83e39a" }}
+{{ if $dbFetch }}
+{{ $subject := $dbFetch.data }}
+{{ $number := (float $subject.douban_score) }}
+<div class="doulist-item">
+    <div class="doulist-subject">
+        <div class="doulist-post"><img decoding="async" referrerpolicy="no-referrer" src="{{ $subject.poster }}"></div>
+        <div class="doulist-content">
+            <div class="doulist-title"><a href="{{ $subject.link }}" class="cute" target="_blank"
+                    rel="external nofollow">{{ $subject.name }}</a></div>
+            <div class="rating"><span class="allstardark"><span class="allstarlight"
+                        style="width:{{ mul $number 10 }}%"></span></span><span class="rating_nums">{{
+                    $subject.douban_score }}</span>
+            </div>
+            <div class="abstract">{{ $subject.card_subtitle }}</div>
+        </div>
+    </div>
+</div>
+{{else}}
+<a href="{{ .Destination | safeURL }}" {{ with .Title}} title="{{ . }}" {{ end }}{{ if strings.HasPrefix
+    .Destination "http" }} target="_blank" rel="noopener" {{ end }}>{{ .Text | safeHTML }}{{ $urls }}</a>{{ .Destination
+}}
+{{end}}
 {{ else }}
 <a href="{{ .Destination | safeURL }}" {{ with .Title}} title="{{ . }}" {{ end }}{{ if strings.HasPrefix
     .Destination "http" }} target="_blank" rel="noopener" {{ end }}>{{ .Text | safeHTML }}{{ $urls }}</a>{{ .Destination
