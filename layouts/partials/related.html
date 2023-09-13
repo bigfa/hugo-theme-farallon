@@ -18,7 +18,7 @@
                     {{ .Title }}
                 </div>
                 <div class="meta">
-                    <time datetime="{{ time .Date }}" class="humane--time">{{ .Date | time.Format
+                    <time datetime='{{.Date.Format "2006-01-02 15:04:01" }}' class="humane--time">{{ .Date | time.Format
                         ":date_long"
                         }}</time>
                 </div>
