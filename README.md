@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.1.0
+
+-   添加主题信息
+
 ### 0.0.8
 
 -   修复 safari 浏览器下时间格式化错误的问题

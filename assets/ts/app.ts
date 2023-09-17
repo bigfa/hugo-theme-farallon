@@ -395,12 +395,29 @@ new FARALLON_DOUBAN({
 class farallonDate {
     selector: string;
     doms: Array<any> = [];
+    VERSION: string = "0.1.0";
     constructor(config: any) {
         this.selector = config.selector;
         this.init();
         setTimeout(() => {
             this.refresh();
         }, 1000 * 5);
+
+        const copyright = `<div class="site--footer__info">
+        Theme <a href="https://fatesinger.com/101971" target="_blank">farallon</a> by bigfa / version ${this.VERSION}
+    </div>`;
+
+        document
+            .querySelector(".site--footer__content")!
+            .insertAdjacentHTML("afterend", copyright);
+
+        document
+            .querySelector(".icon--copryrights")!
+            .addEventListener("click", () => {
+                document
+                    .querySelector(".site--footer__info")!
+                    .classList.toggle("active");
+            });
     }
 
     init() {
