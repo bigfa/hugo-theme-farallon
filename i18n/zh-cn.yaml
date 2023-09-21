@@ -4,6 +4,9 @@ toggleMenu:
 darkMode:
     other: 暗色模式
 
+copyRight:
+    other: 版权所有
+
 article:
     back:
         other: 返回

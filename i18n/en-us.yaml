@@ -4,14 +4,21 @@ toggleMenu:
 darkMode:
     other: Dark Mode
 
-list:
-    page:
-        one: "{{ .Count }} page"
-        other: "{{ .Count }} pages"
+copyRight:
+    other: Copyright
 
-    section:
-        other: Section
+article:
+    back:
+        other: back
 
-    subsection:
-        one: Subsection
-        other: Subsections
+    tableOfContents:
+        other: TOC
+
+    relatedContent:
+        other: Related Content
+
+    lastUpdatedOn:
+        other: Last update on
+
+    readingTime:
+        other: "reading Time: {{ .Count }} min"

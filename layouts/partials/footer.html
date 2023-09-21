@@ -6,7 +6,7 @@
             {{ with .Site.Params.copyright }}
             {{ . | markdownify }}
             {{ else }}
-            © Copyright
+            © {{ i18n "copyRight"}}
             {{ now.Format "2006"}}
             {{ end }}
             <svg class="icon icon--copryrights" viewBox="0 0 1040 1024" width="16" height="16">
