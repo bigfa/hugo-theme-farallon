@@ -1,7 +1,6 @@
 <footer class="site--footer">
     <div class="site--footer__content">
-        Made with 💗 on {{ $logo := resources.Get "images/mac-studio.png" }}
-        <img src="{{ $logo.RelPermalink }}" class="footer--icon" />
+        Made with 💗
         <div class="copyright">
             {{ with .Site.Params.copyright }}
             {{ . | markdownify }}

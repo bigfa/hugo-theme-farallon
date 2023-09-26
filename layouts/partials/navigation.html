@@ -6,15 +6,19 @@
 		</span>
 	</a>
 	{{ if len $.Site.Menus }}
-	<nav>
-		<ul>
-			{{ range $.Site.Menus.main }}
-			{{ if not .HasChildren }}
-			<li><a href="{{ .URL }}">{{ .Name }}</a></li>
-			{{ end }}
-			{{ end }}
-		</ul>
-	</nav>
+	<div class="site--header__center">
+		<div class="inner">
+			<nav>
+				<ul>
+					{{ range $.Site.Menus.main }}
+					{{ if not .HasChildren }}
+					<li><a href="{{ .URL }}">{{ .Name }}</a></li>
+					{{ end }}
+					{{ end }}
+				</ul>
+			</nav>
+		</div>
+	</div>
 	{{ end }}
 	{{ if .Site.Params.search }}
 	<svg class="svgIcon" width="25" height="25">

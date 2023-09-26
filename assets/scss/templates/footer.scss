@@ -1,4 +1,8 @@
 .site--footer {
+    font-size: 14px;
+    padding: 20px 80px;
+    border-top: 1px dotted var(--farallon-border-color);
+    color: var(--farallon-text-light);
     &__content {
         display: flex;
         align-items: center;
@@ -17,10 +21,6 @@
             display: block;
         }
     }
-    font-size: 14px;
-    padding: 20px 80px;
-    border-top: 1px dotted #eee;
-    color: rgba(0, 0, 0, 0.67);
     .copyright {
         margin-left: auto;
         display: flex;
@@ -33,6 +33,10 @@
                 fill: var(--farallon-hover-color);
             }
         }
+        // &::after {
+        //     content: 'a bigfa theme';
+        //     margin-left: 3px;
+        // }
     }
     nav {
         ul {
@@ -46,6 +50,67 @@
                     }
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .site--footer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-right: 3.5%;
+        padding-left: 3.5%;
+        .copyright {
+            margin-left: 0;
+        }
+
+        nav {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.fixed--theme {
+    position: fixed;
+    right: 10px;
+    top: 40%;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    box-shadow: 0 0 0 1px var(--farallon-border-color);
+    background-color: var(--farallon-background-white);
+    border-radius: 999rem;
+    width: max-content;
+    padding: 3px;
+    span {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+            //fill: rgba(0, 0, 0, 0.67);
+        }
+        color: var(--farallon-text-gray-lightest);
+
+        &:hover {
+            color: var(--farallon-text-color);
+            svg {
+                // fill: rgba(0, 0, 0, 0.87);
+            }
+        }
+
+        &.is-active {
+            color: var(--farallon-text-color);
+            background-color: var(--farallon-background-gray);
+        }
+
+        margin-bottom: 5px;
+        &:last-child {
+            margin-bottom: 0;
         }
     }
 }
