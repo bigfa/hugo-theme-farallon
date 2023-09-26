@@ -4,6 +4,10 @@
 
 @import "modules/normalize.scss";
 
+html {
+    background-color: var(--farallon-background-gray);
+}
+
 body {
     letter-spacing: 0;
     font: {

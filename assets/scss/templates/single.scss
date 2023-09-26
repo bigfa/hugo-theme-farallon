@@ -43,7 +43,7 @@
         padding-top: 10px;
         &__item {
             padding: 10px;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--farallon-border-color);
             border-radius: 10px;
             display: flex;
             flex-direction: column;

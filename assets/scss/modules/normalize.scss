@@ -97,7 +97,7 @@ html {
     @if $legacy_support_for_ie {
         font-size: 100%; // 1
     }
-    background: $background;
+    // background: $background;
     color: $color;
     -webkit-text-size-adjust: 100%; // 2
     -ms-text-size-adjust: 100%; // 2
