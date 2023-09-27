@@ -156,6 +156,10 @@
         }
     }
 
+    .graph blockquote {
+        background: linear-gradient(180deg, #1e1e1e, #121212);
+    }
+
     .nav-links .page-numbers.current:after,
     .nav-links .post-page-numbers.current:after {
         background-image: none;

@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.2.0
+
+-   增加暗黑模式支持
+
 ### 0.1.0
 
 -   添加主题信息
