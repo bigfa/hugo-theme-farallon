@@ -518,21 +518,33 @@ class farallonBase {
 
         document.querySelectorAll(".fixed--theme span").forEach((item) => {
             item.addEventListener("click", () => {
+                if (item.classList.contains("is-active")) return;
+                document
+                    .querySelectorAll(".fixed--theme span")
+                    .forEach((item) => {
+                        item.classList.remove("is-active");
+                    });
                 // @ts-ignore
                 if (item.dataset.actionValue == "dark") {
                     localStorage.setItem("theme", "dark");
+                    document.querySelector("body")!.classList.remove("auto");
                     document.querySelector("body")!.classList.add("dark");
                     item.classList.add("is-active");
+                    //this.showNotice('夜间模式已开启');
                     // @ts-ignore
                 } else if (item.dataset.actionValue == "light") {
                     localStorage.setItem("theme", "light");
+                    document.querySelector("body")!.classList.remove("auto");
                     document.querySelector("body")!.classList.remove("dark");
                     item.classList.add("is-active");
+                    //this.showNotice('夜间模式已关闭');
                     // @ts-ignore
                 } else if (item.dataset.actionValue == "auto") {
                     localStorage.setItem("theme", "auto");
                     document.querySelector("body")!.classList.remove("dark");
+                    document.querySelector("body")!.classList.add("auto");
                     item.classList.add("is-active");
+                    //this.showNotice('夜间模式已关闭');
                 }
             });
         });

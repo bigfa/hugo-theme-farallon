@@ -17,58 +17,104 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --farallon-main-color: #4370f5;
-        --farallon-hover-color: #3a5f9a;
-        --farallon-text-color: hsl(0, 0%, 93%);
-        --farallon-text-light: #999;
-        --farallon-text-gray: #eaeaea;
-        --farallon-text-gray-lightest: #eaeaea;
+    .auto {
+        --farallon-main-color: rgba(253, 186, 116, 1);
+        --farallon-hover-color: rgba(255, 237, 213, 1);
+        --farallon-text-color: #a1a1aa;
+        --farallon-text-light: rgba(161, 161, 170, 1);
+        --farallon-text-gray: rgba(113, 113, 122, 1);
+        --farallon-text-gray-lightest: rgba(113, 113, 122, 0.95);
 
-        --farallon-background-white: #18181b;
-        --farallon-background-gray: rgba(0, 0, 0, 1);
+        --farallon-background-white: #1e1e1e;
+        --farallon-background-gray: #000;
 
         --farallon-griedent-start: #007cf0;
         --farallon-griedent-end: #00dfd8;
 
-        --farallon-border-color: #333;
-        --farallon-border-color-light: #444;
-    }
+        --farallon-border-color: rgba(63, 63, 70, 0.6);
+        --farallon-border-color-light: rgba(63, 63, 70, 0.4);
 
-    .site--header__center {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: saturate(180%) blur(5px);
-    }
-
-    .main {
-        &::after {
-            display: none;
+        .site--header__center {
+            background-color: rgba(39, 39, 42, 0.9);
+            border-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: saturate(180%) blur(5px);
+            --tw-ring-shadow: 0 0 0 calc(1px + 0px) hsla(0, 0%, 100%, 0.1);
+            box-shadow: 0 0 #0000, var(--tw-ring-shadow),
+                var(--tw-shadow, 0 0 #0000);
+            color: rgba(228, 228, 231, 1);
         }
-    }
 
-    .post--item,
-    .link-item,
-    .post--card {
-        position: relative;
-        &:hover {
-            background: linear-gradient(180deg, #1e1e1e, #121212);
-            &::after {
-                content: "";
-                pointer-events: none;
-                position: absolute;
-                inset: 0;
-                border-radius: 12px;
-                border: 1px solid #333;
+        .comment-form .submit {
+            background-color: rgb(63 63 70/1);
+            &:hover {
+                background-color: rgb(82 82 91/1);
             }
         }
-    }
 
-    .comment-form {
-        input,
-        textarea {
-            background-color: hsla(0, 0%, 100%, 0.1);
-            border-color: #333;
+        .tag--list {
+            a {
+                background-color: rgba(39, 39, 42, 1);
+                color: #71717a;
+                --tw-ring-shadow: 0 0 0 calc(1px + 0px) hsla(0, 0%, 100%, 0.1);
+                box-shadow: 0 0 #0000, var(--tw-ring-shadow),
+                    var(--tw-shadow, 0 0 #0000);
+                &:hover {
+                    --tw-ring-shadow: 0 0 0 calc(1px + 0px)
+                        hsla(0, 0%, 100%, 0.2);
+                }
+            }
+        }
+
+        .post--single__title,
+        .post--item .post--title {
+            color: rgba(244, 244, 245, 1);
+        }
+
+        .main {
+            &::after {
+                display: none;
+            }
+            box-shadow: hsla(240, 5%, 84%, 0.2) 0 0 0 1px;
+        }
+
+        .archive--list .archive--item {
+            &:hover {
+                background: linear-gradient(180deg, #1e1e1e, #121212);
+            }
+        }
+        .post--single__related__item,
+        .post--item,
+        .link-item,
+        .post--card {
+            position: relative;
+            &:hover {
+                background: linear-gradient(180deg, #1e1e1e, #121212);
+                &::after {
+                    content: "";
+                    pointer-events: none;
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 12px;
+                    border: 1px solid #333;
+                }
+            }
+        }
+
+        .nav-links .page-numbers.current:after,
+        .nav-links .post-page-numbers.current:after {
+            background-image: none;
+        }
+
+        .doulist-item {
+            background-color: rgba(63, 63, 70, 0.15);
+        }
+
+        .comment-form {
+            input,
+            textarea {
+                background-color: rgba(63, 63, 70, 0.15);
+                border-color: rgb(63 63 70/1);
+            }
         }
     }
 }
@@ -78,7 +124,7 @@
     --farallon-hover-color: rgba(255, 237, 213, 1);
     --farallon-text-color: #a1a1aa;
     --farallon-text-light: rgba(161, 161, 170, 1);
-    --farallon-text-gray: gba(113, 113, 122, 1);
+    --farallon-text-gray: rgba(113, 113, 122, 1);
     --farallon-text-gray-lightest: rgba(113, 113, 122, 0.95);
 
     --farallon-background-white: #1e1e1e;
@@ -100,10 +146,14 @@
         color: rgba(228, 228, 231, 1);
     }
 
+    .doulist-item {
+        background: rgba(63, 63, 70, 0.15);
+    }
+
     .comment-form .submit {
-        background-color: rgb(63, 63, 70);
+        background-color: rgb(63 63 70/1);
         &:hover {
-            background-color: rgb(82, 82, 91);
+            background-color: rgb(82 82 91/1);
         }
     }
 
@@ -116,7 +166,6 @@
                 var(--tw-shadow, 0 0 #0000);
             &:hover {
                 --tw-ring-shadow: 0 0 0 calc(1px + 0px) hsla(0, 0%, 100%, 0.2);
-                background-color: rgba(39, 39, 42, 1);
             }
         }
     }
@@ -138,6 +187,10 @@
             background: linear-gradient(180deg, #1e1e1e, #121212);
         }
     }
+
+    .graph blockquote {
+        background: linear-gradient(180deg, #1e1e1e, #121212);
+    }
     .post--single__related__item,
     .post--item,
     .link-item,
@@ -156,10 +209,6 @@
         }
     }
 
-    .graph blockquote {
-        background: linear-gradient(180deg, #1e1e1e, #121212);
-    }
-
     .nav-links .page-numbers.current:after,
     .nav-links .post-page-numbers.current:after {
         background-image: none;
@@ -169,7 +218,7 @@
         input,
         textarea {
             background-color: rgba(63, 63, 70, 0.15);
-            border-color: rgb(63, 63, 70);
+            border-color: rgb(63 63 70/1);
         }
     }
 }

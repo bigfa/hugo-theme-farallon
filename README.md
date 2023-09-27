@@ -15,6 +15,7 @@ echo "theme = 'farallon'" >> hugo.toml
 ### 0.2.0
 
 -   增加暗黑模式支持
+-   修复移动端 footer 样式问题
 
 ### 0.1.0
 
