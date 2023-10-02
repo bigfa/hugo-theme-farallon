@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.2.1
+
+-   修复 scss 低版本兼容性问题
+
 ### 0.2.0
 
 -   增加暗黑模式支持
