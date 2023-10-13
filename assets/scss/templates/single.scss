@@ -160,3 +160,25 @@
 .related--content {
     padding-top: 15px;
 }
+
+.toc {
+    font-size: 14px;
+    padding: 10px 15px;
+    border: 1px solid var(--farallon-border-color);
+    border-radius: 10px;
+    &-title {
+        font-weight: 600;
+    }
+    ul {
+        li {
+            &::before {
+                content: "·";
+                margin-right: 5px;
+            }
+            & > ul {
+                margin-left: 10px;
+                font-size: 12px;
+            }
+        }
+    }
+}

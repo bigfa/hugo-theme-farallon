@@ -6,6 +6,17 @@
                 ":date_long"
                 }}</time></div>
         <h2 class="post--single__title">{{ .Title }}</h2>
+        {{- $TOCEnabled := or .Params.toc (and .Site.Params.toc (ne .Params.toc false)) -}}
+        {{- $hasTOC := gt (len .TableOfContents) 32 -}}
+
+        {{ if and $TOCEnabled $hasTOC -}}
+        <nav class="toc" id="toc">
+            <div class="toc-title">{{ i18n "toc" }}</div>
+            <div class="toc-content custom-scrollbar">
+                {{ .TableOfContents }}
+            </div>
+        </nav>
+        {{- end }}
         <div class="post--single__content graph">
             {{ .Content }}
         </div>

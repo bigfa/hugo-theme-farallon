@@ -395,7 +395,7 @@ new FARALLON_DOUBAN({
 class farallonDate {
     selector: string;
     doms: Array<any> = [];
-    VERSION: string = "0.1.0";
+    VERSION: string = "0.2.2";
     constructor(config: any) {
         this.selector = config.selector;
         this.init();
