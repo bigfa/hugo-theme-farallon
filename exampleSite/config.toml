@@ -1,5 +1,6 @@
 baseURL = 'http://example.org/'
-languageCode = 'en-us'
+languageCode = 'zh-cn'
+defaultContentLanguage = 'zh-cn'
 title = 'Example Site'
 theme = 'Farallon'
 [taxonomies]
@@ -9,7 +10,6 @@ theme = 'Farallon'
 
 [outputs]
   home = ['HTML', 'JSON', 'RSS']
-
 
 [Params]
   search=false
