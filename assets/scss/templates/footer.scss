@@ -114,3 +114,36 @@
         }
     }
 }
+
+@keyframes toTop {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+.backToTop {
+    .svgIcon {
+        width: 17px;
+        height: 17px;
+        fill: var(--farallon-main-color);
+        animation: toTop 1s ease-in infinite alternate;
+    }
+    &:hover {
+        .svgIcon {
+            fill: var(--farallon-hover-color);
+            animation-play-state: paused;
+        }
+    }
+    position: fixed;
+    bottom: 25px;
+    right: -25px;
+    cursor: pointer;
+    &.is-active {
+        right: 25px;
+    }
+    background-color: var(--border-color);
+    z-index: 10;
+    transition: all 0.3s ease;
+}

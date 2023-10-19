@@ -395,7 +395,7 @@ new FARALLON_DOUBAN({
 class farallonDate {
     selector: string;
     doms: Array<any> = [];
-    VERSION: string = "0.2.2";
+    VERSION: string = "0.2.3";
     constructor(config: any) {
         this.selector = config.selector;
         this.init();
@@ -469,7 +469,7 @@ class farallonBase {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.1.13";
+    VERSION: string = "0.2.3";
     constructor() {
         const theme = localStorage.getItem("theme")
             ? localStorage.getItem("theme")
@@ -548,6 +548,27 @@ class farallonBase {
                 }
             });
         });
+
+        if (document.querySelector(".backToTop")) {
+            const backToTop = document.querySelector(
+                ".backToTop"
+            ) as HTMLElement;
+            window.addEventListener("scroll", () => {
+                const t = window.scrollY || window.pageYOffset;
+                // console.log(t);
+                // const documentHeight = document.body.clientHeight;
+                //const windowHeight = window.innerHeight;
+                // const percent = Math.ceil((t / (documentHeight - windowHeight)) * 100);
+
+                t > 200
+                    ? backToTop!.classList.add("is-active")
+                    : backToTop!.classList.remove("is-active");
+            });
+
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
     }
 
     getCookie(t: any) {

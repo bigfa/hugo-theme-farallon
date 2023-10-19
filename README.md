@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.2.3
+
+-   增加了返回顶部按钮
+
 ### 0.2.2
 
 -   增加 TOC 支持
