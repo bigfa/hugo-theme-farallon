@@ -1,8 +1,8 @@
 # Hugo Theme Farallon
 
-![Hugo 主题 Farallon](https://static.fatesinger.com/2023/06/u1ak8xgmyn9ec24r.png)
+![Hugo Theme Farallon](https://static.fatesinger.com/2023/06/u1ak8xgmyn9ec24r.png)
 
-## 使用方法
+## Usage
 
 ```
 git submodule add https://github.com/bigfa/hugo-theme-farallon.git themes/farallon
@@ -10,74 +10,74 @@ git submodule add https://github.com/bigfa/hugo-theme-farallon.git themes/farall
 echo "theme = 'farallon'" >> hugo.toml
 ```
 
-## Release Note
+## Release Notes
 
 ### 0.2.3
 
--   增加了返回顶部按钮
+-   Added a “back to top” button.
 
 ### 0.2.2
 
--   增加 TOC 支持
+-   Added support for table of contents (TOC).
 
 ### 0.2.1
 
--   修复 scss 低版本兼容性问题
+-   Fixed compatibility issues with older versions of SCSS.
 
 ### 0.2.0
 
--   增加暗黑模式支持
--   修复移动端 footer 样式问题
+-   Added dark mode support.
+-   Fixed footer style issues on mobile devices.
 
 ### 0.1.0
 
--   添加主题信息
+-   Added theme information.
 
 ### 0.0.8
 
--   修复 safari 浏览器下时间格式化错误的问题
+-   Fixed date formatting issue on Safari browser.
 
 ### 0.0.7
 
--   修改为本地获取条目，无需设置 token
+-   Changed to local item retrieval without the need for a token.
 
 ### 0.0.6
 
--   新增豆瓣条目支持
+-   Added support for Douban items.
 
-使用方法
+Usage:
 
-微信扫码登录https://node.wpista.com/
+Scan the QR code with WeChat at https://node.wpista.com/.
 
-输入你的豆瓣数字 id，点击保存即可自动同步豆瓣记录。
+Enter your Douban numeric ID and click “Save” to automatically sync your Douban records.
 
-点击 Get integration token 会生成一个 token。
+Click “Get integration token” to generate a token.
 
-在你的站点配置中加入参数
+Add the following parameter to your site configuration:
 
 ```
 [params]
-    wpdToken= '上面生成的token'
+wpdToken = 'token generated above'
 ```
 
 ### 0.0.5
 
--   修复分类页/标签页样式错误
+-   Fixed styling issues on category/tag pages.
 
 ### 0.0.4
 
--   增加相对时间
--   加入示例数据
+-   Added relative time display.
+-   Included sample data.
 
 ### 0.0.3
 
--   使用`normalize.css`
+-   Used normalize.css.
 
 ### 0.0.2
 
--   增加菜单设置
--   增加一个是否显示站长信息的参数
+-   Added menu settings.
+-   Added a parameter to control the display of site owner information.
 
 ### 0.0.1
 
-初始化
+-   Initial setup.
