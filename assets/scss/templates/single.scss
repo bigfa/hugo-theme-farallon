@@ -12,6 +12,16 @@
     &__meta {
         font-size: 14px;
         color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        svg {
+            margin-right: 4px;
+            fill: var(--farallon-text-gray-lightest);
+            margin-left: 10px;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
     }
 
     &__copyright {
