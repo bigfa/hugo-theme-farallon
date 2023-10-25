@@ -7,6 +7,9 @@ darkMode:
 copyRight:
     other: 版权所有
 
+translations:
+    other: 其他语言
+
 article:
     back:
         other: 返回

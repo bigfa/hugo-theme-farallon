@@ -7,6 +7,9 @@ darkMode:
 copyRight:
     other: Copyright
 
+translations:
+    other: Translations
+
 article:
     back:
         other: back

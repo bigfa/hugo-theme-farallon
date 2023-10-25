@@ -182,3 +182,23 @@
         }
     }
 }
+
+.translatedCard {
+    margin-bottom: 30px;
+    font-size: 14px;
+    h4 {
+        font-weight: 700;
+    }
+    ul {
+        list-style: square;
+        margin-left: 30px;
+        li {
+            a {
+                text-decoration: underline;
+                &:hover {
+                    color: var(--farallon-hover-color);
+                }
+            }
+        }
+    }
+}

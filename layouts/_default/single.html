@@ -6,6 +6,19 @@
                 ":date_long"
                 }}</time></div>
         <h2 class="post--single__title">{{ .Title }}</h2>
+        {{ if .IsTranslated }}
+        <div class="translatedCard">
+            <h4>{{ i18n "translations" }}</h4>
+            <ul>
+                {{ range .Translations }}
+                <li>
+                    <a href="{{ .Permalink }}">{{ .Lang }}: {{ .Title }}{{ if .IsPage }}{{ end
+                        }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
         {{- $TOCEnabled := or .Params.toc (and .Site.Params.toc (ne .Params.toc false)) -}}
         {{- $hasTOC := gt (len .TableOfContents) 32 -}}
 
