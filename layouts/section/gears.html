@@ -1,0 +1,24 @@
+{{ define "main" }}
+
+<div class="site--main site--main__gears">
+    <h1 class="post--single__title">{{.Title}}</h1>
+    <h2 class="post--single__subtitle">{{ .Params.subtitle }}</h2>
+    <div class="good--list">
+        {{ range .Params.faves }}
+        <div class="good--item">
+            <div class="img-spacer">
+                <img src="{{ .cover }}">
+            </div>
+            <div class="good--name">
+                <div class="brand">{{ .brand }} · {{ .cat }}</div>
+                {{ .title }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+    <div class="graph u-marginBottom30">
+        {{ .Content }}
+    </div>
+</div>
+
+{{ end }}

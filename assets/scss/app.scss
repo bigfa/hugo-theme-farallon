@@ -99,6 +99,16 @@ textarea {
 .site--main {
     padding: 50px 80px;
     min-height: 70vh;
+    &__gears {
+        .post--single__title {
+            margin-bottom: 5px;
+        }
+        .post--single__subtitle {
+            font-size: 18px;
+            color: var(--farallon-text-gray);
+            line-height: 1.5;
+        }
+    }
 }
 
 @media (max-width: 820px) {
@@ -588,3 +598,5 @@ textarea {
         opacity: 1;
     }
 }
+
+@import "templates/about.scss";

@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.2.4
+
+-   增加了一个卡片页面
+
 ### 0.2.3
 
 -   增加了返回顶部按钮
