@@ -2,8 +2,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,minimum-scale=1">
 <meta name="description"
-  content="{{ if .IsHome }}{{ $.Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
+  content="{{ if .IsHome }}{{ $.Site.Params.description }}{{ else if .IsPage }}{{ .Params.description}}{{ else }}{{ .Description }}{{ end }}" />
 {{ $styles := resources.Get "scss/app.scss" | toCSS | minify | fingerprint }}
+{{ if .IsPage }}
+<meta property="og:title" content="{{ .Page.Title }}">
+<meta property="og:url" content="{{ .Page.Permalink }}">
+<meta property="og:image" content="{{ .Params.cover}}">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:src" content="{{ .Params.cover}}">
+<meta name="twitter:title" content="{{ .Page.Title }}">
+<meta name="twitter:description" content="{{ .Params.description}}">
+{{ end }}
 <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
 {{ $favicon := resources.Get "images/favicon.png" }}
 <link type="image/vnd.microsoft.icon" href="{{ $favicon.RelPermalink }}" rel="shortcut icon">
