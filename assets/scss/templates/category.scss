@@ -4,14 +4,16 @@
     grid-gap: 10px;
     .category--item {
         border: 1px solid #eee;
-        border-radius: 5px;
+        border-radius: 8px;
         padding: 8px;
         display: flex;
-        align-items: center;
+        // align-items: center;
+        flex-direction: column;
         .category--content {
-            flex: 1 1 auto;
+            //flex: 1 1 auto;
+            line-height: 1.6;
             a {
-                font-size: 16px;
+                font-size: 18px;
                 font-weight: 600;
                 //margin-bottom: 5px;
             }
@@ -21,10 +23,10 @@
             }
         }
         .category--cover {
-            width: 64px;
-            height: 64px;
+            width: 100%;
+            height: 88px;
             object-fit: cover;
-            margin-right: 10px;
+            margin-bottom: 5px;
             border-radius: 5px;
         }
     }

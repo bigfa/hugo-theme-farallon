@@ -2,13 +2,14 @@
 <div class="site--main">
     <header class="archive--header">
         <h1 class="post--single__title">{{.Title}}</h1>
+        <h2 class="post--single__subtitle">{{.Params.description }}</h2>
     </header>
     <section class="category--list">
         {{ $data := .Data }}
         {{ range $key, $value := .Data.Terms.ByCount }}
         <div class="category--item">
-            {{ if $value.Page.Params.image }}
-            <img src="{{ $value.Page.Params.image }}" class="category--cover">
+            {{ if $value.Page.Params.cover }}
+            <img src="{{ $value.Page.Params.cover }}" class="category--cover">
             {{ end }}
             <div class="category--content">
                 <a href="{{ $value.Page.Permalink }}">
