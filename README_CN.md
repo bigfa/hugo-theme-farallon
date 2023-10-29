@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.2.5
+
+-   有序列表样式修正
+
 ### 0.2.4
 
 -   增加了一个卡片页面

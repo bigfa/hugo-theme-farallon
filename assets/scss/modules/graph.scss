@@ -188,7 +188,7 @@
     }
 
     ol {
-        counter-reset: post;
+        counter-reset: item;
         & > li:before {
             content: counter(item);
             counter-increment: item;
@@ -208,6 +208,7 @@
             margin-top: 4px;
             transform: translateY(-1px);
             width: 30px;
+            padding-right: 0;
         }
     }
 }

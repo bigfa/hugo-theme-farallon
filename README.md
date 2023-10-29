@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.2.5
+
+-   Fixed ol list style error
+
 ### 0.2.4
 
 -   Added a gear template
