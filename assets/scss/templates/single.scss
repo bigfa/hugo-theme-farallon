@@ -176,10 +176,15 @@
     padding: 10px 15px;
     background-color: var(--farallon-background-gray);
     border-radius: 10px;
+    margin-bottom: 20px;
+    summary {
+        cursor: pointer;
+    }
     &-title {
         font-weight: 600;
     }
     ul {
+        padding-left: 10px;
         li {
             &::before {
                 content: "·";
@@ -194,7 +199,7 @@
 }
 
 .translatedCard {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 14px;
     h4 {
         font-weight: 700;

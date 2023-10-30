@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.2.6
+
+-   toc style changed
+
 ### 0.2.5
 
 -   Fixed ol list style error

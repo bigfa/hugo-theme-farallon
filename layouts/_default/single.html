@@ -40,12 +40,10 @@
         {{- $hasTOC := gt (len .TableOfContents) 32 -}}
 
         {{ if and $TOCEnabled $hasTOC -}}
-        <nav class="toc" id="toc">
-            <div class="toc-title">{{ i18n "article.tableOfContents" }}</div>
-            <div class="toc-content custom-scrollbar">
-                {{ .TableOfContents }}
-            </div>
-        </nav>
+        <details class="toc" open>
+            <summary class="toc-title">{{ i18n "article.tableOfContents" }}</summary>
+            {{ .TableOfContents }}
+        </details>
         {{- end }}
         <div class="post--single__content graph" itemprop="articleBody">
             {{ .Content }}

@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.2.6
+
+-   文章目录样式更新
+
 ### 0.2.5
 
 -   有序列表样式修正
