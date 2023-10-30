@@ -2,20 +2,17 @@
 <section class="site--main">
     <header class="archive--header">
         <h1 class="post--single__title">{{.Title}}</h1>
+        <h2 class="post--single__subtitle">{{.Params.description }}</h2>
     </header>
-    {{ $data := .Data }}
-    {{ range $key, $value := .Data.Terms.ByCount }}
-    <div class="category--item">
-        {{ if $value.Page.Params.image }}
-        <img src="{{ $value.Page.Params.image }}" class="category--cover">
-        {{ end }}
-        <div class="category--content">
+    <div class="archive--tagList">
+        {{ $data := .Data }}
+        {{ range $key, $value := .Data.Terms.ByCount }}
+        <span class="archive--tagItem">
             <a href="{{ $value.Page.Permalink }}">
-                {{ $value.Page.Title }}<span>({{ $value.Count }})</span>
+                {{ $value.Page.Title }} <span>({{ $value.Count }})</span>
             </a>
-            <div class="category--desc">{{ $value.Page.Params.description }}</div>
-        </div>
+        </span>
+        {{ end }}
     </div>
-    {{ end }}
 </section>
 {{ end }}

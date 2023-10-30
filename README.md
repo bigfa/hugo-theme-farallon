@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.2.7
+
+-   refactory taxonomy
+
 ### 0.2.6
 
 -   toc style changed

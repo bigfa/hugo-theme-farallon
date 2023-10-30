@@ -73,12 +73,17 @@
     font-weight: bold;
 }
 
+.archive--title__month {
+    font-size: 20x;
+    color: var(--farallon-text-gray);
+}
+
 .archive--list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
     .archive--item {
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--farallon-border-color-light);
         padding: 15px;
         border-radius: 10px;
         .archive--title {

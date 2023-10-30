@@ -44,7 +44,7 @@
         </article>
         {{ end }}
     </div>
-    {{ $paginator := .Paginate (where .Pages "Type" "posts") }}
+    {{ $paginator := .Paginate (where .Pages "Type" "story") }}
     {{partial "pagination.html" .}}
 </main>
 {{ end }}
