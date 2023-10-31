@@ -4,7 +4,7 @@
     {{ partial "profile.html" . }}
     {{ end }}
     <div class="articleList">
-        {{ $pages := .Site.RegularPages }}
+        {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
         {{ $paginator := .Paginate ($pages) }}
         {{ range $paginator.Pages }}
         <article class="post--item" itemtype="http://schema.org/Article" itemscope="itemscope">

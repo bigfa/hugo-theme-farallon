@@ -3,18 +3,22 @@ languageCode = 'zh-cn'
 defaultContentLanguage = 'zh-cn'
 title = 'Example Site'
 theme = 'Farallon'
+
+
 [taxonomies]
   category = 'categories'
   tag = 'tags'
   series = 'series'
 
-[outputs]
-  home = ['HTML', 'JSON', 'RSS']
-
 [Params]
   search=false
   description = 'A simple and fast blog framework written in Go.'
   toc = true
+  mainSections = ['story']
+
+[outputs]
+  home = [ "HTML","JSON","RSS","SITEMAP"]
+  page = ["HTML"]
 
 [menu]
   [[menu.main]]
