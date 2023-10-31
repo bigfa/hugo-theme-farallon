@@ -7,16 +7,29 @@
         margin-left: 4px;
         margin-right: 4px;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 75%;
+        padding: 2px 4px;
+        word-break: break-word;
+        color: var(--farallon-text-light);
     }
 
     pre {
         word-break: break-all;
         white-space: break-spaces;
         background-color: var(--farallon-background-gray);
-        padding: 10px 15px;
-        border-radius: 5px;
+        padding: 20px 30px;
+        border-radius: 4px;
         font-size: 12px;
+        border: 1px solid var(--farallon-border-color);
+        line-height: 1.4;
+        color: var(--farallon-text-light);
+        margin-left: -3.5%;
+        margin-right: -3.5%;
+        code {
+            background-color: rgba(0, 0, 0, 0);
+        }
+        // font-family: source-code-pro, Menlo, Monaco, "Courier New", Courier,
+        //     monospace;
     }
     &--mixtapeEmbed {
         a {
@@ -71,11 +84,11 @@
 
     blockquote {
         color: var(--farallon-text-light);
-        border-color: rgba(0, 0, 0, 0.02);
+        border-color: var(--farallon-border-color-light);
         margin-left: -3.5%;
         margin-right: -3.5%;
         margin-bottom: 35px;
-        background-color: #fafafa;
+        background-color: var(--farallon-background-gray);
         background: linear-gradient(
             89.99999999999999deg,
             rgba(255, 233, 244, 0.3) 0%,
@@ -250,6 +263,11 @@
             padding-top: 20px;
             background-position: left 10px top 0;
             margin-bottom: 15px;
+        }
+
+        pre {
+            margin-left: 0;
+            margin-right: 0;
         }
 
         h2,

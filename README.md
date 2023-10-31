@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.2.8
+
+-   add `pre` and `code` style
+
 ### 0.2.7
 
 -   refactory taxonomy

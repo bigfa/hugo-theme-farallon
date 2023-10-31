@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.2.8
+
+-   增加 `pre` 和 `code` 标签样式
+
 ### 0.2.7
 
 -   整理分类页面
