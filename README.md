@@ -12,6 +12,11 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.2.9
+
+-   fixed url render error
+-   add friend links template
+
 ### 0.2.8
 
 -   add `pre` and `code` style
