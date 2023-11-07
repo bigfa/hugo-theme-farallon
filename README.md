@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.2.11
+
+-   add link shortcode
+
 ### 0.2.10
 
 -   fixed category list and tag list style

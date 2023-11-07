@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.2.11
+
+-   文章内链短代码
+
 ### 0.2.10
 
 -   修正分类和标签归档页样式问题
