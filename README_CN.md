@@ -12,6 +12,11 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.2.10
+
+-   修正分类和标签归档页样式问题
+-   相对时间多语言支持
+
 ### 0.2.9
 
 -   修复链接渲染错误

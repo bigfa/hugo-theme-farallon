@@ -12,6 +12,11 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.2.10
+
+-   fixed category list and tag list style
+-   relative time support i18n
+
 ### 0.2.9
 
 -   fixed url render error

@@ -24,7 +24,20 @@
         </path>
     </svg>
 </div>
-
+<script type="text/javascript">
+    window.timeFormat = {
+        second: '{{ i18n "timeFormat.second" }}',
+        seconds: '{{ i18n "timeFormat.seconds" }}',
+        minute: '{{ i18n "timeFormat.minute" }}',
+        minutes: '{{ i18n "timeFormat.minutes" }}',
+        hour: '{{ i18n "timeFormat.hour" }}',
+        hours: '{{ i18n "timeFormat.hours" }}',
+        day: '{{ i18n "timeFormat.day" }}',
+        days: '{{ i18n "timeFormat.days" }}',
+        month: '{{ i18n "timeFormat.month" }}',
+        months: '{{ i18n "timeFormat.months" }}',
+    }
+</script>
 <script type="text/javascript">
     window.WPD_TOKEN = "{{ .Site.Params.wpdToken }}";
 </script>
