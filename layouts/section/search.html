@@ -43,7 +43,7 @@
                     return html` <article class="post--item" itemtype="http://schema.org/Article" itemscope="itemscope">
             <div class="content">
                 <h2 class="post--title">
-                    ${components.Highlight({ attribute: 'title', hit })}
+                    <a href="${hit.uri}">${components.Highlight({ attribute: 'title', hit })}</a>
                 </h2>
           
           <div class="description">${hit.description}</div>
