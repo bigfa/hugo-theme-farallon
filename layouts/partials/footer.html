@@ -44,7 +44,6 @@
 {{- $opts := dict "minify" hugo.IsProduction -}}
 {{- $script := resources.Get "ts/app.ts" | js.Build $opts -}}
 <script type="text/javascript" src="{{ $script.RelPermalink }}" defer></script>
-
 {{ range .Site.Params.customJS }}
 {{ if ( or ( hasPrefix . "http://" ) ( hasPrefix . "https://" ) ) }}
 <!-- remote js -->

@@ -606,6 +606,14 @@ class farallonBase {
                 window.scrollTo({ top: 0, behavior: "smooth" });
             });
         }
+
+        document
+            .querySelector('[data-action="show-search"]')!
+            .addEventListener("click", () => {
+                document
+                    .querySelector(".site--header__center .inner")!
+                    .classList.toggle("search--active");
+            });
     }
 
     getCookie(t: any) {
