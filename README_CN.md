@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.3.1
+
+-   增加置顶标识
+
 ### 0.3.0
 
 -   增加搜索

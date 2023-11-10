@@ -12,6 +12,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.3.1
+
+-   add sticky icon
+
 ### 0.3.0
 
 -   add search
