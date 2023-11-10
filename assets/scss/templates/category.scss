@@ -3,7 +3,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     .category--item {
-        border: 1px solid #eee;
+        border: 1px solid var(--farallon-border-color);
         border-radius: 8px;
         // padding: 8px;
         display: flex;

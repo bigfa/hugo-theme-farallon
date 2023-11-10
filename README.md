@@ -15,6 +15,7 @@ echo "theme = 'farallon'" >> hugo.toml
 ### 0.3.1
 
 -   add sticky icon
+-   fixed db list style in dark mode
 
 ### 0.3.0
 

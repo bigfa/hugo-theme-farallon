@@ -11,7 +11,7 @@
 
     &__meta {
         font-size: 14px;
-        color: rgba(0, 0, 0, 0.6);
+        color: var(--farallon-text-gray);
         display: flex;
         align-items: center;
         svg {
@@ -25,7 +25,7 @@
     }
 
     &__copyright {
-        color: rgba(0, 0, 0, 0.6);
+        color: var(--farallon-text-gray);
     }
 
     &__action {
@@ -35,7 +35,7 @@
         padding: 20px 0;
         .button--like {
             svg {
-                fill: rgba(0, 0, 0, 0.6);
+                fill: var(--farallon-text-gray);
             }
             &:hover,
             &.is-active {
