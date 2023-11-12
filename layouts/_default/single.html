@@ -53,6 +53,13 @@
             <a href="{{ .RelPermalink }}" class="artile--tag">{{ .LinkTitle }}</a>
             {{ end }}
         </div>
+        {{ if .Site.Params.showAuthor }}
+        <div class="author--card">
+            <img src="{{ .Site.Params.authorAvatar }}" class="avatar" height="64" width="64" decoding="async">
+            <div class="author--name">{{ .Site.Params.authorName }}</div>
+            <div class="author--description">{{ .Site.Params.authorDescription }}</div>
+        </div>
+        {{ end }}
         {{ partial "related.html" . }}
         {{ if .Params.twitter }}
         <div class="twitter--area">

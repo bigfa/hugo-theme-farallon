@@ -79,7 +79,7 @@
             }
             .meta {
                 font-size: 12px;
-                color: rgba(0, 0, 0, 0.6);
+                color: var(--farallon-text-gray);
                 line-height: 1;
             }
         }
@@ -100,7 +100,7 @@
     justify-content: center;
     align-items: center;
     padding: 30px 0;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--farallon-border-color);
     margin-top: 20px;
     .avatar {
         border-radius: 100%;
@@ -113,7 +113,7 @@
 
     .author--description {
         font-size: 14px;
-        color: rgba(0, 0, 0, 0.6);
+        color: var(--farallon-text-gray);
     }
 
     .author--sns {
@@ -134,34 +134,10 @@
         font-size: 14px;
         padding: 2px 12px;
         border-radius: 5px;
-        color: rgba(0, 0, 0, 0.6);
+        color: var(--farallon-text-gray);
         &:hover {
             background-color: #e0e0e0;
         }
-    }
-}
-
-.button--like {
-    border: 0;
-    background-color: #fff;
-    cursor: pointer;
-    &.is-active {
-        svg {
-            fill: var(--text-main-color);
-        }
-        .icon--active {
-            display: block;
-        }
-        .icon--default {
-            display: none;
-        }
-    }
-    .icon--active {
-        display: none;
-    }
-
-    .icon--block {
-        display: none;
     }
 }
 
