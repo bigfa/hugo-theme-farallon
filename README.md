@@ -10,6 +10,8 @@ git submodule add https://github.com/bigfa/hugo-theme-farallon.git themes/farall
 echo "theme = 'farallon'" >> hugo.toml
 ```
 
+[Full demo site](https://github.com/bigfa/bigfa.github.io)
+
 ## Release Notes
 
 ### 0.3.1

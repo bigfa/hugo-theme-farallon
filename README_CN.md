@@ -10,6 +10,8 @@ git submodule add https://github.com/bigfa/hugo-theme-farallon.git themes/farall
 echo "theme = 'farallon'" >> hugo.toml
 ```
 
+[完整演示站点](https://github.com/bigfa/bigfa.github.io)
+
 ## Release Note
 
 ### 0.3.1
