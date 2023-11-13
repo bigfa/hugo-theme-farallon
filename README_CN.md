@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.3.3
+
+-   增加状态文章格式
+
 ### 0.3.2
 
 -   文章页增加作者信息

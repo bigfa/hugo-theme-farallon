@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.3.3
+
+-   add post type memo
+
 ### 0.3.2
 
 -   add story author card

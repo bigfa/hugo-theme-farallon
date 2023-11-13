@@ -1,0 +1,16 @@
+<article class="post--item post--item__status" itemtype="http://schema.org/Article" itemscope="itemscope">
+    <div class="content">
+        <header>
+            {{ $logo := resources.Get "images/logo.jpeg" }}
+            <img src="{{ $logo.RelPermalink }}" class="avatar" width="48" height="48" />
+            <a datetime='{{.Date.Format "2006-01-02 15:04:01" }}' class="humane--time" href="{{ .Permalink }}"
+                itemprop="datePublished">{{
+                .Date |
+                time.Format ":date_long"
+                }}</a>
+        </header>
+        <div class="description" itemprop="about">
+            <p>{{ .Summary | truncate 60 }}</p>
+        </div>
+    </div>
+</article>
