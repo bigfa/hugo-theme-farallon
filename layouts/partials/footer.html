@@ -46,7 +46,8 @@
 {{- $replay := resources.Get "js/comment.min.js" | js.Build $opts -}}
 {{- $db := resources.Get "ts/db.ts" | js.Build $opts -}}
 {{- $app := resources.Get "ts/app.ts" | js.Build $opts -}}
-{{ $ts := slice $replay $db $app | resources.Concat "ts/bundle.js" }}
+{{- $comment := resources.Get "ts/comment.ts" | js.Build $opts -}}
+{{ $ts := slice $replay $db $app $comment | resources.Concat "ts/bundle.js" }}
 <script type="text/javascript" src="{{ $ts.RelPermalink }}" defer></script>
 {{ range .Site.Params.customJS }}
 {{ if ( or ( hasPrefix . "http://" ) ( hasPrefix . "https://" ) ) }}
