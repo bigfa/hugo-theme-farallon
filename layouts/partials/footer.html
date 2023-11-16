@@ -40,11 +40,13 @@
 </script>
 <script type="text/javascript">
     window.WPD_TOKEN = "{{ .Site.Params.wpdToken }}";
+    window.commentDomain = "{{ .Site.Params.commentDomain }}";
 </script>
 {{- $opts := dict "minify" hugo.IsProduction -}}
+{{- $replay := resources.Get "js/comment.min.js" | js.Build $opts -}}
 {{- $db := resources.Get "ts/db.ts" | js.Build $opts -}}
 {{- $app := resources.Get "ts/app.ts" | js.Build $opts -}}
-{{ $ts := slice $db $app | resources.Concat "ts/bundle.js" }}
+{{ $ts := slice $replay $db $app | resources.Concat "ts/bundle.js" }}
 <script type="text/javascript" src="{{ $ts.RelPermalink }}" defer></script>
 {{ range .Site.Params.customJS }}
 {{ if ( or ( hasPrefix . "http://" ) ( hasPrefix . "https://" ) ) }}
