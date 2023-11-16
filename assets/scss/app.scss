@@ -605,3 +605,11 @@ textarea {
 }
 
 @import "templates/about.scss";
+
+.dot {
+    &::before {
+        content: "·";
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+}
