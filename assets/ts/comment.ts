@@ -1,9 +1,10 @@
 //@ts-nocheck
 class farallonComment {
-    loading = false;
+    loading: boolean = false;
     post_id: any;
-    total: 0;
-    total_paged: 1;
+    total: any = 0;
+    total_paged: any = 1;
+    paged: any = 1;
     constructor() {
         this.post_id = document.querySelector(
             ".post--ingle__comments"
@@ -14,12 +15,19 @@ class farallonComment {
 
     fetchComments() {
         fetch(
-            window.commentDomain + "/post/" + this.post_id + "/comments"
+            window.commentDomain +
+                "/post/" +
+                this.post_id +
+                "/comments?paged=" +
+                this.paged
         ).then((res) => {
             res.json().then((data) => {
                 const comments = data.payload.comments;
                 this.total = data.payload.total;
                 this.total_paged = data.payload.total_paged;
+                if (this.total_paged > 1) {
+                    this.randerNav();
+                }
                 document.querySelector(".comments--title .count")!.innerHTML =
                     this.total;
                 const html = comments
@@ -97,6 +105,35 @@ class farallonComment {
                     })
                     .join("");
                 document.querySelector(".commentlist ")!.innerHTML = html;
+            });
+        });
+    }
+
+    randerNav() {
+        const nextDisabled = this.paged == 1 ? "disabled" : "";
+        const preDisabled = this.paged == this.total_paged ? "disabled" : "";
+        const html = `<span class="cnav-item ${preDisabled}" data-action="pre">
+        <svg class="svgIcon" width="21" height="21" viewBox="0 0 21 21">
+        <path d="M13.402 16.957l-6.478-6.479L13.402 4l.799.71-5.768 5.768 5.768 5.77z" fill-rule="evenodd">
+        </path></svg> Older Comments</span><span class="chartPage-verticalDivider"></span><span class="cnav-item ${nextDisabled}" data-action="next">Newer Comments
+        <svg class="svgIcon" width="21" height="21" viewBox="0 0 21 21">
+        <path d="M8.3 4.2l6.4 6.3-6.4 6.3-.8-.8 5.5-5.5L7.5 5" fill-rule="evenodd">
+        </path></svg>
+        </span>`;
+        document.querySelector(".commentnav")!.innerHTML = html;
+
+        document.querySelectorAll(".cnav-item").forEach((item) => {
+            item.addEventListener("click", (e) => {
+                if (item.classList.contains("disabled")) return;
+                console.log(item);
+                const action = item.attributes["data-action"].value;
+                console.log(action);
+                if (action == "pre") {
+                    this.paged += 1;
+                } else {
+                    this.paged -= 1;
+                }
+                this.fetchComments();
             });
         });
     }
