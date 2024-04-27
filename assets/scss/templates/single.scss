@@ -117,8 +117,27 @@
     }
 
     .author--sns {
-        margin-top: 10px;
-        cursor: pointer;
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        a {
+            margin: 0 10px 0 0;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        svg {
+            fill: var(--farallon-text-color);
+            &:hover {
+                fill: var(--farallon-hover-color);
+            }
+            width: 24px;
+            height: 24px;
+            &.sns {
+                fill: none;
+                stroke: var(--farallon-text-color);
+            }
+        }
     }
 }
 

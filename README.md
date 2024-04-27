@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.3.5
+
+-   add author sns icons
+
 ### 0.3.4
 
 -   change category file name

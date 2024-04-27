@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.3.5
+
+-   增加作者 SNS 图标
+
 ### 0.3.4
 
 -   修改分类文件名
