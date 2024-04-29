@@ -2,6 +2,8 @@
 
 ![Hugo Theme Farallon](https://static.fatesinger.com/2023/06/u1ak8xgmyn9ec24r.png)
 
+Farallon is a simple single column hugo theme with perfect performace and elegance design.
+
 ## Usage
 
 ```
@@ -13,6 +15,11 @@ echo "theme = 'farallon'" >> hugo.toml
 [Full demo site](https://github.com/bigfa/bigfa.github.io)
 
 ## Release Notes
+
+### 0.3.6
+
+-   add post category card
+-   add github icon
 
 ### 0.3.5
 

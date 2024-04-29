@@ -1,0 +1,13 @@
+{{ if .Params.categories }}
+<div class="category--card__list">
+    {{ range (.GetTerms "categories") }}
+    <a href="{{ .RelPermalink }}" class="category--card">
+        <div class="category--card__image"><img src="{{ .Params.cover }}" /></div>
+        <div class="category--card__content">
+            <div class="category--card__title">{{ .LinkTitle }}</div>
+            <div class="category--card__description">{{ .Params.description }}</div>
+        </div>
+    </a>
+    {{ end }}
+</div>
+{{ end }}
