@@ -18,7 +18,7 @@ class farallonDate {
         years: "years ago",
     };
     doms: Array<any> = [];
-    VERSION: string = "0.3.1";
+    VERSION: string = "0.3.7";
     constructor(config: any) {
         this.selector = config.selector;
         if (config.timeFormat) {

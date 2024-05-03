@@ -1,6 +1,12 @@
 <footer class="site--footer">
     <div class="site--footer__content">
+        {{ if .Site.Params.footer_sns }}
+        <div class=site--footer__sns>
+            {{ partial "sns.html" . }}
+        </div>
+        {{ else }}
         Made with 💗
+        {{ end }}
         <div class="copyright">
             {{ with .Site.Params.copyright }}
             {{ . | markdownify }}
