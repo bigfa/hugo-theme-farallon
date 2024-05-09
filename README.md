@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.3.7
+
+-   add post like btn
+
 ### 0.3.6
 
 -   add post category card

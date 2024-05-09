@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.3.7
+
+-   增加文章点赞
+
 ### 0.3.6
 
 -   增加文章分类卡片

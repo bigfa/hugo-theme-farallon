@@ -18,7 +18,7 @@ class farallonDate {
         years: "years ago",
     };
     doms: Array<any> = [];
-    VERSION: string = "0.3.1";
+    VERSION: string = "0.3.7";
     constructor(config: any) {
         this.selector = config.selector;
         if (config.timeFormat) {
@@ -113,7 +113,11 @@ class farallonBase {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.2.3";
+    VERSION: string = "0.3.7";
+    like_btn: any;
+    selctor: string = ".like-btn";
+    is_single: boolean = false;
+    actionDomain: string = window.actionDomain;
     constructor() {
         const theme = localStorage.getItem("theme")
             ? localStorage.getItem("theme")
@@ -221,6 +225,56 @@ class farallonBase {
                     .querySelector(".site--header__center .inner")!
                     .classList.toggle("search--active");
             });
+
+        this.is_single = document.querySelector(".post--single") ? true : false;
+
+        if (this.is_single) {
+            this.post_id = document.querySelector(".post--single")!.dataset.id;
+            this.initArticleLike();
+        }
+    }
+
+    initArticleLike() {
+        this.like_btn = document.querySelector(this.selctor);
+        if (!this.like_btn) return;
+        fetch(this.actionDomain + "post/" + this.post_id + "/like").then(
+            (res) => {
+                res.json().then((data) => {
+                    console.log(data);
+                    this.like_btn.querySelector(".count").innerText =
+                        data.likes;
+                });
+            }
+        );
+        if (this.like_btn) {
+            this.like_btn.addEventListener("click", () => {
+                this.handleLike();
+            });
+            if (this.getCookie("like_" + this.post_id)) {
+                this.like_btn.classList.add("is-active");
+            }
+        }
+    }
+
+    handleLike() {
+        // @ts-ignore
+        if (this.getCookie("like_" + this.post_id)) {
+            return this.showNotice("You have already liked this post");
+        }
+        // @ts-ignore
+        const url = this.actionDomain + "/post/" + this.post_id + "/like";
+        fetch(url, {
+            method: "post",
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                this.showNotice("Thanks for your like");
+                // @ts-ignore
+                this.setCookie("like_" + this.post_id, "1", 1);
+            });
+        this.like_btn.classList.add("is-active");
     }
 
     getCookie(t: any) {
