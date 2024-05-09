@@ -19,6 +19,7 @@ echo "theme = 'farallon'" >> hugo.toml
 ### 0.3.7
 
 -   add post like btn
+-   add footer sns icons
 
 ### 0.3.6
 
