@@ -613,3 +613,30 @@ textarea {
         margin-right: 4px;
     }
 }
+
+.notice--wrapper {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    font-size: 12px;
+
+    max-width: 800px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    position: fixed;
+    z-index: 1000;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    //transform: translateY(-100px);
+    transition: 0.5s transform;
+    //  &.is-active {
+    //transform: translateX(-50%);
+    //  transform: translateY(0);
+    // }
+}
+
+@media (max-width: 768px) {
+    .notice--wrapper {
+        width: 80%;
+    }
+}

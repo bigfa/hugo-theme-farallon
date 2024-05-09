@@ -262,7 +262,7 @@ class farallonBase {
             return this.showNotice("You have already liked this post");
         }
         // @ts-ignore
-        const url = this.actionDomain + "/post/" + this.post_id + "/like";
+        const url = this.actionDomain + "post/" + this.post_id + "/like";
         fetch(url, {
             method: "post",
         })
@@ -271,6 +271,7 @@ class farallonBase {
             })
             .then((data) => {
                 this.showNotice("Thanks for your like");
+                this.like_btn.querySelector(".count").innerText = data.likes;
                 // @ts-ignore
                 this.setCookie("like_" + this.post_id, "1", 1);
             });
