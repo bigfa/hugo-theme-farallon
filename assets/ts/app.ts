@@ -231,7 +231,20 @@ class farallonBase {
         if (this.is_single) {
             this.post_id = document.querySelector(".post--single")!.dataset.id;
             this.initArticleLike();
+            this.initArticleView();
         }
+    }
+
+    initArticleView() {
+        fetch(this.actionDomain + "post/" + this.post_id + "/view", {
+            method: "post",
+        }).then((res) => {
+            res.json().then((data) => {
+                console.log(data);
+                document.querySelector(".article--views").innerText =
+                    data.views;
+            });
+        });
     }
 
     initArticleLike() {

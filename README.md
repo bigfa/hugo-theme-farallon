@@ -16,9 +16,16 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
-### 0.3.7
+### 0.3.9
+
+-   add post view
+
+### 0.3.8
 
 -   add post like btn
+
+### 0.3.7
+
 -   add footer sns icons
 
 ### 0.3.6
