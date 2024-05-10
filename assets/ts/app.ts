@@ -18,7 +18,7 @@ class farallonDate {
         years: "years ago",
     };
     doms: Array<any> = [];
-    VERSION: string = "0.3.7";
+    VERSION: string = "0.4.0";
     constructor(config: any) {
         this.selector = config.selector;
         if (config.timeFormat) {
@@ -113,7 +113,7 @@ class farallonBase {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.3.7";
+    VERSION: string = "0.4.0";
     like_btn: any;
     selctor: string = ".like-btn";
     is_single: boolean = false;
@@ -232,7 +232,37 @@ class farallonBase {
             this.post_id = document.querySelector(".post--single")!.dataset.id;
             this.initArticleLike();
             this.initArticleView();
+        } else {
+            this.initArticlesView();
         }
+    }
+
+    initArticlesView() {
+        const articles = document.querySelectorAll(".post--item");
+        let ids = [];
+        articles.forEach((article) => {
+            ids.push(article.dataset.id);
+        });
+
+        ids = ids.join(",");
+
+        fetch(this.actionDomain + "post/views?post_ids=" + ids).then((res) => {
+            res.json().then((data) => {
+                console.log(data);
+                const result = data.results;
+                articles.forEach((article) => {
+                    article.querySelector(".article--views").innerText =
+                        result.find(
+                            (item: any) => item.post_id == article.dataset.id
+                        )
+                            ? result.find(
+                                  (item: any) =>
+                                      item.post_id == article.dataset.id
+                              ).views
+                            : 0;
+                });
+            });
+        });
     }
 
     initArticleView() {

@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.4.0
+
+-   列表显示浏览量
+
 ### 0.3.9
 
 -   增加文章浏览量

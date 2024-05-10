@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.4.0
+
+-   add post view in list
+
 ### 0.3.9
 
 -   add post view
