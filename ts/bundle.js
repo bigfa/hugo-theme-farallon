@@ -24,17 +24,73 @@
                                     </div>`).join(""),n+="</div>";e.innerHTML=n}})}};new d({token:window.WPD_TOKEN});})();
 
 ;
-(()=>{var n=class{selector;timeFormat={second:"second ago",seconds:"seconds ago",minute:"minute ago",minutes:"minutes ago",hour:"hour ago",hours:"hours ago",day:"day ago",days:"days ago",week:"week ago",weeks:"weeks ago",month:"month ago",months:"months ago",year:"year ago",years:"years ago"};doms=[];VERSION="0.4.0";constructor(i){this.selector=i.selector,i.timeFormat&&(this.timeFormat=i.timeFormat),this.init(),setTimeout(()=>{this.refresh()},1e3*5);let t=`<div class="site--footer__info">
+(()=>{var c=class{getCookie(e){if(0<document.cookie.length){var o=document.cookie.indexOf(e+"=");if(o!=-1){o=o+e.length+1;var t=document.cookie.indexOf(";",o);return t==-1&&(t=document.cookie.length),document.cookie.substring(o,t)}}return""}setCookie(e,o,t){var n=new Date;n.setTime(n.getTime()+24*t*60*60*1e3);var i="expires="+n.toUTCString();document.cookie=e+"="+o+";"+i+";path=/"}showNotice(e,o="success"){let t=`<div class="notice--wrapper">${e}</div>`;document.querySelector("body").insertAdjacentHTML("beforeend",t),document.querySelector(".notice--wrapper").classList.add("is-active"),setTimeout(()=>{document.querySelector(".notice--wrapper").remove()},3e3)}};var u=class{selector;timeFormat={second:"second ago",seconds:"seconds ago",minute:"minute ago",minutes:"minutes ago",hour:"hour ago",hours:"hours ago",day:"day ago",days:"days ago",week:"week ago",weeks:"weeks ago",month:"month ago",months:"months ago",year:"year ago",years:"years ago"};doms=[];constructor(e){this.selector=e.selector,e.timeFormat&&(this.timeFormat=e.timeFormat),this.init(),setTimeout(()=>{this.refresh()},1e3*5)}init(){this.doms=Array.from(document.querySelectorAll(this.selector)),this.doms.forEach(e=>{e.innerText=this.humanize_time_ago(e.attributes.datetime.value)})}humanize_time_ago(e){let o=new Date(e),t=Date.now()/1e3-Number(o.getTime()/1e3);return t<3600?`${Math.ceil(t/60)} ${Math.ceil(t/60)==1?this.timeFormat.second:this.timeFormat.seconds}`:t<86400?`${Math.ceil(t/3600)} ${Math.ceil(t/3660)==1?this.timeFormat.hour:this.timeFormat.hours}`:t<86400*30?`${Math.ceil(t/86400)} ${Math.ceil(t/86400)==1?this.timeFormat.day:this.timeFormat.days}`:t<86400*30*12?`${Math.ceil(t/(86400*30))} ${Math.ceil(t/(86400*30))==1?this.timeFormat.month:this.timeFormat.months}`:o.getFullYear()+"-"+(o.getMonth()+1)+"-"+o.getDate()}refresh(){this.doms.forEach(e=>{e.innerText=this.humanize_time_ago(e.attributes.datetime.value)})}},f=u;var p=class extends c{is_single=!1;post_id;like_btn;selctor=".like-btn";actionDomain=window.actionDomain;constructor(){super(),this.is_single=!!document.querySelector(".post--single"),this.is_single?(this.post_id=document.querySelector(".post--single").dataset.id,this.initArticleLike(),this.initArticleView()):this.initArticlesView()}initArticleView(){fetch(this.actionDomain+"post/"+this.post_id+"/view",{method:"post"}).then(e=>{e.json().then(o=>{console.log(o),document.querySelector(".article--views").innerText=o.views})})}initArticlesView(){let e=document.querySelectorAll(".post--item"),o=[];e.forEach(t=>{o.push(t.dataset.id)}),o=o.join(","),fetch(this.actionDomain+"post/views?post_ids="+o).then(t=>{t.json().then(n=>{console.log(n);let i=n.results;e.forEach(a=>{a.querySelector(".article--views").innerText=i.find(s=>s.post_id==a.dataset.id)?i.find(s=>s.post_id==a.dataset.id).views:0})})})}initArticleLike(){this.like_btn=document.querySelector(this.selctor),this.like_btn&&(fetch(this.actionDomain+"post/"+this.post_id+"/like").then(e=>{e.json().then(o=>{console.log(o),this.like_btn.querySelector(".count").innerText=o.likes})}),this.like_btn&&(this.like_btn.addEventListener("click",()=>{this.handleLike()}),this.getCookie("like_"+this.post_id)&&this.like_btn.classList.add("is-active")))}},_=p;var d=class{loading=!1;post_id;total=0;total_paged=1;paged=1;constructor(){document.querySelector(".post--ingle__comments")&&(this.post_id=document.querySelector(".post--ingle__comments").dataset.id,this.fetchComments(),this.init())}fetchComments(){fetch(window.commentDomain+"/post/"+this.post_id+"/comments?paged="+this.paged).then(e=>{e.json().then(o=>{let t=o.payload.comments;this.total=o.payload.total,this.total_paged=o.payload.total_paged,this.total_paged>1&&this.randerNav(),document.querySelector(".comments--title .count").innerHTML=this.total;let n=t.map(i=>{let a="";return i.children&&(a=`<ol class="children">${i.children.map(s=>`<li class="comment" itemtype="http://schema.org/Comment" data-id="${s.id}" itemscope="" itemprop="comment" id="comment-${s.id}">
+                                    <div class="comment-body">
+                                    <div class="comment-meta">
+                                    <div class="comment--avatar">
+                                    ${s.avatar}
+                                    </div>
+                                    <div class="comment--meta">
+                                    <div class="comment--author" itemprop="author">${s.comment_author}<span class="dot"></span>
+                                    <div class="comment--time humane--time" itemprop="datePublished" datetime="2023-09-22T08:24:25+00:00">${s.comment_time}</div>
+                                    <span class="comment-reply-link u-cursorPointer " onclick="return addComment.moveForm('comment-${s.id}', '${s.id}', 'respond', '${document.querySelector(".post--ingle__comments").dataset.id}')"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" class=""><g><path d="M12 3.786c-4.556 0-8.25 3.694-8.25 8.25s3.694 8.25 8.25 8.25c1.595 0 3.081-.451 4.341-1.233l1.054 1.7c-1.568.972-3.418 1.534-5.395 1.534-5.661 0-10.25-4.589-10.25-10.25S6.339 1.786 12 1.786s10.25 4.589 10.25 10.25c0 .901-.21 1.77-.452 2.477-.592 1.731-2.343 2.477-3.917 2.334-1.242-.113-2.307-.74-3.013-1.647-.961 1.253-2.45 2.011-4.092 1.78-2.581-.363-4.127-2.971-3.76-5.578.366-2.606 2.571-4.688 5.152-4.325 1.019.143 1.877.637 2.519 1.342l1.803.258-.507 3.549c-.187 1.31.761 2.509 2.079 2.629.915.083 1.627-.356 1.843-.99.2-.585.345-1.224.345-1.83 0-4.556-3.694-8.25-8.25-8.25zm-.111 5.274c-1.247-.175-2.645.854-2.893 2.623-.249 1.769.811 3.143 2.058 3.319 1.247.175 2.645-.854 2.893-2.623.249-1.769-.811-3.144-2.058-3.319z"></path></g></svg></span>                            </div>
+                            </div>
+                        </div>
+                        <div class="comment-content" itemprop="description">
+                            ${s.comment_text}
+                        </div>
+                    </div>
+        </li>`).join("")}</ol>`),`<li class="comment parent" itemtype="http://schema.org/Comment" data-id="${i.id}" itemscope="" itemprop="comment" id="comment-${i.id}">
+                            <div class="comment-body">
+                                <div class="comment-meta">
+                                    <div class="comment--avatar">
+                                        ${i.avatar}
+                                    </div>
+                                    <div class="comment--meta">
+                                        <div class="comment--author" itemprop="author">${i.comment_author}<span class="dot"></span>
+                                            <div class="comment--time humane--time" itemprop="datePublished" datetime="2023-09-22T08:24:25+00:00">${i.comment_time}</div>
+                                            <span class="comment-reply-link u-cursorPointer " onclick="return addComment.moveForm('comment-${i.id}', '${i.id}', 'respond', '${document.querySelector(".post--ingle__comments").dataset.id}')"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" class=""><g><path d="M12 3.786c-4.556 0-8.25 3.694-8.25 8.25s3.694 8.25 8.25 8.25c1.595 0 3.081-.451 4.341-1.233l1.054 1.7c-1.568.972-3.418 1.534-5.395 1.534-5.661 0-10.25-4.589-10.25-10.25S6.339 1.786 12 1.786s10.25 4.589 10.25 10.25c0 .901-.21 1.77-.452 2.477-.592 1.731-2.343 2.477-3.917 2.334-1.242-.113-2.307-.74-3.013-1.647-.961 1.253-2.45 2.011-4.092 1.78-2.581-.363-4.127-2.971-3.76-5.578.366-2.606 2.571-4.688 5.152-4.325 1.019.143 1.877.637 2.519 1.342l1.803.258-.507 3.549c-.187 1.31.761 2.509 2.079 2.629.915.083 1.627-.356 1.843-.99.2-.585.345-1.224.345-1.83 0-4.556-3.694-8.25-8.25-8.25zm-.111 5.274c-1.247-.175-2.645.854-2.893 2.623-.249 1.769.811 3.143 2.058 3.319 1.247.175 2.645-.854 2.893-2.623.249-1.769-.811-3.144-2.058-3.319z"></path></g></svg></span>                            </div>
+                                    </div>
+                                </div>
+                                <div class="comment-content" itemprop="description">
+                                    ${i.comment_text}
+                                </div>
+                            </div>
+                            ${a}
+                </li>`}).join("");document.querySelector(".commentlist ").innerHTML=n})})}randerNav(){let e=this.paged==1?"disabled":"",t=`<span class="cnav-item ${this.paged==this.total_paged?"disabled":""}" data-action="pre">
+        <svg class="svgIcon" width="21" height="21" viewBox="0 0 21 21">
+        <path d="M13.402 16.957l-6.478-6.479L13.402 4l.799.71-5.768 5.768 5.768 5.77z" fill-rule="evenodd">
+        </path></svg> Older Comments</span><span class="chartPage-verticalDivider"></span><span class="cnav-item ${e}" data-action="next">Newer Comments
+        <svg class="svgIcon" width="21" height="21" viewBox="0 0 21 21">
+        <path d="M8.3 4.2l6.4 6.3-6.4 6.3-.8-.8 5.5-5.5L7.5 5" fill-rule="evenodd">
+        </path></svg>
+        </span>`;document.querySelector(".commentnav").innerHTML=t,document.querySelectorAll(".cnav-item").forEach(n=>{n.addEventListener("click",i=>{if(n.classList.contains("disabled"))return;console.log(n);let a=n.attributes["data-action"].value;console.log(a),a=="pre"?this.paged+=1:this.paged-=1,this.fetchComments()})})}init(){document.querySelector(".comment-form")&&document.querySelector(".comment-form")?.addEventListener("submit",e=>{if(e.preventDefault(),this.loading)return;let o=document.querySelector(".comment-form"),t=new FormData(o),n={};t.forEach((i,a)=>n[a]=i),this.loading=!0,fetch(window.commentDomain+"/post/"+this.post_id+"/comment",{method:"POST",body:JSON.stringify(n),headers:{"Content-Type":"application/json"}}).then(i=>i.json()).then(i=>{if(this.loading=!1,i.status!=200)return;let a=document.getElementById("cancel-comment-reply-link"),s=document.getElementById("respond"),r=document.getElementById("wp-temp-form-div"),m=i.data,g=`<li class="comment" id="comment-${m.comment_ID}">
+                        <div class="comment-body comment-body__fresh">
+                            <footer class="comment-meta">
+                                <div class="comment--avatar">
+                                    ${m.avatar}
+                                </div>
+                                <div class="comment--meta">
+                                    <div class="comment--author">${m.comment_author}<span class="dot"></span>
+                                    <time>\u521A\u521A</time>
+                                    </div>
+                                </div>
+                            </footer>
+                            <div class="comment-content">
+                                ${m.comment_text}
+                            </div>
+                        </div>
+                    </li>`,h=document.querySelector("#comment_parent")?.value;a.style.display="none",a.onclick=null,document.getElementById("comment_parent").value="0",r&&s&&(r.parentNode.insertBefore(s,r),r.parentNode.removeChild(r)),document.querySelector(".comment-body__fresh")&&document.querySelector(".comment-body__fresh")?.classList.remove("comment-body__fresh"),document.getElementById("comment").value="",h!="0"?(document.querySelector("#comment-"+h)?.insertAdjacentHTML("beforeend",'<ol class="children">'+g+"</ol>"),console.log(h)):(document.querySelector(".no--comment")&&document.querySelector(".no--comment")?.remove(),document.querySelector(".commentlist")?.insertAdjacentHTML("beforeend",g));let y=document.querySelector(`#comment-${m.comment_ID}`);y&&y.scrollIntoView({behavior:"smooth"})})})}};var v=class extends c{is_single=!1;post_id=0;is_archive=!1;VERSION="0.4.1";like_btn;selctor=".like-btn";actionDomain=window.actionDomain;constructor(){super(),this.initCopyright(),this.initThemeSwitch(),this.initBack2Top(),this.initSearch()}initSearch(){document.querySelector('[data-action="show-search"]').addEventListener("click",()=>{document.querySelector(".site--header__center .inner").classList.toggle("search--active")})}initBack2Top(){if(document.querySelector(".backToTop")){let e=document.querySelector(".backToTop");window.addEventListener("scroll",()=>{(window.scrollY||window.pageYOffset)>200?e.classList.add("is-active"):e.classList.remove("is-active")}),e.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})})}}initCopyright(){let e=`<div class="site--footer__info">
         Theme <a href="https://fatesinger.com/101971" target="_blank">farallon</a> by bigfa / version ${this.VERSION}
-    </div>`;document.querySelector(".site--footer__content").insertAdjacentHTML("afterend",t),document.querySelector(".icon--copryrights").addEventListener("click",()=>{document.querySelector(".site--footer__info").classList.toggle("active")})}init(){this.doms=Array.from(document.querySelectorAll(this.selector)),this.doms.forEach(i=>{i.innerText=this.humanize_time_ago(i.attributes.datetime.value)})}humanize_time_ago(i){let t=new Date(i),e=Date.now()/1e3-Number(t.getTime()/1e3);return e<3600?`${Math.ceil(e/60)} ${Math.ceil(e/60)==1?this.timeFormat.second:this.timeFormat.seconds}`:e<86400?`${Math.ceil(e/3600)} ${Math.ceil(e/3660)==1?this.timeFormat.hour:this.timeFormat.hours}`:e<86400*30?`${Math.ceil(e/86400)} ${Math.ceil(e/86400)==1?this.timeFormat.day:this.timeFormat.days}`:e<86400*30*12?`${Math.ceil(e/(86400*30))} ${Math.ceil(e/(86400*30))==1?this.timeFormat.month:this.timeFormat.months}`:t.getFullYear()+"-"+(t.getMonth()+1)+"-"+t.getDate()}refresh(){this.doms.forEach(i=>{i.innerText=this.humanize_time_ago(i.attributes.datetime.value)})}};new n({selector:".humane--time",timeFormat:window.timeFormat});var c=class{is_single=!1;post_id=0;is_archive=!1;VERSION="0.4.0";like_btn;selctor=".like-btn";is_single=!1;actionDomain=window.actionDomain;constructor(){let i=localStorage.getItem("theme")?localStorage.getItem("theme"):"auto",t=`<div class="fixed--theme">
-        <span class="${i=="dark"?"is-active":""}" data-action-value="dark">
+    </div>`;document.querySelector(".site--footer__content").insertAdjacentHTML("afterend",e),document.querySelector(".icon--copryrights").addEventListener("click",()=>{document.querySelector(".site--footer__info").classList.toggle("active")})}initThemeSwitch(){let e=localStorage.getItem("theme")?localStorage.getItem("theme"):"auto",o=`<div class="fixed--theme">
+        <span class="${e=="dark"?"is-active":""}" data-action-value="dark">
             <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
                 stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"
                 style="color: currentcolor; width: 16px; height: 16px;">
                 <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
         </span>
-        <span class="${i=="light"?"is-active":""}" data-action-value="light">
+        <span class="${e=="light"?"is-active":""}" data-action-value="light">
             <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
                 stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"
                 style="color: currentcolor; width: 16px; height: 16px;">
@@ -49,7 +105,7 @@
                 <path d="M18.36 5.64l1.42-1.42"></path>
             </svg>
         </span>
-        <span class="${i=="auto"?"is-active":""}"  data-action-value="auto">
+        <span class="${e=="auto"?"is-active":""}"  data-action-value="auto">
             <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
                 stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"
                 style="color: currentcolor; width: 16px; height: 16px;">
@@ -58,63 +114,4 @@
                 <path d="M12 17v4"></path>
             </svg>
         </span>
-    </div>`;if(document.querySelector("body").insertAdjacentHTML("beforeend",t),document.querySelectorAll(".fixed--theme span").forEach(e=>{e.addEventListener("click",()=>{e.classList.contains("is-active")||(document.querySelectorAll(".fixed--theme span").forEach(o=>{o.classList.remove("is-active")}),e.dataset.actionValue=="dark"?(localStorage.setItem("theme","dark"),document.querySelector("body").classList.remove("auto"),document.querySelector("body").classList.add("dark"),e.classList.add("is-active")):e.dataset.actionValue=="light"?(localStorage.setItem("theme","light"),document.querySelector("body").classList.remove("auto"),document.querySelector("body").classList.remove("dark"),e.classList.add("is-active")):e.dataset.actionValue=="auto"&&(localStorage.setItem("theme","auto"),document.querySelector("body").classList.remove("dark"),document.querySelector("body").classList.add("auto"),e.classList.add("is-active")))})}),document.querySelector(".backToTop")){let e=document.querySelector(".backToTop");window.addEventListener("scroll",()=>{(window.scrollY||window.pageYOffset)>200?e.classList.add("is-active"):e.classList.remove("is-active")}),e.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})})}document.querySelector('[data-action="show-search"]').addEventListener("click",()=>{document.querySelector(".site--header__center .inner").classList.toggle("search--active")}),this.is_single=!!document.querySelector(".post--single"),this.is_single?(this.post_id=document.querySelector(".post--single").dataset.id,this.initArticleLike(),this.initArticleView()):this.initArticlesView()}initArticlesView(){let i=document.querySelectorAll(".post--item"),t=[];i.forEach(e=>{t.push(e.dataset.id)}),t=t.join(","),fetch(this.actionDomain+"post/views?post_ids="+t).then(e=>{e.json().then(o=>{console.log(o);let s=o.results;i.forEach(a=>{a.querySelector(".article--views").innerText=s.find(r=>r.post_id==a.dataset.id)?s.find(r=>r.post_id==a.dataset.id).views:0})})})}initArticleView(){fetch(this.actionDomain+"post/"+this.post_id+"/view",{method:"post"}).then(i=>{i.json().then(t=>{console.log(t),document.querySelector(".article--views").innerText=t.views})})}initArticleLike(){this.like_btn=document.querySelector(this.selctor),this.like_btn&&(fetch(this.actionDomain+"post/"+this.post_id+"/like").then(i=>{i.json().then(t=>{console.log(t),this.like_btn.querySelector(".count").innerText=t.likes})}),this.like_btn&&(this.like_btn.addEventListener("click",()=>{this.handleLike()}),this.getCookie("like_"+this.post_id)&&this.like_btn.classList.add("is-active")))}handleLike(){if(this.getCookie("like_"+this.post_id))return this.showNotice("You have already liked this post");let i=this.actionDomain+"post/"+this.post_id+"/like";fetch(i,{method:"post"}).then(t=>t.json()).then(t=>{this.showNotice("Thanks for your like"),this.like_btn.querySelector(".count").innerText=t.likes,this.setCookie("like_"+this.post_id,"1",1)}),this.like_btn.classList.add("is-active")}getCookie(i){if(0<document.cookie.length){var t=document.cookie.indexOf(i+"=");if(t!=-1){t=t+i.length+1;var e=document.cookie.indexOf(";",t);return e==-1&&(e=document.cookie.length),document.cookie.substring(t,e)}}return""}setCookie(i,t,e){var o=new Date;o.setTime(o.getTime()+24*e*60*60*1e3);var s="expires="+o.toUTCString();document.cookie=i+"="+t+";"+s+";path=/"}showNotice(i,t="success"){let e=`<div class="notice--wrapper">${i}</div>`;document.querySelector("body").insertAdjacentHTML("beforeend",e),document.querySelector(".notice--wrapper").classList.add("is-active"),setTimeout(()=>{document.querySelector(".notice--wrapper").remove()},3e3)}};new c;})();
-
-;
-(()=>{var l=class{loading=!1;post_id;total=0;total_paged=1;paged=1;constructor(){document.querySelector(".post--ingle__comments")&&(this.post_id=document.querySelector(".post--ingle__comments").dataset.id,this.fetchComments(),this.init())}fetchComments(){fetch(window.commentDomain+"/post/"+this.post_id+"/comments?paged="+this.paged).then(c=>{c.json().then(m=>{let s=m.payload.comments;this.total=m.payload.total,this.total_paged=m.payload.total_paged,this.total_paged>1&&this.randerNav(),document.querySelector(".comments--title .count").innerHTML=this.total;let n=s.map(e=>{let o="";return e.children&&(o=`<ol class="children">${e.children.map(t=>`<li class="comment" itemtype="http://schema.org/Comment" data-id="${t.id}" itemscope="" itemprop="comment" id="comment-${t.id}">
-                                    <div class="comment-body">
-                                    <div class="comment-meta">
-                                    <div class="comment--avatar">
-                                    ${t.avatar}
-                                    </div>
-                                    <div class="comment--meta">
-                                    <div class="comment--author" itemprop="author">${t.comment_author}<span class="dot"></span>
-                                    <div class="comment--time humane--time" itemprop="datePublished" datetime="2023-09-22T08:24:25+00:00">${t.comment_time}</div>
-                                    <span class="comment-reply-link u-cursorPointer " onclick="return addComment.moveForm('comment-${t.id}', '${t.id}', 'respond', '${document.querySelector(".post--ingle__comments").dataset.id}')"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" class=""><g><path d="M12 3.786c-4.556 0-8.25 3.694-8.25 8.25s3.694 8.25 8.25 8.25c1.595 0 3.081-.451 4.341-1.233l1.054 1.7c-1.568.972-3.418 1.534-5.395 1.534-5.661 0-10.25-4.589-10.25-10.25S6.339 1.786 12 1.786s10.25 4.589 10.25 10.25c0 .901-.21 1.77-.452 2.477-.592 1.731-2.343 2.477-3.917 2.334-1.242-.113-2.307-.74-3.013-1.647-.961 1.253-2.45 2.011-4.092 1.78-2.581-.363-4.127-2.971-3.76-5.578.366-2.606 2.571-4.688 5.152-4.325 1.019.143 1.877.637 2.519 1.342l1.803.258-.507 3.549c-.187 1.31.761 2.509 2.079 2.629.915.083 1.627-.356 1.843-.99.2-.585.345-1.224.345-1.83 0-4.556-3.694-8.25-8.25-8.25zm-.111 5.274c-1.247-.175-2.645.854-2.893 2.623-.249 1.769.811 3.143 2.058 3.319 1.247.175 2.645-.854 2.893-2.623.249-1.769-.811-3.144-2.058-3.319z"></path></g></svg></span>                            </div>
-                            </div>
-                        </div>
-                        <div class="comment-content" itemprop="description">
-                            ${t.comment_text}
-                        </div>
-                    </div>
-        </li>`).join("")}</ol>`),`<li class="comment parent" itemtype="http://schema.org/Comment" data-id="${e.id}" itemscope="" itemprop="comment" id="comment-${e.id}">
-                            <div class="comment-body">
-                                <div class="comment-meta">
-                                    <div class="comment--avatar">
-                                        ${e.avatar}
-                                    </div>
-                                    <div class="comment--meta">
-                                        <div class="comment--author" itemprop="author">${e.comment_author}<span class="dot"></span>
-                                            <div class="comment--time humane--time" itemprop="datePublished" datetime="2023-09-22T08:24:25+00:00">${e.comment_time}</div>
-                                            <span class="comment-reply-link u-cursorPointer " onclick="return addComment.moveForm('comment-${e.id}', '${e.id}', 'respond', '${document.querySelector(".post--ingle__comments").dataset.id}')"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" class=""><g><path d="M12 3.786c-4.556 0-8.25 3.694-8.25 8.25s3.694 8.25 8.25 8.25c1.595 0 3.081-.451 4.341-1.233l1.054 1.7c-1.568.972-3.418 1.534-5.395 1.534-5.661 0-10.25-4.589-10.25-10.25S6.339 1.786 12 1.786s10.25 4.589 10.25 10.25c0 .901-.21 1.77-.452 2.477-.592 1.731-2.343 2.477-3.917 2.334-1.242-.113-2.307-.74-3.013-1.647-.961 1.253-2.45 2.011-4.092 1.78-2.581-.363-4.127-2.971-3.76-5.578.366-2.606 2.571-4.688 5.152-4.325 1.019.143 1.877.637 2.519 1.342l1.803.258-.507 3.549c-.187 1.31.761 2.509 2.079 2.629.915.083 1.627-.356 1.843-.99.2-.585.345-1.224.345-1.83 0-4.556-3.694-8.25-8.25-8.25zm-.111 5.274c-1.247-.175-2.645.854-2.893 2.623-.249 1.769.811 3.143 2.058 3.319 1.247.175 2.645-.854 2.893-2.623.249-1.769-.811-3.144-2.058-3.319z"></path></g></svg></span>                            </div>
-                                    </div>
-                                </div>
-                                <div class="comment-content" itemprop="description">
-                                    ${e.comment_text}
-                                </div>
-                            </div>
-                            ${o}
-                </li>`}).join("");document.querySelector(".commentlist ").innerHTML=n})})}randerNav(){let c=this.paged==1?"disabled":"",s=`<span class="cnav-item ${this.paged==this.total_paged?"disabled":""}" data-action="pre">
-        <svg class="svgIcon" width="21" height="21" viewBox="0 0 21 21">
-        <path d="M13.402 16.957l-6.478-6.479L13.402 4l.799.71-5.768 5.768 5.768 5.77z" fill-rule="evenodd">
-        </path></svg> Older Comments</span><span class="chartPage-verticalDivider"></span><span class="cnav-item ${c}" data-action="next">Newer Comments
-        <svg class="svgIcon" width="21" height="21" viewBox="0 0 21 21">
-        <path d="M8.3 4.2l6.4 6.3-6.4 6.3-.8-.8 5.5-5.5L7.5 5" fill-rule="evenodd">
-        </path></svg>
-        </span>`;document.querySelector(".commentnav").innerHTML=s,document.querySelectorAll(".cnav-item").forEach(n=>{n.addEventListener("click",e=>{if(n.classList.contains("disabled"))return;console.log(n);let o=n.attributes["data-action"].value;console.log(o),o=="pre"?this.paged+=1:this.paged-=1,this.fetchComments()})})}init(){document.querySelector(".comment-form")&&document.querySelector(".comment-form")?.addEventListener("submit",c=>{if(c.preventDefault(),this.loading)return;let m=document.querySelector(".comment-form"),s=new FormData(m),n={};s.forEach((e,o)=>n[o]=e),this.loading=!0,fetch(window.commentDomain+"/post/"+this.post_id+"/comment",{method:"POST",body:JSON.stringify(n),headers:{"Content-Type":"application/json"}}).then(e=>e.json()).then(e=>{if(this.loading=!1,e.status!=200)return;let o=document.getElementById("cancel-comment-reply-link"),t=document.getElementById("respond"),a=document.getElementById("wp-temp-form-div"),i=e.data,r=`<li class="comment" id="comment-${i.comment_ID}">
-                        <div class="comment-body comment-body__fresh">
-                            <footer class="comment-meta">
-                                <div class="comment--avatar">
-                                    ${i.avatar}
-                                </div>
-                                <div class="comment--meta">
-                                    <div class="comment--author">${i.comment_author}<span class="dot"></span>
-                                    <time>\u521A\u521A</time>
-                                    </div>
-                                </div>
-                            </footer>
-                            <div class="comment-content">
-                                ${i.comment_text}
-                            </div>
-                        </div>
-                    </li>`,d=document.querySelector("#comment_parent")?.value;o.style.display="none",o.onclick=null,document.getElementById("comment_parent").value="0",a&&t&&(a.parentNode.insertBefore(t,a),a.parentNode.removeChild(a)),document.querySelector(".comment-body__fresh")&&document.querySelector(".comment-body__fresh")?.classList.remove("comment-body__fresh"),document.getElementById("comment").value="",d!="0"?(document.querySelector("#comment-"+d)?.insertAdjacentHTML("beforeend",'<ol class="children">'+r+"</ol>"),console.log(d)):(document.querySelector(".no--comment")&&document.querySelector(".no--comment")?.remove(),document.querySelector(".commentlist")?.insertAdjacentHTML("beforeend",r));let p=document.querySelector(`#comment-${i.comment_ID}`);p&&p.scrollIntoView({behavior:"smooth"})})})}};new l;})();
+    </div>`;document.querySelector("body").insertAdjacentHTML("beforeend",o),document.querySelectorAll(".fixed--theme span").forEach(t=>{t.addEventListener("click",()=>{t.classList.contains("is-active")||(document.querySelectorAll(".fixed--theme span").forEach(n=>{n.classList.remove("is-active")}),t.dataset.actionValue=="dark"?(localStorage.setItem("theme","dark"),document.querySelector("body").classList.remove("auto"),document.querySelector("body").classList.add("dark"),t.classList.add("is-active")):t.dataset.actionValue=="light"?(localStorage.setItem("theme","light"),document.querySelector("body").classList.remove("auto"),document.querySelector("body").classList.remove("dark"),t.classList.add("is-active")):t.dataset.actionValue=="auto"&&(localStorage.setItem("theme","auto"),document.querySelector("body").classList.remove("dark"),document.querySelector("body").classList.add("auto"),t.classList.add("is-active")))})})}};new v;new f({selector:".humane--time",timeFormat:window.timeFormat});new _;new d;})();
