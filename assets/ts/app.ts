@@ -1,34 +1,58 @@
-//@ts-nocheck
-class farallonDate {
-    selector: string;
-    timeFormat: any = {
-        second: "second ago",
-        seconds: "seconds ago",
-        minute: "minute ago",
-        minutes: "minutes ago",
-        hour: "hour ago",
-        hours: "hours ago",
-        day: "day ago",
-        days: "days ago",
-        week: "week ago",
-        weeks: "weeks ago",
-        month: "month ago",
-        months: "months ago",
-        year: "year ago",
-        years: "years ago",
-    };
-    doms: Array<any> = [];
-    VERSION: string = "0.4.0";
-    constructor(config: any) {
-        this.selector = config.selector;
-        if (config.timeFormat) {
-            this.timeFormat = config.timeFormat;
-        }
-        this.init();
-        setTimeout(() => {
-            this.refresh();
-        }, 1000 * 5);
+import { farallonHelper } from "./utils";
+import farallonDate from "./date.ts";
+import farallonActions from "./action.ts";
+import { farallonComment } from "./comment.ts";
+class farallonBase extends farallonHelper {
+    is_single: boolean = false;
+    post_id: number = 0;
+    is_archive: boolean = false;
+    VERSION: string = "0.4.1";
+    like_btn: any;
+    selctor: string = ".like-btn";
+    // @ts-ignore
+    actionDomain: string = window.actionDomain;
+    constructor() {
+        super();
+        this.initCopyright();
+        this.initThemeSwitch();
+        this.initBack2Top();
+        this.initSearch();
+    }
 
+    initSearch() {
+        document
+            .querySelector('[data-action="show-search"]')!
+            .addEventListener("click", () => {
+                document
+                    .querySelector(".site--header__center .inner")!
+                    .classList.toggle("search--active");
+            });
+    }
+
+    initBack2Top() {
+        if (document.querySelector(".backToTop")) {
+            const backToTop = document.querySelector(
+                ".backToTop"
+            ) as HTMLElement;
+            window.addEventListener("scroll", () => {
+                const t = window.scrollY || window.pageYOffset;
+                // console.log(t);
+                // const documentHeight = document.body.clientHeight;
+                //const windowHeight = window.innerHeight;
+                // const percent = Math.ceil((t / (documentHeight - windowHeight)) * 100);
+
+                t > 200
+                    ? backToTop!.classList.add("is-active")
+                    : backToTop!.classList.remove("is-active");
+            });
+
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+    }
+
+    initCopyright() {
         const copyright = `<div class="site--footer__info">
         Theme <a href="https://fatesinger.com/101971" target="_blank">farallon</a> by bigfa / version ${this.VERSION}
     </div>`;
@@ -46,79 +70,7 @@ class farallonDate {
             });
     }
 
-    init() {
-        this.doms = Array.from(document.querySelectorAll(this.selector));
-        this.doms.forEach((dom: any) => {
-            dom.innerText = this.humanize_time_ago(
-                dom.attributes["datetime"].value
-            );
-        });
-    }
-
-    humanize_time_ago(datetime: string) {
-        const time = new Date(datetime);
-        const between: number =
-            Date.now() / 1000 - Number(time.getTime() / 1000);
-        if (between < 3600) {
-            return `${Math.ceil(between / 60)} ${
-                Math.ceil(between / 60) == 1
-                    ? this.timeFormat.second
-                    : this.timeFormat.seconds
-            }`;
-        } else if (between < 86400) {
-            return `${Math.ceil(between / 3600)} ${
-                Math.ceil(between / 3660) == 1
-                    ? this.timeFormat.hour
-                    : this.timeFormat.hours
-            }`;
-        } else if (between < 86400 * 30) {
-            return `${Math.ceil(between / 86400)} ${
-                Math.ceil(between / 86400) == 1
-                    ? this.timeFormat.day
-                    : this.timeFormat.days
-            }`;
-        } else if (between < 86400 * 30 * 12) {
-            return `${Math.ceil(between / (86400 * 30))} ${
-                Math.ceil(between / (86400 * 30)) == 1
-                    ? this.timeFormat.month
-                    : this.timeFormat.months
-            }`;
-        } else {
-            return (
-                time.getFullYear() +
-                "-" +
-                (time.getMonth() + 1) +
-                "-" +
-                time.getDate()
-            );
-        }
-    }
-
-    refresh() {
-        this.doms.forEach((dom: any) => {
-            dom.innerText = this.humanize_time_ago(
-                dom.attributes["datetime"].value
-            );
-        });
-    }
-}
-
-new farallonDate({
-    selector: ".humane--time",
-    //@ts-ignore
-    timeFormat: window.timeFormat,
-});
-
-class farallonBase {
-    is_single: boolean = false;
-    post_id: number = 0;
-    is_archive: boolean = false;
-    VERSION: string = "0.4.0";
-    like_btn: any;
-    selctor: string = ".like-btn";
-    is_single: boolean = false;
-    actionDomain: string = window.actionDomain;
-    constructor() {
+    initThemeSwitch() {
         const theme = localStorage.getItem("theme")
             ? localStorage.getItem("theme")
             : "auto";
@@ -196,162 +148,17 @@ class farallonBase {
                 }
             });
         });
-
-        if (document.querySelector(".backToTop")) {
-            const backToTop = document.querySelector(
-                ".backToTop"
-            ) as HTMLElement;
-            window.addEventListener("scroll", () => {
-                const t = window.scrollY || window.pageYOffset;
-                // console.log(t);
-                // const documentHeight = document.body.clientHeight;
-                //const windowHeight = window.innerHeight;
-                // const percent = Math.ceil((t / (documentHeight - windowHeight)) * 100);
-
-                t > 200
-                    ? backToTop!.classList.add("is-active")
-                    : backToTop!.classList.remove("is-active");
-            });
-
-            backToTop.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-        }
-
-        document
-            .querySelector('[data-action="show-search"]')!
-            .addEventListener("click", () => {
-                document
-                    .querySelector(".site--header__center .inner")!
-                    .classList.toggle("search--active");
-            });
-
-        this.is_single = document.querySelector(".post--single") ? true : false;
-
-        if (this.is_single) {
-            this.post_id = document.querySelector(".post--single")!.dataset.id;
-            this.initArticleLike();
-            this.initArticleView();
-        } else {
-            this.initArticlesView();
-        }
-    }
-
-    initArticlesView() {
-        const articles = document.querySelectorAll(".post--item");
-        let ids = [];
-        articles.forEach((article) => {
-            ids.push(article.dataset.id);
-        });
-
-        ids = ids.join(",");
-
-        fetch(this.actionDomain + "post/views?post_ids=" + ids).then((res) => {
-            res.json().then((data) => {
-                console.log(data);
-                const result = data.results;
-                articles.forEach((article) => {
-                    article.querySelector(".article--views").innerText =
-                        result.find(
-                            (item: any) => item.post_id == article.dataset.id
-                        )
-                            ? result.find(
-                                  (item: any) =>
-                                      item.post_id == article.dataset.id
-                              ).views
-                            : 0;
-                });
-            });
-        });
-    }
-
-    initArticleView() {
-        fetch(this.actionDomain + "post/" + this.post_id + "/view", {
-            method: "post",
-        }).then((res) => {
-            res.json().then((data) => {
-                console.log(data);
-                document.querySelector(".article--views").innerText =
-                    data.views;
-            });
-        });
-    }
-
-    initArticleLike() {
-        this.like_btn = document.querySelector(this.selctor);
-        if (!this.like_btn) return;
-        fetch(this.actionDomain + "post/" + this.post_id + "/like").then(
-            (res) => {
-                res.json().then((data) => {
-                    console.log(data);
-                    this.like_btn.querySelector(".count").innerText =
-                        data.likes;
-                });
-            }
-        );
-        if (this.like_btn) {
-            this.like_btn.addEventListener("click", () => {
-                this.handleLike();
-            });
-            if (this.getCookie("like_" + this.post_id)) {
-                this.like_btn.classList.add("is-active");
-            }
-        }
-    }
-
-    handleLike() {
-        // @ts-ignore
-        if (this.getCookie("like_" + this.post_id)) {
-            return this.showNotice("You have already liked this post");
-        }
-        // @ts-ignore
-        const url = this.actionDomain + "post/" + this.post_id + "/like";
-        fetch(url, {
-            method: "post",
-        })
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                this.showNotice("Thanks for your like");
-                this.like_btn.querySelector(".count").innerText = data.likes;
-                // @ts-ignore
-                this.setCookie("like_" + this.post_id, "1", 1);
-            });
-        this.like_btn.classList.add("is-active");
-    }
-
-    getCookie(t: any) {
-        if (0 < document.cookie.length) {
-            var e = document.cookie.indexOf(t + "=");
-            if (-1 != e) {
-                e = e + t.length + 1;
-                var n = document.cookie.indexOf(";", e);
-                return (
-                    -1 == n && (n = document.cookie.length),
-                    document.cookie.substring(e, n)
-                );
-            }
-        }
-        return "";
-    }
-
-    setCookie(t: any, e: any, n: any) {
-        var o = new Date();
-        o.setTime(o.getTime() + 24 * n * 60 * 60 * 1e3);
-        var i = "expires=" + o.toUTCString();
-        document.cookie = t + "=" + e + ";" + i + ";path=/";
-    }
-
-    showNotice(message: any, type: any = "success") {
-        const html = `<div class="notice--wrapper">${message}</div>`;
-
-        document.querySelector("body")!.insertAdjacentHTML("beforeend", html);
-        document.querySelector(".notice--wrapper")!.classList.add("is-active");
-        setTimeout(() => {
-            document.querySelector(".notice--wrapper")!.remove();
-        }, 3000);
     }
 }
 
 new farallonBase();
+
+new farallonDate({
+    selector: ".humane--time",
+    //@ts-ignore
+    timeFormat: window.timeFormat,
+});
+
+new farallonActions();
+
+new farallonComment();
