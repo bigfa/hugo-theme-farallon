@@ -151,14 +151,17 @@ class farallonBase extends farallonHelper {
     }
 }
 
-new farallonBase();
+new farallonActions({
+    singleSelector: ".post--single",
+    articleSelector: ".post--item",
+    // @ts-ignore
+    actionDomain: window.actionDomain,
+});
 
+new farallonBase();
 new farallonDate({
     selector: ".humane--time",
     //@ts-ignore
     timeFormat: window.timeFormat,
 });
-
-new farallonActions();
-
 new farallonComment();

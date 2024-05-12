@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.4.2
+
+-   update action params
+
 ### 0.4.1
 
 -   rewrite ts
