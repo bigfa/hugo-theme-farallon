@@ -1,20 +1,40 @@
 import { farallonHelper } from "./utils";
+
+interface farallonActionsOptions {
+    singleSelector?: string;
+    selctor?: string;
+    actionDomain: string;
+    articleSelector?: string;
+    viewSelector?: string;
+    text?: string;
+}
+
 class farallonActions extends farallonHelper {
+    singleSelector: string = ".post--single";
     is_single: boolean = false;
     post_id: string;
     like_btn: any;
     selctor: string = ".like-btn";
-    // @ts-ignore
-    actionDomain: string = window.actionDomain;
+    actionDomain: string;
     articleSelector: string = ".post--item";
     viewSelector: string = ".article--views";
-    constructor() {
+    text: string = "";
+    constructor(config: farallonActionsOptions) {
         super();
-        this.is_single = document.querySelector(".post--single") ? true : false;
+        this.actionDomain = config.actionDomain;
+        this.singleSelector = config.singleSelector ?? this.singleSelector;
+        this.selctor = config.selctor ?? this.selctor;
+        this.articleSelector = config.articleSelector ?? this.articleSelector;
+        this.viewSelector = config.viewSelector ?? this.viewSelector;
+        this.text = config.text ?? this.text;
+
+        this.is_single = document.querySelector(this.singleSelector)
+            ? true
+            : false;
 
         if (this.is_single) {
             const postSingle = document.querySelector(
-                ".post--single"
+                this.singleSelector
             ) as HTMLElement;
             this.post_id = postSingle.dataset.id ?? "";
             this.initArticleLike();
@@ -31,7 +51,7 @@ class farallonActions extends farallonHelper {
             res.json().then((data) => {
                 (
                     document.querySelector(this.viewSelector) as HTMLElement
-                ).innerText = data.views;
+                ).innerText = data.views + this.text;
             });
         });
     }
@@ -56,14 +76,16 @@ class farallonActions extends farallonHelper {
                             article.querySelector(
                                 this.viewSelector
                             ) as HTMLElement
-                        ).innerText = result.find(
-                            (item: any) => item.post_id == article.dataset.id
-                        )
-                            ? result.find(
-                                  (item: any) =>
-                                      item.post_id == article.dataset.id
-                              ).views
-                            : 0;
+                        ).innerText =
+                            (result.find(
+                                (item: any) =>
+                                    item.post_id == article.dataset.id
+                            )
+                                ? result.find(
+                                      (item: any) =>
+                                          item.post_id == article.dataset.id
+                                  ).views
+                                : 0) + this.text;
                     });
                 });
             }
@@ -92,11 +114,9 @@ class farallonActions extends farallonHelper {
     }
 
     handleLike() {
-        // @ts-ignore
         if (this.getCookie("like_" + this.post_id)) {
             return this.showNotice("You have already liked this post");
         }
-        // @ts-ignore
         const url = this.actionDomain + "post/" + this.post_id + "/like";
         fetch(url, {
             method: "post",
@@ -107,7 +127,6 @@ class farallonActions extends farallonHelper {
             .then((data) => {
                 this.showNotice("Thanks for your like");
                 this.like_btn.querySelector(".count").innerText = data.likes;
-                // @ts-ignore
                 this.setCookie("like_" + this.post_id, "1", 1);
             });
         this.like_btn.classList.add("is-active");
