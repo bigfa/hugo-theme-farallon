@@ -157,3 +157,11 @@ new farallonActions({
     // @ts-ignore
     actionDomain: window.actionDomain,
 });
+
+new farallonBase();
+new farallonDate({
+    selector: ".humane--time",
+    //@ts-ignore
+    timeFormat: window.timeFormat,
+});
+new farallonComment();

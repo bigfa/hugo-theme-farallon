@@ -72,6 +72,7 @@ class farallonActions extends farallonHelper {
                 res.json().then((data) => {
                     const result = data.results;
                     articles.forEach((article: HTMLElement) => {
+                        if (!article.querySelector(this.viewSelector)) return;
                         (
                             article.querySelector(
                                 this.viewSelector
