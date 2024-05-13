@@ -154,6 +154,7 @@ class farallonBase extends farallonHelper {
 new farallonActions({
     singleSelector: ".post--single",
     articleSelector: ".post--item",
+    likeButtonSelctor: ".like-btn",
     // @ts-ignore
     actionDomain: window.actionDomain,
 });

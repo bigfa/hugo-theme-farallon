@@ -2,30 +2,32 @@ import { farallonHelper } from "./utils";
 
 interface farallonActionsOptions {
     singleSelector?: string;
-    selctor?: string;
-    actionDomain: string;
+    likeButtonSelctor?: string;
     articleSelector?: string;
     viewSelector?: string;
+    actionDomain: string;
     text?: string;
 }
 
 class farallonActions extends farallonHelper {
     singleSelector: string = ".post--single";
-    is_single: boolean = false;
-    post_id: string;
-    like_btn: any;
-    selctor: string = ".like-btn";
-    actionDomain: string;
+    likeButtonSelctor: string = ".like-btn";
     articleSelector: string = ".post--item";
     viewSelector: string = ".article--views";
+    actionDomain: string;
     text: string = "";
+    likeButton: HTMLElement | null = null;
+    post_id: string;
+    is_single: boolean = false;
+
     constructor(config: farallonActionsOptions) {
         super();
-        this.actionDomain = config.actionDomain;
         this.singleSelector = config.singleSelector ?? this.singleSelector;
-        this.selctor = config.selctor ?? this.selctor;
+        this.likeButtonSelctor =
+            config.likeButtonSelctor ?? this.likeButtonSelctor;
         this.articleSelector = config.articleSelector ?? this.articleSelector;
         this.viewSelector = config.viewSelector ?? this.viewSelector;
+        this.actionDomain = config.actionDomain;
         this.text = config.text ?? this.text;
 
         this.is_single = document.querySelector(this.singleSelector)
@@ -60,6 +62,9 @@ class farallonActions extends farallonHelper {
         const articles: HTMLElement[] = Array.from(
             document.querySelectorAll(this.articleSelector)
         );
+
+        if (articles.length === 0) return;
+
         let ids: Array<String> = [];
         articles.forEach((article: HTMLElement) => {
             return ids.push(article.dataset.id!);
@@ -94,22 +99,25 @@ class farallonActions extends farallonHelper {
     }
 
     initArticleLike() {
-        this.like_btn = document.querySelector(this.selctor);
-        if (!this.like_btn) return;
-        fetch(this.actionDomain + "post/" + this.post_id + "/like").then(
-            (res) => {
-                res.json().then((data) => {
-                    this.like_btn.querySelector(".count").innerText =
-                        data.likes;
-                });
-            }
-        );
-        if (this.like_btn) {
-            this.like_btn.addEventListener("click", () => {
+        this.likeButton = document.querySelector(this.likeButtonSelctor);
+        if (this.likeButton) {
+            fetch(this.actionDomain + "post/" + this.post_id + "/like").then(
+                (res) => {
+                    res.json().then((data) => {
+                        (
+                            this.likeButton!.querySelector(
+                                ".count"
+                            ) as HTMLElement
+                        ).innerText = data.likes;
+                    });
+                }
+            );
+
+            this.likeButton.addEventListener("click", () => {
                 this.handleLike();
             });
             if (this.getCookie("like_" + this.post_id)) {
-                this.like_btn.classList.add("is-active");
+                this.likeButton.classList.add("is-active");
             }
         }
     }
@@ -118,19 +126,26 @@ class farallonActions extends farallonHelper {
         if (this.getCookie("like_" + this.post_id)) {
             return this.showNotice("You have already liked this post");
         }
-        const url = this.actionDomain + "post/" + this.post_id + "/like";
-        fetch(url, {
-            method: "post",
-        })
-            .then((response) => {
-                return response.json();
+        if (this.likeButton) {
+            const url = this.actionDomain + "post/" + this.post_id + "/like";
+            fetch(url, {
+                method: "post",
             })
-            .then((data) => {
-                this.showNotice("Thanks for your like");
-                this.like_btn.querySelector(".count").innerText = data.likes;
-                this.setCookie("like_" + this.post_id, "1", 1);
-            });
-        this.like_btn.classList.add("is-active");
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    this.showNotice("Thanks for your like");
+                    const countElement = this.likeButton?.querySelector(
+                        ".count"
+                    ) as HTMLElement;
+                    if (countElement) {
+                        countElement.innerText = data.likes;
+                    }
+                    this.setCookie("like_" + this.post_id, "1", 1);
+                });
+            this.likeButton?.classList.add("is-active");
+        }
     }
 }
 
