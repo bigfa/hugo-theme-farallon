@@ -6,7 +6,8 @@ class FARALLON_DOUBAN {
     genre_list: Array<any>;
     subjects: Array<any>;
     genre: Array<any>;
-    baseAPI: string = "https://node.wpista.com/v1/outer/";
+    //@ts-ignore
+    baseAPI: string = window.dbAPIBase;
     token: string;
 
     constructor(config: any) {
@@ -81,29 +82,20 @@ class FARALLON_DOUBAN {
     }
 
     _fetchData() {
-        fetch(
-            this.baseAPI +
-                "faves?token=" +
-                this.token +
-                "&type=" +
-                this.type +
-                "&paged=" +
-                this.paged +
-                "&genre=" +
-                JSON.stringify(this.genre)
-        )
+        fetch(this.baseAPI + "list?paged=" + this.paged + "&type=" + this.type)
             .then((response) => response.json())
             .then((t: any) => {
-                if (t.data.length) {
+                console.log(t.results);
+                if (t.results.length) {
                     if (
                         document
                             .querySelector(".db--list")!
                             .classList.contains("db--list__card")
                     ) {
-                        this.subjects = [...this.subjects, ...t.data];
+                        this.subjects = [...this.subjects, ...t.results];
                         this._randerDateTemplate();
                     } else {
-                        this.subjects = [...this.subjects, ...t.data];
+                        this.subjects = [...this.subjects, ...t.results];
                         this._randerListTemplate();
                     }
                     document
@@ -213,14 +205,14 @@ class FARALLON_DOUBAN {
             if (t.currentTarget.classList.contains("current")) return;
             this.genre = [];
             this.type = t.currentTarget.dataset.type;
-            if (this.type != "book") {
-                this._fetchGenres();
-                document
-                    .querySelector(".db--genres")
-                    ?.classList.remove("u-hide");
-            } else {
-                document.querySelector(".db--genres")!.classList.add("u-hide");
-            }
+            // if (this.type != "book") {
+            //     this._fetchGenres();
+            //     document
+            //         .querySelector(".db--genres")
+            //         ?.classList.remove("u-hide");
+            // } else {
+            //     document.querySelector(".db--genres")!.classList.add("u-hide");
+            // }
             document.querySelector(".db--list")!.innerHTML = "";
             document.querySelector(".lds-ripple")!.classList.remove("u-hide");
             document
@@ -260,7 +252,7 @@ class FARALLON_DOUBAN {
                     .querySelector(".db--genres")!
                     .classList.remove("u-hide");
             }
-            this._fetchGenres();
+            // this._fetchGenres();
             this._fetchData();
             this._handleScroll();
             this._handleNavClick();
