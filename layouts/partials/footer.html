@@ -48,6 +48,7 @@
     window.WPD_TOKEN = "{{ .Site.Params.wpdToken }}";
     window.commentDomain = "{{ .Site.Params.commentDomain }}";
     window.actionDomain = "{{ .Site.Params.actionDomain }}";
+    window.dbAPIBase = "{{ .Site.Params.dbAPIBase }}";
 </script>
 {{- $opts := dict "minify" hugo.IsProduction -}}
 {{- $replay := resources.Get "js/comment.min.js" | js.Build $opts -}}
