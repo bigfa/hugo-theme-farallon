@@ -1,22 +1,33 @@
-interface statusObject {
+interface StatusObject {
     name: string;
     value: string;
 }
 
-class FARALLON_DOUBAN {
+interface DoubanConfig {
+    baseAPI: string;
+    types?: Array<string>;
+}
+
+class Douban {
     ver: string;
     type: any;
     finished: boolean;
     paged: number;
-    genre_list: Array<statusObject>;
+    genre_list: Array<StatusObject>;
     subjects: Array<any>;
-    genre: Array<any>;
     status: string;
-    //@ts-ignore
-    baseAPI: string = window.dbAPIBase;
-
-    constructor(config: any) {
-        this.ver = "1.0.2";
+    baseAPI: string;
+    types: Array<String>;
+    constructor(config: DoubanConfig) {
+        this.types = config.types ?? [
+            "movie",
+            "book",
+            "music",
+            "game",
+            "drama",
+        ];
+        this.baseAPI = config.baseAPI;
+        this.ver = "1.0.4";
         this.type = "movie";
         this.status = "done";
         this.finished = false;
@@ -35,7 +46,6 @@ class FARALLON_DOUBAN {
                 value: "mark",
             },
         ];
-        this.genre = [];
         this.subjects = [];
         this._create();
     }
@@ -68,7 +78,7 @@ class FARALLON_DOUBAN {
 
     _renderGenre() {
         document.querySelector(".db--genres")!.innerHTML = this.genre_list
-            .map((item: statusObject) => {
+            .map((item: StatusObject) => {
                 return `<span class="db--genreItem${
                     this.status == item.value ? " is-active" : ""
                 }" data-status="${item.value}">${item.name}</span>`;
@@ -78,15 +88,12 @@ class FARALLON_DOUBAN {
     }
 
     _fetchData() {
-        fetch(
-            this.baseAPI +
-                "list?paged=" +
-                this.paged +
-                "&type=" +
-                this.type +
-                "&status=" +
-                this.status
-        )
+        const params: URLSearchParams = new URLSearchParams({
+            paged: this.paged.toString(),
+            type: this.type,
+            status: this.status,
+        });
+        fetch(this.baseAPI + "list?" + params.toString())
             .then((response) => response.json())
             .then((t: any) => {
                 console.log(t.results);
@@ -131,7 +138,7 @@ class FARALLON_DOUBAN {
         let html = ``;
         for (let key in result) {
             const date = key.split("-");
-            html += `<div class="db--listBydate"><div class="db--titleDate "><div class="db--titleDate__day">${date[1]}</div><div class="db--titleDate__month">${date[0]}</div></div><div class="db--dateList__card">`;
+            html += `<div class="db--listBydate"><div class="db--titleDate"><div class="db--titleDate__day">${date[1]}</div><div class="db--titleDate__month">${date[0]}</div></div><div class="db--dateList__card">`;
             html += result[key]
                 .map((movie: any) => {
                     return `<div class="db--item">${
@@ -257,10 +264,7 @@ class FARALLON_DOUBAN {
                 const id = db.dataset.id;
                 const type = db.dataset.type;
                 const nodeParent = db.parentNode as HTMLElement;
-                fetch(
-                    // @ts-ignore
-                    this.baseAPI + `${type}/${id}`
-                ).then((response) => {
+                fetch(this.baseAPI + `${type}/${id}`).then((response) => {
                     response.json().then((t) => {
                         if (t.data) {
                             const data = t.data;
@@ -293,11 +297,10 @@ class FARALLON_DOUBAN {
     _fetchCollection(item: any) {
         const type = item.dataset.style ? item.dataset.style : "card";
         fetch(
-            // @ts-ignore
-            obvInit.api +
-                "v1/movies?type=" +
+            this.baseAPI +
+                "/list?type=" +
                 item.dataset.type +
-                "&paged=1&genre=&start_time=" +
+                "&paged=1&start_time=" +
                 item.dataset.start +
                 "&end_time=" +
                 item.dataset.end
@@ -372,4 +375,4 @@ class FARALLON_DOUBAN {
     }
 }
 
-new FARALLON_DOUBAN({});
+export default Douban;
