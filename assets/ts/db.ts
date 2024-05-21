@@ -1,24 +1,42 @@
+interface statusObject {
+    name: string;
+    value: string;
+}
+
 class FARALLON_DOUBAN {
     ver: string;
     type: any;
     finished: boolean;
     paged: number;
-    genre_list: Array<any>;
+    genre_list: Array<statusObject>;
     subjects: Array<any>;
     genre: Array<any>;
+    status: string;
     //@ts-ignore
     baseAPI: string = window.dbAPIBase;
-    token: string;
 
     constructor(config: any) {
-        this.ver = "1.0.1";
+        this.ver = "1.0.2";
         this.type = "movie";
+        this.status = "done";
         this.finished = false;
         this.paged = 1;
-        this.genre_list = [];
+        this.genre_list = [
+            {
+                name: "已看",
+                value: "done",
+            },
+            {
+                name: "在看",
+                value: "doing",
+            },
+            {
+                name: "想看",
+                value: "mark",
+            },
+        ];
         this.genre = [];
         this.subjects = [];
-        this.token = config.token;
         this._create();
     }
 
@@ -29,39 +47,17 @@ class FARALLON_DOUBAN {
         });
     }
 
-    _fetchGenres() {
-        document.querySelector(".db--genres")!.innerHTML = "";
-        fetch(
-            this.baseAPI + "genres?token=" + this.token + "&type=" + this.type
-        )
-            .then((response) => response.json())
-            .then((t) => {
-                // @ts-ignore
-                if (t.data.length) {
-                    this.genre_list = t.data;
-                    this._renderGenre();
-                }
-            });
-    }
-
     _handleGenreClick() {
         this.on("click", ".db--genreItem", (t: any) => {
             const self = t.currentTarget as HTMLElement;
             if (self.classList.contains("is-active")) {
-                const index = this.genre.indexOf(self.innerText);
-                self.classList.remove("is-active");
-                this.genre.splice(index, 1);
-                this.paged = 1;
-                this.finished = false;
-                this.subjects = [];
-                this._fetchData();
                 return;
             }
             document.querySelector(".db--list")!.innerHTML = "";
             document.querySelector(".lds-ripple")!.classList.remove("u-hide");
 
-            self.classList.add("is-active");
-            this.genre.push(self.innerText);
+            this.status = self.dataset.status || ""; // Provide a default value of an empty string if self.dataset.status is undefined
+            this._renderGenre();
             this.paged = 1;
             this.finished = false;
             this.subjects = [];
@@ -72,17 +68,25 @@ class FARALLON_DOUBAN {
 
     _renderGenre() {
         document.querySelector(".db--genres")!.innerHTML = this.genre_list
-            .map((item: any) => {
+            .map((item: statusObject) => {
                 return `<span class="db--genreItem${
-                    this.genre_list.includes(item.name) ? " is-active" : ""
-                }">${item.name}</span>`;
+                    this.status == item.value ? " is-active" : ""
+                }" data-status="${item.value}">${item.name}</span>`;
             })
             .join("");
         this._handleGenreClick();
     }
 
     _fetchData() {
-        fetch(this.baseAPI + "list?paged=" + this.paged + "&type=" + this.type)
+        fetch(
+            this.baseAPI +
+                "list?paged=" +
+                this.paged +
+                "&type=" +
+                this.type +
+                "&status=" +
+                this.status
+        )
             .then((response) => response.json())
             .then((t: any) => {
                 console.log(t.results);
@@ -203,16 +207,9 @@ class FARALLON_DOUBAN {
     _handleNavClick() {
         this.on("click", ".db--navItem", (t: any) => {
             if (t.currentTarget.classList.contains("current")) return;
-            this.genre = [];
+            this.status = "done";
             this.type = t.currentTarget.dataset.type;
-            // if (this.type != "book") {
-            //     this._fetchGenres();
-            //     document
-            //         .querySelector(".db--genres")
-            //         ?.classList.remove("u-hide");
-            // } else {
-            //     document.querySelector(".db--genres")!.classList.add("u-hide");
-            // }
+            this._renderGenre();
             document.querySelector(".db--list")!.innerHTML = "";
             document.querySelector(".lds-ripple")!.classList.remove("u-hide");
             document
@@ -232,11 +229,7 @@ class FARALLON_DOUBAN {
             const container = document.querySelector(
                 ".db--container"
             ) as HTMLElement;
-            if (container.dataset.token) {
-                this.token = container.dataset.token;
-            } else {
-                return;
-            }
+
             const currentNavItem = document.querySelector(
                 ".db--navItem.current"
             );
@@ -252,7 +245,7 @@ class FARALLON_DOUBAN {
                     .querySelector(".db--genres")!
                     .classList.remove("u-hide");
             }
-            // this._fetchGenres();
+            this._renderGenre();
             this._fetchData();
             this._handleScroll();
             this._handleNavClick();
@@ -266,7 +259,7 @@ class FARALLON_DOUBAN {
                 const nodeParent = db.parentNode as HTMLElement;
                 fetch(
                     // @ts-ignore
-                    this.baseAPI + `${type}/${id}?token=${this.token}`
+                    this.baseAPI + `${type}/${id}`
                 ).then((response) => {
                     response.json().then((t) => {
                         if (t.data) {
@@ -379,7 +372,4 @@ class FARALLON_DOUBAN {
     }
 }
 
-new FARALLON_DOUBAN({
-    // @ts-ignore
-    token: window.WPD_TOKEN,
-});
+new FARALLON_DOUBAN({});

@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.4.3
+
+-   更新豆瓣接口到 Cloudflare Worker
+
 ### 0.4.2
 
 -   更新组件参数
