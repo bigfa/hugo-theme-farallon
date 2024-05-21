@@ -12,7 +12,6 @@ class FARALLON_DOUBAN {
     subjects: Array<any>;
     genre: Array<any>;
     status: string;
-    //@ts-ignore
     baseAPI: string = window.dbAPIBase;
 
     constructor(config: any) {
@@ -257,10 +256,7 @@ class FARALLON_DOUBAN {
                 const id = db.dataset.id;
                 const type = db.dataset.type;
                 const nodeParent = db.parentNode as HTMLElement;
-                fetch(
-                    // @ts-ignore
-                    this.baseAPI + `${type}/${id}`
-                ).then((response) => {
+                fetch(this.baseAPI + `${type}/${id}`).then((response) => {
                     response.json().then((t) => {
                         if (t.data) {
                             const data = t.data;
@@ -293,11 +289,10 @@ class FARALLON_DOUBAN {
     _fetchCollection(item: any) {
         const type = item.dataset.style ? item.dataset.style : "card";
         fetch(
-            // @ts-ignore
-            obvInit.api +
-                "v1/movies?type=" +
+            this.baseAPI +
+                "/list?type=" +
                 item.dataset.type +
-                "&paged=1&genre=&start_time=" +
+                "&paged=1&start_time=" +
                 item.dataset.start +
                 "&end_time=" +
                 item.dataset.end
@@ -372,4 +367,4 @@ class FARALLON_DOUBAN {
     }
 }
 
-new FARALLON_DOUBAN({});
+export default FARALLON_DOUBAN;

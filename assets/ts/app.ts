@@ -2,6 +2,14 @@ import { farallonHelper } from "./utils";
 import farallonDate from "./date.ts";
 import farallonActions from "./action.ts";
 import { farallonComment } from "./comment.ts";
+import FARALLON_DOUBAN from "./db.ts";
+declare global {
+    interface Window {
+        actionDomain: string;
+        timeFormat: string;
+        dbAPIBase: string;
+    }
+}
 class farallonBase extends farallonHelper {
     is_single: boolean = false;
     post_id: number = 0;
@@ -9,7 +17,6 @@ class farallonBase extends farallonHelper {
     VERSION: string = "0.4.3";
     like_btn: any;
     selctor: string = ".like-btn";
-    // @ts-ignore
     actionDomain: string = window.actionDomain;
     constructor() {
         super();
@@ -121,25 +128,26 @@ class farallonBase extends farallonHelper {
                 if (item.classList.contains("is-active")) return;
                 document
                     .querySelectorAll(".fixed--theme span")
-                    .forEach((item) => {
+                    .forEach((item: Element) => {
                         item.classList.remove("is-active");
                     });
-                // @ts-ignore
-                if (item.dataset.actionValue == "dark") {
+                if ((item as HTMLElement).dataset.actionValue == "dark") {
                     localStorage.setItem("theme", "dark");
                     document.querySelector("body")!.classList.remove("auto");
                     document.querySelector("body")!.classList.add("dark");
                     item.classList.add("is-active");
                     //this.showNotice('夜间模式已开启');
-                    // @ts-ignore
-                } else if (item.dataset.actionValue == "light") {
+                } else if (
+                    (item as HTMLElement).dataset.actionValue == "light"
+                ) {
                     localStorage.setItem("theme", "light");
                     document.querySelector("body")!.classList.remove("auto");
                     document.querySelector("body")!.classList.remove("dark");
                     item.classList.add("is-active");
                     //this.showNotice('夜间模式已关闭');
-                    // @ts-ignore
-                } else if (item.dataset.actionValue == "auto") {
+                } else if (
+                    (item as HTMLElement).dataset.actionValue == "auto"
+                ) {
                     localStorage.setItem("theme", "auto");
                     document.querySelector("body")!.classList.remove("dark");
                     document.querySelector("body")!.classList.add("auto");
@@ -155,14 +163,13 @@ new farallonActions({
     singleSelector: ".post--single",
     articleSelector: ".post--item",
     likeButtonSelctor: ".like-btn",
-    // @ts-ignore
     actionDomain: window.actionDomain,
 });
 
 new farallonBase();
 new farallonDate({
     selector: ".humane--time",
-    //@ts-ignore
     timeFormat: window.timeFormat,
 });
 new farallonComment();
+new FARALLON_DOUBAN({});
