@@ -1,5 +1,5 @@
 class farallonDate {
-    selector: string;
+    readonly selector: string;
     timeFormat: any = {
         second: "second ago",
         seconds: "seconds ago",

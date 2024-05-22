@@ -1,9 +1,15 @@
-export class farallonHelper {
-    getCookie(t: any) {
+interface Helper {
+    getCookie(key: string): string;
+    setCookie(key: string, value: string, n: number): void;
+    showNotice(message: string, type: any): void;
+}
+
+export abstract class farallonHelper implements Helper {
+    getCookie(key: string) {
         if (0 < document.cookie.length) {
-            var e = document.cookie.indexOf(t + "=");
+            var e = document.cookie.indexOf(key + "=");
             if (-1 != e) {
-                e = e + t.length + 1;
+                e = e + key.length + 1;
                 var n = document.cookie.indexOf(";", e);
                 return (
                     -1 == n && (n = document.cookie.length),
@@ -14,14 +20,14 @@ export class farallonHelper {
         return "";
     }
 
-    setCookie(t: any, e: any, n: any) {
+    setCookie(key: string, value: string, n: number) {
         var o = new Date();
         o.setTime(o.getTime() + 24 * n * 60 * 60 * 1e3);
         var i = "expires=" + o.toUTCString();
-        document.cookie = t + "=" + e + ";" + i + ";path=/";
+        document.cookie = key + "=" + value + ";" + i + ";path=/";
     }
 
-    showNotice(message: any, type: any = "success") {
+    showNotice(message: string, type: any = "success") {
         const html = `<div class="notice--wrapper">${message}</div>`;
 
         document.querySelector("body")!.insertAdjacentHTML("beforeend", html);

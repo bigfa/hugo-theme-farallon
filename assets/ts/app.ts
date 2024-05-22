@@ -175,4 +175,5 @@ new farallonComment();
 
 new Douban({
     baseAPI: window.dbAPIBase,
+    container: ".db--container",
 });
