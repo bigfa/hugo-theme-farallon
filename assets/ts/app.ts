@@ -2,7 +2,7 @@ import { farallonHelper } from "./utils";
 import farallonDate from "./date.ts";
 import farallonActions from "./action.ts";
 import { farallonComment } from "./comment.ts";
-import FARALLON_DOUBAN from "./db.ts";
+import Douban from "./db.ts";
 declare global {
     interface Window {
         actionDomain: string;
@@ -172,4 +172,8 @@ new farallonDate({
     timeFormat: window.timeFormat,
 });
 new farallonComment();
-new FARALLON_DOUBAN({});
+
+new Douban({
+    baseAPI: window.dbAPIBase,
+    container: ".db--container",
+});
