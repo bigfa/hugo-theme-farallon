@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.4.4
+
+-   update struggle
+
 ### 0.4.3
 
 -   change douban api to cloudflare worker
