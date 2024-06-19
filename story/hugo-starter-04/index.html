@@ -6,7 +6,7 @@
 <svg class="icon" viewBox="0 0 1024 1024" width="16" height="16"><path d="M408.551619 97.52381A73.142857 73.142857.0 01460.288 118.954667L539.306667 197.973333a73.142857 73.142857.0 0051.760762 21.455238h213.504a73.142857 73.142857.0 0173.142857 73.142858v560.761904a73.142857 73.142857.0 01-73.142857 73.142857H219.428571a73.142857 73.142857.0 01-73.142857-73.142857V170.666667a73.142857 73.142857.0 0173.142857-73.142857h189.123048zm0 73.142857H219.428571v682.666666h585.142858V292.571429h-213.504a146.285714 146.285714.0 01-98.499048-38.13181L487.619048 249.734095l-79.067429-79.067428zM365.714286 633.904762v73.142857h-73.142857v-73.142857h73.142857zm365.714285.0v73.142857H414.47619v-73.142857h316.952381zM365.714286 438.857143V512h-73.142857v-73.142857h73.142857zm365.714285.0V512H414.47619v-73.142857h316.952381z"/></svg>
 <a href=/hugo-theme-farallon/category/hugo/>Hugo</a>
 <svg class="icon" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 9c-1.6569.0-3 1.3431-3 3s1.3431 3 3 3 3-1.3431 3-3-1.3431-3-3-3zm-1 3C11 11.4477 11.4477 11 12 11S13 11.4477 13 12 12.5523 13 12 13 11 12.5523 11 12z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M21.83 11.2807C19.542 7.15186 15.8122 5 12 5 8.18777 5 4.45796 7.15186 2.17003 11.2807 1.94637 11.6844 1.94361 12.1821 2.16029 12.5876 4.41183 16.8013 8.1628 19 12 19s7.5882-2.1987 9.8397-6.4124C22.0564 12.1821 22.0536 11.6844 21.83 11.2807zM12 17c-2.93903.0-5.95948-1.6276-7.90827-5.0513C6.06862 8.59614 9.07319 7 12 7c2.9268.0 5.9314 1.59614 7.9083 4.9487C17.9595 15.3724 14.939 17 12 17z"/></svg>
-<span class=article--views></span></div><h2 class=post--single__title>Hugo 简明教程 04</h2><details class=toc open><summary class=toc-title>目录</summary><nav id=TableOfContents><ul><li><a href=#build-命令详解>build 命令详解</a></li><li><a href=#手动部署>手动部署</a></li><li><a href=#自动部署>自动部署</a><ul><li><a href=#github-pages>Github pages</a></li><li><a href=#cloudflare-pages>Cloudflare pages</a></li><li><a href=#vercel>Vercel</a></li><li><a href=#阿里云-oss>阿里云 oss</a></li></ul></li></ul></nav></details><div class="post--single__content graph" itemprop=articleBody><p>本文主要讲解 hugo 的部署方法。</p><h3 id=build-命令详解>build 命令详解</h3><p>除了基础的 <code>hugo build</code> 其实 <code>build</code>命令支持不少参数，下面介绍一下比较有用的参数。</p><pre tabindex=0><code>  -b, --baseURL string             绑定域名, 比如 https://fatesinger.com/
+<span class=article--views></span></div><h2 class=post--single__title>Hugo 简明教程 04</h2><details class=toc open><summary class=toc-title>目录</summary><nav id=TableOfContents><ul><li><a href=#build-命令>build 命令</a></li><li><a href=#手动部署>手动部署</a></li><li><a href=#自动部署>自动部署</a><ul><li><a href=#github-pages>Github pages</a></li><li><a href=#cloudflare-pages>Cloudflare pages</a></li><li><a href=#vercel>Vercel</a></li><li><a href=#阿里云-oss>阿里云 oss</a></li></ul></li><li><a href=#总结>总结</a></li></ul></nav></details><div class="post--single__content graph" itemprop=articleBody><p>本文主要讲解 hugo 的部署方法。</p><h3 id=build-命令>build 命令</h3><p>除了基础的 <code>hugo build</code> 其实 <code>build</code>命令支持不少参数，下面介绍一下比较有用的参数。</p><pre tabindex=0><code>  -b, --baseURL string             绑定域名, 比如 https://fatesinger.com/
   -D, --buildDrafts                包含草稿
   -E, --buildExpired               包含过期内容
   -F, --buildFuture                包含日期在将来的内容
@@ -80,14 +80,42 @@ jobs:
                   accountId: d0a457cef81f6ea340f9ff6ca6b6ff7a
                   projectName: notability
                   directory: ./public
-                  # Optional: Enable this if you want to have GitHub Deployments triggered
-                  # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-                  # Optional: Switch what branch you are publishing to.
-                  # By default this will be the branch which triggered this workflow
-                  # branch: main
-                  # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
                   wranglerVersion: &#34;3&#34;
-</code></pre><h4 id=vercel>Vercel</h4><p>也不错，但不如 pages</p><h4 id=阿里云-oss>阿里云 oss</h4><p>国内用户推荐</p></div><div class=post--single__action><button class="button--like like-btn" aria-label="like the post">
+</code></pre><h4 id=vercel>Vercel</h4><p>Vercel 和前两个平台不同，vercel 默认是需要绑定 git 仓库，但是也仍然可以通过 github actions 进行更新。</p><p>默认情况下，vercel 绑定你的 github 仓库，选择 hugo 平台，然后默认输出即可。</p><h4 id=阿里云-oss>阿里云 oss</h4><p>有备案域名的话非常推荐，国内速度可以说是相当快了，不过也有缺点，就是需要计费。如使用阿里云 oss 则可以把图片一起放在项目目录下。</p><pre tabindex=0><code>name: Bigfa
+
+on:
+    push:
+        branches:
+            - main # master 更新触发
+
+jobs:
+    build-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  submodules: recursive
+                  fetch-depth: 0
+
+            - name: Setup Hugo
+              uses: peaceiris/actions-hugo@v2
+              with:
+                  hugo-version: latest
+                  extended: true
+
+            - name: Build notability demo
+              run: hugo --gc --minify --ignoreCache --cleanDestinationDir -b https://cl.wpista.com/
+
+            - name: upload files to OSS
+              uses: fangbinwei/aliyun-oss-website-action@v1
+              with:
+                  accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
+                  accessKeySecret: ${{ secrets.ACCESS_KEY_SECRET }}
+                  bucket: your-bucket-name
+                  # use your own endpoint
+                  endpoint: oss-cn-shanghai.aliyuncs.com
+                  folder: ./public
+</code></pre><h3 id=总结>总结</h3><p>整套流程看上去比较复杂，其实只需要修改下变量即可，即使不理解也能正常使用，当项目有更新的时候即使 <code>commit</code> 和 <code>push</code> 即可。想深度自定义的话还是需要了解一下 git 的基本原理，github actions 本身还是非常强大的，而 cloudflare 全家桶更是良心的不行。把动态网站那一套移植过来完全不成问题，具体玩法可以参考我站内的其他文章。</p></div><div class=post--single__action><button class="button--like like-btn" aria-label="like the post">
 <svg class="icon--active" viewBox="0 0 1024 1024" width="32" height="32"><path d="M780.8 204.8c-83.2-44.8-179.2-19.2-243.2 44.8L512 275.2l-25.6-25.6c-64-64-166.4-83.2-243.2-44.8-134.4 70.4-153.6 236.8-57.6 332.8l32 32 153.6 153.6 102.4 102.4c25.6 25.6 57.6 25.6 83.2.0l102.4-102.4 153.6-153.6 32-32C934.4 441.6 915.2 275.2 780.8 204.8z"/></svg>
 <svg class="icon--default" viewBox="0 0 1024 1024" width="32" height="32"><path d="M332.8 249.6c38.4.0 83.2 19.2 108.8 44.8L467.2 320 512 364.8 556.8 320l25.6-25.6c32-32 70.4-44.8 108.8-44.8 19.2.0 38.4 6.4 57.6 12.8 44.8 25.6 70.4 57.6 76.8 108.8 6.4 44.8-6.4 89.6-38.4 121.6L512 774.4 236.8 492.8c-32-32-51.2-76.8-44.8-121.6s38.4-83.2 76.8-108.8C288 256 313.6 249.6 332.8 249.6m0-64C300.8 185.6 268.8 192 243.2 204.8 108.8 275.2 89.6 441.6 185.6 537.6l281.6 281.6C480 832 499.2 838.4 512 838.4s32-6.4 38.4-19.2L832 537.6c96-96 76.8-262.4-57.6-332.8-25.6-12.8-57.6-19.2-89.6-19.2-57.6.0-115.2 25.6-153.6 64L512 275.2l-25.6-25.6c-38.4-38.4-96-64-153.6-64z"/></svg>
 <span class=count></span></button></div><div class=tag--list></div><div class=author--card><img src="https://secure.gravatar.com/avatar/2fd7e2e17a671f8e3fade0706e0a667e?s=128&amp;d=mm&amp;r=g" class=avatar height=64 width=64 decoding=async><div class=author--name>bigfa</div><div class=author--description>computer loser</div><div class=author--sns><a href=/index.xml target=_blank><svg class="sns" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17c0-3-2-5-5-5" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 17C17 11 13 7 7 7" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 17.01 7.01 16.9989" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 8v8c0 2.7614-2.2386 5-5 5H8c-2.76142.0-5-2.2386-5-5V8C3 5.23858 5.23858 3 8 3h8c2.7614.0 5 2.23858 5 5z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
