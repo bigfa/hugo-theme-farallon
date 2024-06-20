@@ -28,6 +28,11 @@ class farallonDate {
         }, 1000 * 5);
     }
 
+    updateSelectors() {
+        this.doms = Array.from(document.querySelectorAll(this.selector));
+        this.refresh();
+    }
+
     init() {
         this.doms = Array.from(document.querySelectorAll(this.selector));
         this.doms.forEach((dom: any) => {
@@ -82,6 +87,7 @@ class farallonDate {
                 dom.attributes["datetime"].value
             );
         });
+        console.log(this.selector);
     }
 }
 

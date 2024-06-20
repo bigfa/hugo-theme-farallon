@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.4.5
+
+-   增加 Cloudflare Worker 评论支持
+
 ### 0.4.4
 
 -   更新目录结构

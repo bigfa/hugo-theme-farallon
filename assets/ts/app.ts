@@ -14,7 +14,7 @@ class farallonBase extends farallonHelper {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.4.3";
+    VERSION: string = "0.4.5";
     like_btn: any;
     selctor: string = ".like-btn";
     actionDomain: string = window.actionDomain;
@@ -171,7 +171,10 @@ new farallonDate({
     selector: ".humane--time",
     timeFormat: window.timeFormat,
 });
-new farallonComment();
+
+new farallonComment({
+    actionDomain: window.actionDomain,
+});
 
 new Douban({
     baseAPI: window.dbAPIBase,
