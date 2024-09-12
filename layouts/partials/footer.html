@@ -49,6 +49,7 @@
     window.commentDomain = "{{ .Site.Params.commentDomain }}";
     window.actionDomain = "{{ .Site.Params.actionDomain }}";
     window.dbAPIBase = "{{ .Site.Params.dbAPIBase }}";
+    window.zoom = "{{ .Site.Params.zoom }}";
 </script>
 {{- $opts := dict "minify" hugo.IsProduction -}}
 {{- $replay := resources.Get "js/comment.min.js" | js.Build $opts -}}

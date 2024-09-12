@@ -3,11 +3,13 @@ import farallonDate from "./date.ts";
 import farallonActions from "./action.ts";
 import { farallonComment } from "./comment.ts";
 import Douban from "./db.ts";
+import imgZoom from "./zoom.ts";
 declare global {
     interface Window {
         actionDomain: string;
         timeFormat: string;
         dbAPIBase: string;
+        zoom: string;
     }
 }
 class farallonBase extends farallonHelper {
@@ -180,3 +182,5 @@ new Douban({
     baseAPI: window.dbAPIBase,
     container: ".db--container",
 });
+
+new imgZoom();

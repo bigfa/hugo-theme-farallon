@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.4.6
+
+-   add post image zoom
+
 ### 0.4.5
 
 -   add cloudflare worker comment system support
