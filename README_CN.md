@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.4.7
+
+-   兼容最新版本
+
 ### 0.4.6
 
 -   增加图片灯箱
