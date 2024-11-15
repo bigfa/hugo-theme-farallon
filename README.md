@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.4.8
+
+-   add cover link
+
 ### 0.4.7
 
 -   compatible with the latest version

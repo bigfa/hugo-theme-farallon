@@ -48,6 +48,7 @@
     {{ if .Content }}
     {{ $urls := findRE "<img src=\"[^\"|\\\"]*\"" .Content }} {{ if $urls }} {{ $url :=index ($urls) 0 }} {{ $url
         :=(strings.TrimPrefix "<img src=\"" $url) }}
-{{ $url := strings.TrimRight " \"" $url }} <img src="{{ $url }}" class="cover" itemprop="image" /> {{ end }} {{
+{{ $url := strings.TrimRight " \"" $url }} <a href="{{ .Permalink }}" aria-label="{{ .Title }}"
+        class="cover--link"><img src="{{ $url }}" class="cover" itemprop="image" /></a> {{ end }} {{
     end }}
 </article>
