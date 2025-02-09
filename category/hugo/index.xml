@@ -5,8 +5,7 @@
 &lt;/figure>
 &lt;/p>
 &lt;blockquote>
-&lt;p>本主题使用古法制作，不依赖三方框架。&lt;/p>
-&lt;/blockquote>
+&lt;p>本主题使用古法制作，不依赖三方框架。&lt;/p>&lt;/blockquote>
 &lt;p>Hugo 当前版本 &lt;code>0.3.1&lt;/code>，最后更新日期 &lt;code>2023/11/10&lt;/code>&lt;/p>
 &lt;p>
 
@@ -55,16 +54,14 @@ layout: travel
  authorDescription = &amp;#39;computer loser&amp;#39;
  authorAvatar = &amp;#39;https://secure.gravatar.com/avatar/2fd7e2e17a671f8e3fade0706e0a667e?s=128&amp;amp;d=mm&amp;amp;r=g&amp;#39;
 &lt;/code>&lt;/pre>&lt;h3 id="搜索">搜索&lt;/h3>
-&lt;p>推荐使用&lt;code>algolia&lt;/code>，个人小站免费额度够用了。&lt;/p>
-&lt;p>站点配置参数，设置成你自己的，主要不要暴露&lt;code>adminKey&lt;/code>&lt;/p></description></item><item><title>Hugo 主题 Hera</title><link>https://bigfa.github.io/hugo-theme-farallon/story/hugo-theme-hera/</link><pubDate>Fri, 03 Jan 2025 13:36:45 +0800</pubDate><guid>https://bigfa.github.io/hugo-theme-farallon/story/hugo-theme-hera/</guid><description>&lt;p>
+&lt;p>推荐使用&lt;code>algolia&lt;/code>，个人小站免费额度够用了。&lt;/p></description></item><item><title>Hugo 主题 Hera</title><link>https://bigfa.github.io/hugo-theme-farallon/story/hugo-theme-hera/</link><pubDate>Fri, 03 Jan 2025 13:36:45 +0800</pubDate><guid>https://bigfa.github.io/hugo-theme-farallon/story/hugo-theme-hera/</guid><description>&lt;p>
 &lt;figure class="grap--figure">
  &lt;img src="https://static.fatesinger.com/2024/12/2u80bhyxkmru4o9j.png" alt="Hugo 主题 Hera" />
  &lt;figcaption class="imageCaption">Hugo 主题 Hera&lt;/figcaption>
 &lt;/figure>
 &lt;/p>
 &lt;blockquote>
-&lt;p>本主题使用古法制作，不依赖三方框架。&lt;/p>
-&lt;/blockquote>
+&lt;p>本主题使用古法制作，不依赖三方框架。&lt;/p>&lt;/blockquote>
 &lt;p>Hugo 当前版本 &lt;code>0.0.2&lt;/code>，最后更新日期 &lt;code>2025/01/03&lt;/code>&lt;/p>
 &lt;p>
 
@@ -113,8 +110,7 @@ layout: travel
  authorDescription = &amp;#39;computer loser&amp;#39;
  authorAvatar = &amp;#39;https://secure.gravatar.com/avatar/2fd7e2e17a671f8e3fade0706e0a667e?s=128&amp;amp;d=mm&amp;amp;r=g&amp;#39;
 &lt;/code>&lt;/pre>&lt;h3 id="搜索">搜索&lt;/h3>
-&lt;p>推荐使用&lt;code>algolia&lt;/code>，个人小站免费额度够用了。&lt;/p>
-&lt;p>站点配置参数，设置成你自己的，主要不要暴露&lt;code>adminKey&lt;/code>&lt;/p></description></item><item><title>Hugo 简明教程 05</title><link>https://bigfa.github.io/hugo-theme-farallon/story/hugo-starter-05/</link><pubDate>Thu, 27 Jun 2024 10:11:35 +0800</pubDate><guid>https://bigfa.github.io/hugo-theme-farallon/story/hugo-starter-05/</guid><description>&lt;p>本文主要讲解 hugo 目录结构和主题目录结构的基本逻辑。Hugo 中有一些概念如 UnionFS,Hugo pipes 对普通用户来说很难理解，我这里尽量用白话来解释，可能不是很准确，但能让你大致理解 hugo 的文件逻辑。&lt;/p>
+&lt;p>推荐使用&lt;code>algolia&lt;/code>，个人小站免费额度够用了。&lt;/p></description></item><item><title>Hugo 简明教程 05</title><link>https://bigfa.github.io/hugo-theme-farallon/story/hugo-starter-05/</link><pubDate>Thu, 27 Jun 2024 10:11:35 +0800</pubDate><guid>https://bigfa.github.io/hugo-theme-farallon/story/hugo-starter-05/</guid><description>&lt;p>本文主要讲解 hugo 目录结构和主题目录结构的基本逻辑。Hugo 中有一些概念如 UnionFS,Hugo pipes 对普通用户来说很难理解，我这里尽量用白话来解释，可能不是很准确，但能让你大致理解 hugo 的文件逻辑。&lt;/p>
 &lt;h3 id="联合文件系统">联合文件系统&lt;/h3>
 &lt;p>首先要理解一个概念就是 Union file system（联合文件系统），简单来说就是可以多个目录挂载到同一个位置。当两个或多个文件具有相同路径的时候，优先级的顺序遵循挂载的顺序。比如可以将任意目录挂载到&lt;code>content&lt;/code>文件夹下。
 配置文件如下&lt;code>hugo.yaml&lt;/code>，&lt;strong>用白话来讲就是合并多个文件夹，路径相同的时候前面的优先&lt;/strong>。&lt;/p>
@@ -316,8 +312,7 @@ tags: [&amp;#34;fujifilm&amp;#34;]
 &lt;li>term 分类、标签等文章列表页，列出属于某个分类、标签下文章列表的页面&lt;/li>
 &lt;/ul>
 &lt;blockquote>
-&lt;p>RSS、网站地图、robotsTXT 和 404 页面类型，但这些只在渲染各自页面类型时可用，因此在任何页面集合中都不可用。&lt;/p>
-&lt;/blockquote>
+&lt;p>RSS、网站地图、robotsTXT 和 404 页面类型，但这些只在渲染各自页面类型时可用，因此在任何页面集合中都不可用。&lt;/p>&lt;/blockquote>
 &lt;h3 id="内容管理">内容管理&lt;/h3>
 &lt;p>众所周知，hugo 的 markdown 文件都在 content 目录下，也就是存放文章的地方，hugo 的作用就是把这些 &lt;code>markdown&lt;/code> 文件转换为 &lt;code>html&lt;/code>。默认情况下&lt;code>content&lt;/code>文件夹下的所有 &lt;code>markdown&lt;/code> 文件都会被认为是常规内容页面（RegularPages）。&lt;/p>
 &lt;p>当然，我们在实际使用过程中，可能会新建一个 posts 文件夹，或者按日期创建文件夹来管理文件，这个时候就要理解 &lt;code>section&lt;/code> 这个概念，简单来说就是一个文章类型，如果常规文章 &lt;code>post&lt;/code> 和状态内容 &lt;code>status&lt;/code>。在 Hugo 中，顶级目录（content 文件夹下的一级目录）或者是带有 &lt;code>_index.md&lt;/code> 文件的任何内容目录都会被认为是&lt;code>section&lt;/code>。这里推荐为所有 section 都创建&lt;code>_index.md&lt;/code> 文件。&lt;/p>
@@ -355,8 +350,7 @@ tags: [&amp;#34;fujifilm&amp;#34;]
 &lt;p>如果你克服了上面的困难，自动部署成功，那么你后面的使用就比较轻松了，只需要管理你的 &lt;code>markdown&lt;/code> 文件，其他的应该都已经是自动的了。如果你追求个性，需要修改主题，那么你需要一点计算机知识，如果你想定制一些功能，那么恭喜你，你进入了一个大坑，hugo 的文档写的很差。&lt;/p>
 &lt;h4 id="安装">安装&lt;/h4>
 &lt;p>我推荐 mac 用户使用，直接使用 brew 安装即可。&lt;/p></description></item><item><title>使用 Cloudflare Worker 获取豆瓣书影音记录</title><link>https://bigfa.github.io/hugo-theme-farallon/story/douban-cf-worker/</link><pubDate>Wed, 15 May 2024 17:41:48 +0800</pubDate><guid>https://bigfa.github.io/hugo-theme-farallon/story/douban-cf-worker/</guid><description>&lt;blockquote>
-&lt;p>本功能直接解决豆瓣书影音记录两大痛点，自动同步和封面本地化，对于普通用户来说，Cloudflare 的免费版足够了，非常推荐使用。&lt;/p>
-&lt;/blockquote>
+&lt;p>本功能直接解决豆瓣书影音记录两大痛点，自动同步和封面本地化，对于普通用户来说，Cloudflare 的免费版足够了，非常推荐使用。&lt;/p>&lt;/blockquote>
 &lt;p>
 
 
@@ -495,8 +489,7 @@ database_id = &amp;#34;81e23e8a-3b26-4025-acf8-1123bfd5af74&amp;#34;
 &lt;/figure>
 &lt;/p>
 &lt;blockquote>
-&lt;p>本主题使用古法制作，不依赖三方框架。&lt;/p>
-&lt;/blockquote>
+&lt;p>本主题使用古法制作，不依赖三方框架。&lt;/p>&lt;/blockquote>
 &lt;p>
 
 
