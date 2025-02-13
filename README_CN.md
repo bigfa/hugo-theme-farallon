@@ -1,4 +1,4 @@
-# Hugo Theme Farallon
+# Hugo 主题 Farallon
 
 ![Hugo 主题 Farallon](https://static.fatesinger.com/2023/06/u1ak8xgmyn9ec24r.png)
 
@@ -13,6 +13,10 @@ echo "theme = 'farallon'" >> hugo.toml
 [完整演示站点](https://github.com/bigfa/bigfa.github.io)
 
 ## Release Note
+
+### 0.4.9
+
+-   修复搜索错误
 
 ### 0.4.8
 
