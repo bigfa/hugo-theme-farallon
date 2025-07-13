@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.5.0
+
+-   Compatible with v0.146.0
+
 ### 0.4.9
 
 -   fixed search error
