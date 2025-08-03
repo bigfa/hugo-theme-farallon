@@ -16,10 +16,14 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
-> [!IMPORTANT]
-> scss class name has breaking changes
+### 0.6.1
+
+-   fixed term header style issues
 
 ### 0.6.0
+
+> [!IMPORTANT]
+> scss class name has breaking changes
 
 -   style enhancement
 

@@ -1,13 +1,15 @@
 {{ define "main" }}
 <section class="site--main">
-    <header class="archive--header">
-        <h1 class="post--single__title">{{.Title}}</h1>
-        <h2 class="post--single__subtitle">{{.Params.description }}</h2>
+    <header class="fTerm--header">
+        <div class="fTerm--content">
+            <h1 class="fTerm--title">{{.Title}}</h1>
+            <h2 class="fTerm--description">{{.Params.description }}</h2>
+        </div>
     </header>
-    <div class="archive--tagList">
+    <div class="tagCard">
         {{ $data := .Data }}
         {{ range $key, $value := .Data.Terms.ByCount }}
-        <span class="archive--tagItem">
+        <span class="tagCard--item">
             <a href="{{ $value.Page.Permalink }}">
                 {{ $value.Page.Title }} <span>({{ $value.Count }})</span>
             </a>

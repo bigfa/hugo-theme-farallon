@@ -1,8 +1,10 @@
 {{ define "main" }}
 <div class="site--main">
-    <header class="archive--header">
-        <h1 class="post--single__title">{{.Title}}</h1>
-        <h2 class="post--single__subtitle">{{.Params.description }}</h2>
+    <header class="fTerm--header">
+        <div class="fTerm--content">
+            <h1 class="fTerm--title">{{.Title}}</h1>
+            <h2 class="fTerm--description">{{.Params.description }}</h2>
+        </div>
     </header>
     <section class="collectionCard">
         {{ $data := .Data }}
