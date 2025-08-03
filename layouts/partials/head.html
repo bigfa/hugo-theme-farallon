@@ -7,11 +7,15 @@
 {{ if .IsPage }}
 <meta property="og:title" content="{{ .Page.Title }}">
 <meta property="og:url" content="{{ .Page.Permalink }}">
+{{ if .Params.cover }}
 <meta property="og:image" content="{{ .Params.cover}}">
+{{ end }}
 <meta property="og:description" content="{{ .Params.description}}">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
+{{ if .Params.cover }}
 <meta name="twitter:image:src" content="{{ .Params.cover}}">
+{{ end }}
 <meta name="twitter:title" content="{{ .Page.Title }}">
 <meta name="twitter:description" content="{{ .Params.description}}">
 {{ end }}

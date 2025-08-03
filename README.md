@@ -16,6 +16,17 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+> [!IMPORTANT]
+> scss class name has breaking changes
+
+### 0.6.0
+
+-   style enhancement
+
+### 0.5.1
+
+-   update theme config
+
 ### 0.5.0
 
 -   Compatible with v0.146.0

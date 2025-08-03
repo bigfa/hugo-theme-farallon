@@ -1,0 +1,5 @@
+{{- $.Scratch.Add "searchindex" slice -}}
+{{- range $index, $element := where site.RegularPages "Params.latitude" "ne" nil -}}
+    {{- $.Scratch.Add "searchindex" (dict "id" $index "title" $element.Title  "latitude" $element.Params.latitude "cover" $element.Params.cover "longitude" $element.Params.longitude "city" $element.Params.city "permalink" $element.RelPermalink "tags" (delimit ($element.Params.tags | default "") " ") "date" ($element.Date.Format ($.Param "dateformat" | default "2 January, 2006"))) -}}
+{{- end -}}
+{{- $.Scratch.Get "searchindex" | jsonify -}}

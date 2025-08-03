@@ -1,12 +1,12 @@
-{{ $related := .Site.RegularPages.Related . | first 5 }}
+{{ $related := .Site.RegularPages.Related . | first 4 }}
 {{ with $related }}
 <div class="related--content">
-    <h3 class="related--posts__title">{{ i18n "article.relatedContent" }}</h3>
-    <div class="post--single__related">
+    <h3 class="fRelated--heroTitle">{{ i18n "article.relatedContent" }}</h3>
+    <div class="fRelated--list">
         {{ range . }}
-        <div class="post--single__related__item">
+        <div class="fRelated--item">
             <a href="{{ .RelPermalink }}">
-                <div class="post--single__related__item__img">
+                <div class="fRelated--cover">
                     {{ if .Content }}
                     {{ $urls := findRE "<img src=\"[^\"|\\\"]*\"" .Content }} {{ if $urls }} {{ $url :=index ($urls) 0
                         }} {{ $url :=(strings.TrimPrefix "<img src=\"" $url) }}
@@ -14,10 +14,10 @@
                     {{ end }}
                     {{ end }}
                 </div>
-                <div class="post--single__related__item__title">
+                <div class="fRelated--title">
                     {{ .Title }}
                 </div>
-                <div class="meta">
+                <div class="fRelated--meta">
                     <time datetime='{{.Date.Format "2006-01-02 15:04:01" }}' class="humane--time">{{ .Date | time.Format
                         ":date_long"
                         }}</time>

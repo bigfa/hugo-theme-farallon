@@ -1,3 +1,7 @@
+{{- if lt hugo.Version "0.146.0" }}
+{{- errorf "=> hugo v0.146.0 or greater is required for Farallon to build " }}
+{{- end -}}
+
 <!DOCTYPE html>
 <html lang="{{ $.Site.LanguageCode | default " en" }}">
 

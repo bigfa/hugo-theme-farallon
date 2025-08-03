@@ -1,98 +1,67 @@
-.site--footer {
-    font-size: 14px;
+.fFooter {
+    font-size: var(--farallon-text-size-small);
     padding: 20px 80px;
     border-top: 1px dotted var(--farallon-border-color);
     color: var(--farallon-text-light);
-    &__content {
+
+    &--content {
         display: flex;
         align-items: center;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-right: 3.5%;
+            padding-left: 3.5%;
+        }
     }
-    &__info {
+
+    &--info {
         display: none;
         text-align: center;
         color: var(--farallon-text-light);
+
         a {
             text-decoration: underline;
+
             &:hover {
                 color: var(--farallon-hover-color);
             }
         }
+
         &.active {
             display: block;
         }
     }
-    .copyright {
+
+    &--copyright {
         margin-left: auto;
         display: flex;
         align-items: center;
+
+        @media screen and (max-width: 768px) {
+            margin-left: 0;
+        }
+
         svg {
             fill: var(--farallon-text-light);
             margin-left: 8px;
             cursor: pointer;
+
             &:hover {
                 fill: var(--farallon-hover-color);
             }
         }
-        // &::after {
-        //     content: 'a bigfa theme';
-        //     margin-left: 3px;
-        // }
-    }
-    nav {
-        ul {
-            display: flex;
-            align-items: center;
-            li {
-                margin-right: 10px;
-                a {
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
-        }
     }
 
-    &__sns {
-        display: flex;
-        align-items: center;
-        a {
-            margin: 0 12px 0 0;
-            display: flex;
-        }
-        svg {
-            fill: var(--farallon-text-color);
-            &:hover {
-                fill: var(--farallon-hover-color);
-            }
-            width: 18px;
-            height: 18px;
-            &.sns {
-                fill: none;
-                stroke: var(--farallon-text-color);
-            }
-        }
+    &--icons {
+        @include sns-icons;
+        --farallon-icon-size: 18px;
     }
 }
 
-@media (max-width: 768px) {
-    .site--footer__content {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-right: 3.5%;
-        padding-left: 3.5%;
-        .copyright {
-            margin-left: 0;
-        }
-
-        nav {
-            margin-bottom: 10px;
-        }
-    }
-}
-
-.fixed--theme {
+.fThemeSwitcher {
     position: fixed;
     right: 10px;
     top: 40%;
@@ -104,6 +73,12 @@
     border-radius: 999rem;
     width: max-content;
     padding: 3px;
+
+    @media (max-width: 768px) {
+        top: auto;
+        bottom: 100px;
+    }
+
     span {
         width: 32px;
         height: 32px;
@@ -112,16 +87,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        svg {
-            //fill: rgba(0, 0, 0, 0.67);
-        }
         color: var(--farallon-text-gray-lightest);
+        margin-bottom: 5px;
 
         &:hover {
             color: var(--farallon-text-color);
-            svg {
-                // fill: rgba(0, 0, 0, 0.87);
-            }
         }
 
         &.is-active {
@@ -129,42 +99,36 @@
             background-color: var(--farallon-background-gray);
         }
 
-        margin-bottom: 5px;
         &:last-child {
             margin-bottom: 0;
         }
     }
 }
 
-@keyframes toTop {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-50%);
-    }
-}
-.backToTop {
+.fBackTop {
+    background-color: var(--border-color);
+    z-index: 10;
+    transition: all 0.3s ease;
+    position: fixed;
+    bottom: 25px;
+    right: -25px;
+    cursor: pointer;
+
     .svgIcon {
         width: 17px;
         height: 17px;
         fill: var(--farallon-main-color);
         animation: toTop 1s ease-in infinite alternate;
     }
+
     &:hover {
         .svgIcon {
             fill: var(--farallon-hover-color);
             animation-play-state: paused;
         }
     }
-    position: fixed;
-    bottom: 25px;
-    right: -25px;
-    cursor: pointer;
+
     &.is-active {
         right: 25px;
     }
-    background-color: var(--border-color);
-    z-index: 10;
-    transition: all 0.3s ease;
 }

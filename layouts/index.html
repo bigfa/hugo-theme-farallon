@@ -3,7 +3,7 @@
     {{ if $.Site.Params.showprofile }}
     {{ partial "profile.html" . }}
     {{ end }}
-    <div class="articleList">
+    <div class="fBblock--list">
         {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
         {{ $paginator := .Paginate ($pages) }}
         {{ range $paginator.Pages }}

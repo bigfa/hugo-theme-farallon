@@ -16,7 +16,7 @@ class farallonBase extends farallonHelper {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.4.5";
+    VERSION: string = "0.5.1";
     like_btn: any;
     selctor: string = ".like-btn";
     actionDomain: string = window.actionDomain;
@@ -33,15 +33,15 @@ class farallonBase extends farallonHelper {
             .querySelector('[data-action="show-search"]')!
             .addEventListener("click", () => {
                 document
-                    .querySelector(".site--header__center .inner")!
+                    .querySelector(".fHeader--content .inner")!
                     .classList.toggle("search--active");
             });
     }
 
     initBack2Top() {
-        if (document.querySelector(".backToTop")) {
+        if (document.querySelector(".fBackTop")) {
             const backToTop = document.querySelector(
-                ".backToTop"
+                ".fBackTop"
             ) as HTMLElement;
             window.addEventListener("scroll", () => {
                 const t = window.scrollY || window.pageYOffset;
@@ -62,19 +62,19 @@ class farallonBase extends farallonHelper {
     }
 
     initCopyright() {
-        const copyright = `<div class="site--footer__info">
+        const copyright = `<div class="fFooter--info">
         Theme <a href="https://fatesinger.com/101971" target="_blank">farallon</a> by bigfa / version ${this.VERSION}
     </div>`;
 
         document
-            .querySelector(".site--footer__content")!
+            .querySelector(".fFooter--content")!
             .insertAdjacentHTML("afterend", copyright);
 
         document
             .querySelector(".icon--copryrights")!
             .addEventListener("click", () => {
                 document
-                    .querySelector(".site--footer__info")!
+                    .querySelector(".fFooter--info")!
                     .classList.toggle("active");
             });
     }
@@ -83,7 +83,7 @@ class farallonBase extends farallonHelper {
         const theme = localStorage.getItem("theme")
             ? localStorage.getItem("theme")
             : "auto";
-        const html = `<div class="fixed--theme">
+        const html = `<div class="fThemeSwitcher">
         <span class="${
             theme == "dark" ? "is-active" : ""
         }" data-action-value="dark">
@@ -125,11 +125,11 @@ class farallonBase extends farallonHelper {
 
         document.querySelector("body")!.insertAdjacentHTML("beforeend", html);
 
-        document.querySelectorAll(".fixed--theme span").forEach((item) => {
+        document.querySelectorAll(".fThemeSwitcher span").forEach((item) => {
             item.addEventListener("click", () => {
                 if (item.classList.contains("is-active")) return;
                 document
-                    .querySelectorAll(".fixed--theme span")
+                    .querySelectorAll(".fThemeSwitcher span")
                     .forEach((item: Element) => {
                         item.classList.remove("is-active");
                     });
@@ -162,8 +162,8 @@ class farallonBase extends farallonHelper {
 }
 
 new farallonActions({
-    singleSelector: ".post--single",
-    articleSelector: ".post--item",
+    singleSelector: ".fArticle",
+    articleSelector: ".fBlock--item",
     likeButtonSelctor: ".like-btn",
     actionDomain: window.actionDomain,
 });

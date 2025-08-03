@@ -1,38 +1,24 @@
 {{ define "main" }}
 <main class="site--main">
-    <article class="post--single" itemscope="itemscope" itemtype="http://schema.org/Article"
-        data-id="{{ .File.UniqueID}}">
-        <div class="post--single__meta">
-            <svg class="icon" viewBox="0 0 1024 1024" width="16" height="16">
-                <path
-                    d="M512 97.52381c228.912762 0 414.47619 185.563429 414.47619 414.47619s-185.563429 414.47619-414.47619 414.47619S97.52381 740.912762 97.52381 512 283.087238 97.52381 512 97.52381z m0 73.142857C323.486476 170.666667 170.666667 323.486476 170.666667 512s152.81981 341.333333 341.333333 341.333333 341.333333-152.81981 341.333333-341.333333S700.513524 170.666667 512 170.666667z m36.571429 89.697523v229.86362h160.865523v73.142857H512a36.571429 36.571429 0 0 1-36.571429-36.571429V260.388571h73.142858z">
-                </path>
-            </svg>
+    <article class="fArticle" itemscope="itemscope" itemtype="http://schema.org/Article" data-id="{{ .File.UniqueID }}">
+        <div class="fArticle--meta">
+
             <time datetime='{{.Date.Format "2006-01-02 15:04:01" }}' class="humane--time" itemprop="datePublished">{{
                 .Date | time.Format
                 ":date_long"
                 }}</time>
             {{ if .Params.categories }}
-            <svg class="icon" viewBox="0 0 1024 1024" width="16" height="16">
-                <path
-                    d="M408.551619 97.52381a73.142857 73.142857 0 0 1 51.736381 21.430857L539.306667 197.973333A73.142857 73.142857 0 0 0 591.067429 219.428571H804.571429a73.142857 73.142857 0 0 1 73.142857 73.142858v560.761904a73.142857 73.142857 0 0 1-73.142857 73.142857H219.428571a73.142857 73.142857 0 0 1-73.142857-73.142857V170.666667a73.142857 73.142857 0 0 1 73.142857-73.142857h189.123048z m0 73.142857H219.428571v682.666666h585.142858V292.571429h-213.504a146.285714 146.285714 0 0 1-98.499048-38.13181L487.619048 249.734095 408.551619 170.666667zM365.714286 633.904762v73.142857h-73.142857v-73.142857h73.142857z m365.714285 0v73.142857H414.47619v-73.142857h316.952381z m-365.714285-195.047619v73.142857h-73.142857v-73.142857h73.142857z m365.714285 0v73.142857H414.47619v-73.142857h316.952381z">
-                </path>
-            </svg>
+            <span class="sep"></span>
             {{ range (.GetTerms "categories") }}
             <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
             {{ end }}
             {{ end }}
             {{ if .Site.Params.post_view }}
-            <svg class="icon" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12Z" />
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M21.83 11.2807C19.542 7.15186 15.8122 5 12 5C8.18777 5 4.45796 7.15186 2.17003 11.2807C1.94637 11.6844 1.94361 12.1821 2.16029 12.5876C4.41183 16.8013 8.1628 19 12 19C15.8372 19 19.5882 16.8013 21.8397 12.5876C22.0564 12.1821 22.0536 11.6844 21.83 11.2807ZM12 17C9.06097 17 6.04052 15.3724 4.09173 11.9487C6.06862 8.59614 9.07319 7 12 7C14.9268 7 17.9314 8.59614 19.9083 11.9487C17.9595 15.3724 14.939 17 12 17Z" />
-            </svg>
+            <span class="sep"></span>
             <span class="article--views"></span>
             {{ end }}
         </div>
-        <h2 class="post--single__title">{{ .Title }}</h2>
+        <h2 class="fArticle--headline">{{ .Title }}</h2>
         {{ if .IsTranslated }}
         <div class="translatedCard">
             <h4>{{ i18n "translations" }}</h4>
@@ -50,16 +36,16 @@
         {{- $hasTOC := gt (len .TableOfContents) 32 -}}
 
         {{ if and $TOCEnabled $hasTOC -}}
-        <details class="toc" open>
+        <details class="fArticle--toc" open>
             <summary class="toc-title">{{ i18n "article.tableOfContents" }}</summary>
             {{ .TableOfContents }}
         </details>
         {{- end }}
-        <div class="post--single__content graph" itemprop="articleBody">
+        <div class="fArticle--content fGraph" itemprop="articleBody">
             {{ .Content }}
         </div>
         {{ if .Site.Params.post_like }}
-        <div class="post--single__action">
+        <div class="fArticle--actions">
             <button class="button--like like-btn" aria-label="like the post">
                 <svg class="icon--active" viewBox="0 0 1024 1024" width="32" height="32">
                     <path
@@ -75,17 +61,17 @@
             </button>
         </div>
         {{ end }}
-        <div class="tag--list">
+        <div class="fArticle--tags">
             {{ range (.GetTerms "tags") }}
-            <a href="{{ .RelPermalink }}" class="artile--tag">{{ .LinkTitle }}</a>
+            <a href="{{ .RelPermalink }}" class="fArticle--tag">{{ .LinkTitle }}</a>
             {{ end }}
         </div>
         {{ if .Site.Params.showAuthor }}
-        <div class="author--card">
+        <div class="fAuthor">
             <img src="{{ .Site.Params.authorAvatar }}" class="avatar" height="64" width="64" decoding="async">
-            <div class="author--name">{{ .Site.Params.authorName }}</div>
-            <div class="author--description">{{ .Site.Params.authorDescription }}</div>
-            <div class="author--sns">
+            <div class="fAuthor--name">{{ .Site.Params.authorName }}</div>
+            <div class="fAuthor--description">{{ .Site.Params.authorDescription }}</div>
+            <div class="fAuthor--icons">
                 {{ partial "sns.html" . }}
             </div>
         </div>
@@ -95,26 +81,26 @@
         {{ if .Params.comments }}
         {{ partial "commentlist.html" . }}
         {{ end }}
+        {{ if or .Prev .Next}}
+        <nav class="navigation post-navigation is-active">
+            <div class="nav-links">
+                {{ if .Prev }}
+                <div class="nav-previous">
+                    <a class="link-reverse" href="{{ .Prev.Permalink }}?ref=footer">
+                        <span class="meta-nav">Previous</span><span class="post-title">{{ .Prev.Title }}</span>
+                    </a>
+                </div>
+                {{ end }}
+                {{ if .Next }}
+                <div class="nav-next">
+                    <a class="link-reverse" href="{{ .Next.Permalink }}?ref=footer">
+                        <span class="meta-nav">Next</span><span class="post-title">{{ .Next.Title }}</span>
+                    </a>
+                </div>
+                {{ end }}
+            </div>
+        </nav>
+        {{ end }}
     </article>
-    {{ if or .Prev .Next}}
-    <nav class="navigation post-navigation is-active">
-        <div class="nav-links">
-            {{ if .Prev }}
-            <div class="nav-previous">
-                <a class="link-reverse" href="{{ .Prev.Permalink }}?ref=footer">
-                    <span class="meta-nav">Previous</span><span class="post-title">{{ .Prev.Title }}</span>
-                </a>
-            </div>
-            {{ end }}
-            {{ if .Next }}
-            <div class="nav-next">
-                <a class="link-reverse" href="{{ .Next.Permalink }}?ref=footer">
-                    <span class="meta-nav">Next</span><span class="post-title">{{ .Next.Title }}</span>
-                </a>
-            </div>
-            {{ end }}
-        </div>
-    </nav>
-    {{ end }}
 </main>
 {{ end }}

@@ -1,19 +1,19 @@
 {{ define "main" }}
-<div class="page--archive">
+<div class="fArchive--main">
     {{ range .Pages.ByPublishDate.Reverse.GroupByDate "2006" }}
     {{ if (where .Pages "Section" "post") }}
-    <h2 class="archive--title__year">{{ .Key }}</h2>
+    <h2 class="fArchive--heroTitle">{{ .Key }}</h2>
     {{ range .Pages.ByPublishDate.Reverse.GroupByDate "January" }}
-    <h3 class="archive--title__month">{{ .Key }}</h3>
-    <ul class="archive--list">
+    <h3 class="fArchive--title__month">{{ .Key }}</h3>
+    <ul class="fArchive--list">
         {{ range ((where .Pages "Section" "post")) }}
-        <li class="archive--item">
-            <div class="archive--title">
+        <li class="fArchive--item">
+            <div class="fArchive--title">
                 <a href="{{ .RelPermalink }}">
                     {{ .Title }}
                 </a>
             </div>
-            <div class="archive--meta">{{ .PublishDate.Format "Jan 02" }}</div>
+            <div class="fArchive--meta">{{ .PublishDate.Format "Jan 02" }}</div>
         </li>
         {{ end }}
     </ul>

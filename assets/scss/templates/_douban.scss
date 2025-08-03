@@ -1,0 +1,24 @@
+.template--douban {
+    padding: 50px 75px;
+}
+
+.doulist-item {
+    background: linear-gradient(
+        89.99999999999999deg,
+        rgba(255, 233, 244, 0.3) 0%,
+        rgba(234, 243, 255, 0.5) 100%
+    );
+    border-color: var(--farallon-border-color);
+    color: var(--farallon-text-gray);
+
+    .doulist-subject {
+        .doulist-title {
+            a {
+                box-shadow: none !important;
+                &:hover {
+                    color: var(--farallon-hover-color);
+                }
+            }
+        }
+    }
+}
