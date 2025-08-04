@@ -2,7 +2,6 @@
 <main class="site--main">
     <article class="fArticle" itemscope="itemscope" itemtype="http://schema.org/Article" data-id="{{ .File.UniqueID }}">
         <div class="fArticle--meta">
-
             <time datetime='{{.Date.Format "2006-01-02 15:04:01" }}' class="humane--time" itemprop="datePublished">{{
                 .Date | time.Format
                 ":date_long"
@@ -15,8 +14,10 @@
             {{ end }}
             {{ if .Site.Params.post_view }}
             <span class="sep"></span>
-            <span class="article--views"></span>
+            <span class="article--views"></span> 浏览
             {{ end }}
+            <span class="sep"></span>
+            {{ printf "%d 分钟阅读" .ReadingTime }}
         </div>
         <h2 class="fArticle--headline">{{ .Title }}</h2>
         {{ if .IsTranslated }}

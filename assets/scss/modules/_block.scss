@@ -92,6 +92,15 @@
             vertical-align: middle;
         }
 
+        .icon--sticky {
+            width: 18px;
+            margin-left: 0;
+            line-height: 1;
+            display: inline-block;
+            vertical-align: -5px;
+            stroke: #f87171;
+        }
+
         &:hover {
             color: var(--farallon-hover-color);
         }

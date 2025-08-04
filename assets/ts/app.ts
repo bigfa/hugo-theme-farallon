@@ -16,7 +16,7 @@ class farallonBase extends farallonHelper {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.5.1";
+    VERSION: string = "0.6.1";
     like_btn: any;
     selctor: string = ".like-btn";
     actionDomain: string = window.actionDomain;
@@ -45,11 +45,6 @@ class farallonBase extends farallonHelper {
             ) as HTMLElement;
             window.addEventListener("scroll", () => {
                 const t = window.scrollY || window.pageYOffset;
-                // console.log(t);
-                // const documentHeight = document.body.clientHeight;
-                //const windowHeight = window.innerHeight;
-                // const percent = Math.ceil((t / (documentHeight - windowHeight)) * 100);
-
                 t > 200
                     ? backToTop!.classList.add("is-active")
                     : backToTop!.classList.remove("is-active");

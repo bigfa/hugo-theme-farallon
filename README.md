@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.6.2
+
+-   style enhancement
+
 ### 0.6.1
 
 -   fixed term header style issues
