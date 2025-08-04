@@ -16,6 +16,11 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.6.3
+
+-   fixed search result issues
+-   style enhancement
+
 ### 0.6.2
 
 -   style enhancement

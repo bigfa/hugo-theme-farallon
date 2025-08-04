@@ -1,22 +1,22 @@
 {{ define "main" }}
 
-<div class="site--main site--main__gears">
-    <h1 class="post--single__title">{{.Title}}</h1>
-    <h2 class="post--single__subtitle">{{ .Params.subtitle }}</h2>
-    <div class="template--linksWrap">
+<div class="site--main">
+    <article class="fArticle fArticle--wide">
+        <h1 class="fArticle--title">{{.Title}}</h1>
+        <h2 class="fArticle--subtitle">{{ .Params.subtitle }}</h2>
         <ul class="link-items">
             {{ range .Params.links }}
             <li class="link-item">
-                <a class="link-item-inner effect-apollo" href="{{ .link }}" title="Just a blog" target="_blank">
+                <a class="link-item-inner" href="{{ .link }}" title="{{ .title }}" target="_blank">
                     <span class="sitename"><strong>{{ .title }}</strong>{{ .description }}</span>
                 </a>
             </li>
             {{ end }}
         </ul>
-    </div>
-    <div class="graph u-marginBottom30">
-        {{ .Content }}
-    </div>
+        <div class="fGraph fArticle--content">
+            {{ .Content }}
+        </div>
+    </article>
 </div>
 
 {{ end }}
