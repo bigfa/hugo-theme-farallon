@@ -36,7 +36,7 @@ export class farallonComment extends farallonHelper {
                             <div class="fComment--body">
                                 <header class="fComment--header">
                                     <div class="fComment--avatar">
-                                        <img src="${item.avatar}" class="avatar"  width=42 height=42 />
+                                        <img src="${item.avatar}" class="avatar" alt="${item.comment_author_name}" width=42 height=42 />
                                     </div>
                                     <div class="fComment--meta">
                                         ${item.comment_author_name}<span class="dot"></span>

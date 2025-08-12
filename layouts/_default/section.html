@@ -1,0 +1,20 @@
+{{ define "main" }}
+<main class="site--main">
+    <header class="fTerm--header fTerm--header__center">
+        <h1 class="fTerm--title">{{.Title}}</h1>
+    </header>
+    <div class="fBblock--list">
+        {{- $pages := union .RegularPages .Sections }}
+        {{- $paginator := .Paginate $pages }}
+        {{ range $paginator.Pages }}
+        {{ if eq .Type "memo" }}
+        {{ partial "memo.html" . }}
+        {{ else }}
+        {{ partial "post.html" . }}
+        {{ end }}
+        {{ end }}
+    </div>
+    {{ $paginator := .Paginate ($pages) }}
+    {{partial "pagination.html" .}}
+</main>
+{{ end }}

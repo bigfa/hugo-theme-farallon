@@ -1,11 +1,11 @@
 {{ define "main" }}
+<header class="fTerm--header">
+    <div class="fTerm--content">
+        <h1 class="fTerm--title">{{.Title}}</h1>
+        <h2 class="fTerm--description">{{.Params.description }}</h2>
+    </div>
+</header>
 <section class="site--main">
-    <header class="fTerm--header">
-        <div class="fTerm--content">
-            <h1 class="fTerm--title">{{.Title}}</h1>
-            <h2 class="fTerm--description">{{.Params.description }}</h2>
-        </div>
-    </header>
     <div class="tagCard">
         {{ $data := .Data }}
         {{ range $key, $value := .Data.Terms.ByCount }}

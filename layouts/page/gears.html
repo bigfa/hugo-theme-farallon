@@ -1,8 +1,7 @@
 {{ define "main" }}
 
-<div class="site--main site--main__gears">
-    <h1 class="post--single__title">{{.Title}}</h1>
-    <h2 class="post--single__subtitle">{{ .Params.subtitle }}</h2>
+<div class="site--main">
+    <h1 class="fArticle--headline">{{.Title}}</h1>
     <div class="good--list">
         {{ range .Params.faves }}
         <div class="good--item">
@@ -16,7 +15,7 @@
         </div>
         {{ end }}
     </div>
-    <div class="graph u-marginBottom30">
+    <div class="fGraph fArticle--content">
         {{ .Content }}
     </div>
 </div>

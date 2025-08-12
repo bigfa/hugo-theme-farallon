@@ -14,6 +14,12 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.6.3
+
+-   归档设置为页面模版
+-   样式改进
+-   修复搜索错误
+
 ### 0.6.2
 
 -   样式改进

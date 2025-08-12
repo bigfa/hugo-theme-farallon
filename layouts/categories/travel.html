@@ -42,5 +42,7 @@
         </article>
         {{ end }}
     </div>
+    {{ $paginator := .Paginate (.Data.Pages) }}
+    {{partial "pagination.html" .}}
 </div>
 {{ end }}

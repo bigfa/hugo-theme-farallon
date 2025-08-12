@@ -1,11 +1,11 @@
 {{ define "main" }}
+<header class="fTerm--header">
+    <div class="fTerm--content">
+        <h1 class="fTerm--title">{{.Title}}</h1>
+        <h2 class="fTerm--description">{{.Params.description }}</h2>
+    </div>
+</header>
 <div class="site--main">
-    <header class="fTerm--header">
-        <div class="fTerm--content">
-            <h1 class="fTerm--title">{{.Title}}</h1>
-            <h2 class="fTerm--description">{{.Params.description }}</h2>
-        </div>
-    </header>
     <section class="collectionCard">
         {{ $data := .Data }}
         {{ range $key, $value := .Data.Terms.ByCount }}
@@ -17,7 +17,7 @@
                 <a href="{{ $value.Page.Permalink }}">
                     {{ $value.Page.Title }}<span>({{ $value.Count }})</span>
                 </a>
-                <div class="collectionCard--desc">{{ $value.Page.Params.description }}</div>
+                <div class="collectionCard--description">{{ $value.Page.Params.description }}</div>
             </div>
         </div>
         {{ end }}

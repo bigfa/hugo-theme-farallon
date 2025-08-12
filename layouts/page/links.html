@@ -1,9 +1,8 @@
 {{ define "main" }}
 
-<div class="site--main site--main__gears">
-    <h1 class="post--single__title">{{.Title}}</h1>
-    <h2 class="post--single__subtitle">{{ .Params.subtitle }}</h2>
-    <div class="template--linksWrap">
+<div class="site--main">
+    <article class="fArticle">
+        <h2 class="fArticle--headline">{{ .Title }}</h2>
         <ul class="link-items">
             {{ range .Params.links }}
             <li class="link-item">
@@ -13,10 +12,10 @@
             </li>
             {{ end }}
         </ul>
-    </div>
-    <div class="graph u-marginBottom30">
-        {{ .Content }}
-    </div>
+        <div class="fGraph fArticleContent">
+            {{ .Content }}
+        </div>
+    </article>
 </div>
 
 {{ end }}

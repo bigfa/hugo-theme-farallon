@@ -1,18 +1,27 @@
 {{ define "main" }}
 
 <header class="fTerm--header">
-    <h1 class="fTerm--title">{{.Title}}</h1>
-    {{ if .Params.description }}
-    <div class="fTerm--description">{{ .Params.description }}</div>
+    {{ if .Params.cover }}
+    <img src="{{ .Params.cover }}" alt="{{ .Title }}" class="fTerm--cover">
     {{ end }}
+    <div class="fTerm--content">
+        <h1 class="fTerm--title">{{.Title}}</h1>
+        {{ if .Params.description }}
+        <div class="fTerm--description">{{ .Params.description }}</div>
+        {{ end }}
+    </div>
 </header>
 <div class="site--main">
-    {{ range .Data.Pages }}
-    {{ if eq .Type "memo" }}
-    {{ partial "memo.html" . }}
-    {{ else }}
-    {{ partial "post.html" . }}
-    {{ end }}
-    {{ end }}
+    <div class="fBblock--list">
+        {{ range .Data.Pages }}
+        {{ if eq .Type "memo" }}
+        {{ partial "memo.html" . }}
+        {{ else }}
+        {{ partial "post.html" . }}
+        {{ end }}
+        {{ end }}
+    </div>
+    {{ $paginator := .Paginate (.Data.Pages) }}
+    {{partial "pagination.html" .}}
 </div>
 {{ end }}

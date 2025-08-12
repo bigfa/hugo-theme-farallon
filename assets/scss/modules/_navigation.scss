@@ -82,10 +82,13 @@
             background-color: var(--farallon-text-light);
         }
     }
+
     .page-numbers,
     .post-page-numbers {
         //border-radius: 999rem;
+
         @include navigation;
+        --farallon-navigation-font-size: 16px;
     }
 
     &__comment {
@@ -99,7 +102,7 @@
                 &:after {
                     border: 6px solid transparent;
                     background-clip: padding-box;
-                    content: '';
+                    content: "";
                     filter: blur(10px);
                     height: 50%;
                     opacity: 0.8;

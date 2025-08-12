@@ -33,16 +33,16 @@
             </ul>
         </div>
         {{ end }}
-        {{- $TOCEnabled := or .Params.toc (and .Site.Params.toc (ne .Params.toc false)) -}}
-        {{- $hasTOC := gt (len .TableOfContents) 32 -}}
-
-        {{ if and $TOCEnabled $hasTOC -}}
-        <details class="fArticle--toc" open>
-            <summary class="toc-title">{{ i18n "article.tableOfContents" }}</summary>
-            {{ .TableOfContents }}
-        </details>
-        {{- end }}
         <div class="fArticle--content fGraph" itemprop="articleBody">
+            {{- $TOCEnabled := or .Params.toc (and .Site.Params.toc (ne .Params.toc false)) -}}
+            {{- $hasTOC := gt (len .TableOfContents) 32 -}}
+
+            {{ if and $TOCEnabled $hasTOC -}}
+            <details class="fArticle--toc" open>
+                <summary class="toc-title">{{ i18n "article.tableOfContents" }}</summary>
+                {{ .TableOfContents }}
+            </details>
+            {{- end }}
             {{ .Content }}
         </div>
         {{ if .Site.Params.post_like }}
@@ -69,7 +69,8 @@
         </div>
         {{ if .Site.Params.showAuthor }}
         <div class="fAuthor">
-            <img src="{{ .Site.Params.authorAvatar }}" class="avatar" height="64" width="64" decoding="async">
+            <img src="{{ .Site.Params.authorAvatar }}" class="avatar" height="64" width="64"
+                alt="{{ .Site.Params.authorName }}">
             <div class="fAuthor--name">{{ .Site.Params.authorName }}</div>
             <div class="fAuthor--description">{{ .Site.Params.authorDescription }}</div>
             <div class="fAuthor--icons">
