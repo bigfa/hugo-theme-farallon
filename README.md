@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.7.0
+
+-   style enhancement
+
 ### 0.6.3
 
 -   make post archives a page template
