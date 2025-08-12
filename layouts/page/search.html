@@ -1,11 +1,14 @@
 {{ define "main" }}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/reset-min.css"
     integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU=" crossorigin="anonymous">
+<header class="fSearch--header">
+    <div id="searchbox"></div>
+</header>
 <div class="site--main">
     <header class="fSearch--header">
         <div id="searchbox"></div>
     </header>
-    <div id="hits" class="articleList"></div>
+    <div id="hits" class="fBlock--list"></div>
     <div id="pagination"></div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.20.0/dist/algoliasearch-lite.umd.js"

@@ -6,7 +6,7 @@
         <ul class="link-items">
             {{ range .Params.links }}
             <li class="link-item">
-                <a class="link-item-inner effect-apollo" href="{{ .link }}" title="Just a blog" target="_blank">
+                <a class="link-item-inner" href="{{ .link }}" title="{{ .title }}" target="_blank">
                     <span class="sitename"><strong>{{ .title }}</strong>{{ .description }}</span>
                 </a>
             </li>
