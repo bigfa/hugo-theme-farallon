@@ -18,9 +18,12 @@
                     {{ .Title }}
                 </div>
                 <div class="fRelated--meta">
-                    <time datetime='{{.Date.Format "2006-01-02 15:04:01" }}' class="humane--time">{{ .Date | time.Format
-                        ":date_long"
-                        }}</time>
+                    {{ if .Date }}
+                    <time datetime='{{.Date.Format "2006-01-02 15:04:01" }}'>{{ .Date.Format
+                        "2006-01-02" }}</time>
+                    <span class="sep"></span>
+                    {{ end }}
+                    {{ T "article.readingTime" .ReadingTime }}
                 </div>
             </a>
         </div>

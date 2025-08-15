@@ -2,10 +2,8 @@
 <main class="site--main">
     <article class="fArticle" itemscope="itemscope" itemtype="http://schema.org/Article" data-id="{{ .File.UniqueID }}">
         <div class="fArticle--meta">
-            <time datetime='{{.Date.Format "2006-01-02 15:04:01" }}' class="humane--time" itemprop="datePublished">{{
-                .Date | time.Format
-                ":date_long"
-                }}</time>
+            <time datetime='{{ .Date.Format "2006-01-02 15:04:01" }}' itemprop="datePublished">{{ .Date.Format
+                "2006-01-02" }}</time>
             {{ if .Params.categories }}
             <span class="sep"></span>
             {{ range (.GetTerms "categories") }}
@@ -14,10 +12,10 @@
             {{ end }}
             {{ if .Site.Params.post_view }}
             <span class="sep"></span>
-            <span class="article--views"></span> 浏览
+            <span><span class="article--views"></span>{{ i18n "article.readingViews" }}</span>
             {{ end }}
             <span class="sep"></span>
-            {{ printf "%d 分钟阅读" .ReadingTime }}
+            {{ T "article.readingTime" .ReadingTime }}
         </div>
         <h2 class="fArticle--headline">{{ .Title }}</h2>
         {{ if .IsTranslated }}

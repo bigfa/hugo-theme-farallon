@@ -1,8 +1,8 @@
+{{/* cSpell:ignore docsearch opengraph outputformat */ -}}
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description"
-  content="{{ if .IsHome }}{{ $.Site.Params.description }}{{ else if .IsPage }}{{ .Params.description}}{{ else }}{{ .Description }}{{ end }}" />
+<meta name="description" content='{{ partial "page-description.html" . }}'>
 {{ $styles := resources.Get "scss/app.scss" | toCSS | minify | fingerprint }}
 {{ if .IsPage }}
 <meta property="og:title" content="{{ .Page.Title }}">
@@ -10,14 +10,14 @@
 {{ if .Params.cover }}
 <meta property="og:image" content="{{ .Params.cover}}">
 {{ end }}
-<meta property="og:description" content="{{ .Params.description}}">
+<meta property="og:description" content='{{ partial "page-description.html" . }}'>
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
 {{ if .Params.cover }}
-<meta name="twitter:image:src" content="{{ .Params.cover}}">
+<meta name="twitter:image:src" content="{{ .Params.cover }}">
 {{ end }}
 <meta name="twitter:title" content="{{ .Page.Title }}">
-<meta name="twitter:description" content="{{ .Params.description}}">
+<meta name="twitter:description" content='{{ partial "page-description.html" . }}'>
 {{ end }}
 <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
 {{ $favicon := resources.Get "images/favicon.png" }}

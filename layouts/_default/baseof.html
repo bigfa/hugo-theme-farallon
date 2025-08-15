@@ -6,7 +6,12 @@
 <html lang="{{ $.Site.LanguageCode | default " en" }}">
 
 <head>
-    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} - {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <title>{{- if .IsHome -}}
+        {{ .Site.Title -}}
+        {{ else -}}
+        {{ with .Title }}{{ . }} - {{ end -}}
+        {{ .Site.Title -}}
+        {{ end -}}</title>
     {{ partial "head.html" . }}
 </head>
 

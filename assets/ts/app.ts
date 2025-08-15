@@ -1,5 +1,4 @@
 import { farallonHelper } from "./utils";
-import farallonDate from "./date.ts";
 import farallonActions from "./action.ts";
 import { farallonComment } from "./comment.ts";
 import Douban from "./db.ts";
@@ -16,7 +15,7 @@ class farallonBase extends farallonHelper {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.6.4";
+    VERSION: string = "0.7.1";
     like_btn: any;
     selctor: string = ".like-btn";
     actionDomain: string = window.actionDomain;
@@ -158,16 +157,12 @@ class farallonBase extends farallonHelper {
 
 new farallonActions({
     singleSelector: ".fArticle",
-    articleSelector: ".fBlock--item",
+    articleSelector: ".fBlock--item,.fCard--item",
     likeButtonSelctor: ".like-btn",
     actionDomain: window.actionDomain,
 });
 
 new farallonBase();
-new farallonDate({
-    selector: ".humane--time",
-    timeFormat: window.timeFormat,
-});
 
 new farallonComment({
     actionDomain: window.actionDomain,

@@ -6,14 +6,18 @@
     {{ range .Pages.ByPublishDate.Reverse.GroupByDate "January" }}
     <h3 class="fArchive--title__month">{{ .Key }}</h3>
     <ul class="fArchive--list">
-        {{ range ((where .Pages "Section" "post")) }}
+        {{ range .Pages }}
         <li class="fArchive--item">
             <div class="fArchive--title">
-                <a href="{{ .RelPermalink }}">
+                <a href="{{ .RelPermalink }}" title="{{ .Title }}">
                     {{ .Title }}
                 </a>
             </div>
-            <div class="fArchive--meta">{{ .PublishDate.Format "Jan 02" }}</div>
+            <div class="fArchive--meta">
+                {{ .PublishDate.Format "2006-01-02" }}
+                <span class="sep"></span>
+                {{ T "article.readingTime" .ReadingTime }}
+            </div>
         </li>
         {{ end }}
     </ul>

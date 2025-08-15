@@ -21,6 +21,10 @@
         font-weight: bold;
     }
 
+    &--title__month {
+        color: var(--farallon-text-gray);
+    }
+
     &--list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
