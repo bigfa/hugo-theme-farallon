@@ -6,7 +6,7 @@
         {{ range .Params.faves }}
         <div class="good--item">
             <div class="img-spacer">
-                <img src="{{ .cover }}">
+                <img src="{{ .cover }}" alt="{{ .title }}" />
             </div>
             <div class="good--name">
                 <div class="brand">{{ .brand }} · {{ .cat }}</div>

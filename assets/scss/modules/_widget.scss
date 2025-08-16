@@ -50,19 +50,27 @@
         justify-content: center;
 
         &::before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             bottom: 0;
             right: 0;
             left: 0;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
             border-radius: 5px;
         }
 
         &:hover {
             &::before {
-                background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
+                background: linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.7) 0%,
+                    rgba(0, 0, 0, 0.5) 100%
+                );
             }
         }
     }
@@ -80,11 +88,19 @@
         font-size: 24px;
         font-weight: bold;
         line-height: 1.2;
+
+        @media (max-width: 414px) {
+            font-size: 20px;
+        }
     }
 
     &--description {
         color: var(--farallon-text-gray);
         font-size: 18px;
+
+        @media (max-width: 414px) {
+            font-size: 14px;
+        }
     }
 }
 

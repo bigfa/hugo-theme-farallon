@@ -5,9 +5,15 @@
     <div class="fRelated--list">
         {{ range . }}
         <div class="fRelated--item">
-            <a href="{{ .RelPermalink }}">
+            <a href="{{ .RelPermalink }}" title="{{ .Title }}" aria-label="{{ .Title }}">
                 <div class="fRelated--cover">
-                    {{ if .Content }}
+                    {{ if .Params.cover }}
+                    {{ with .Resources.Get .Params.cover }}
+                    {{ with .Fill "620x310 Center" }}
+                    <img src="{{ .RelPermalink }}" alt="{{ .Title }}" class="cover">
+                    {{ end }}
+                    {{ end }}
+                    {{ else if .Content }}
                     {{ $urls := findRE "<img src=\"[^\"|\\\"]*\"" .Content }} {{ if $urls }} {{ $url :=index ($urls) 0
                         }} {{ $url :=(strings.TrimPrefix "<img src=\"" $url) }}
       {{ $url := strings.TrimRight " \"" $url }} <img src="{{ $url }}" class="cover" alt="{{ .Title }}" />
@@ -19,8 +25,7 @@
                 </div>
                 <div class="fRelated--meta">
                     {{ if .Date }}
-                    <time datetime='{{.Date.Format "2006-01-02 15:04:01" }}'>{{ .Date.Format
-                        "2006-01-02" }}</time>
+                    {{ partial "time.html" . }}
                     <span class="sep"></span>
                     {{ end }}
                     {{ T "article.readingTime" .ReadingTime }}

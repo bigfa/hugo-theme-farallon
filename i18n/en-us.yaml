@@ -29,3 +29,19 @@ article:
 
     readingViews:
         other: " views"
+
+    stickyPost:
+        other: "Sticky"
+
+    previous:
+        other: "Previous"
+
+    next:
+        other: "Next"
+
+search:
+    placeholder:
+        other: "Type and enter to search"
+
+    submit:
+        other: "Submit"

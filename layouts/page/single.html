@@ -1,21 +1,6 @@
 {{ define "main" }}
 <main class="site--main">
     <article class="fArticle" itemscope="itemscope" itemtype="http://schema.org/Article" data-id="{{ .File.UniqueID }}">
-        <div class="fArticle--meta">
-            {{ partial "time.html" . }}
-            {{ if .Params.categories }}
-            <span class="sep"></span>
-            {{ range (.GetTerms "categories") }}
-            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-            {{ end }}
-            {{ end }}
-            {{ if .Site.Params.post_view }}
-            <span class="sep"></span>
-            <span><span class="article--views"></span>{{ i18n "article.readingViews" }}</span>
-            {{ end }}
-            <span class="sep"></span>
-            {{ T "article.readingTime" .ReadingTime }}
-        </div>
         <h2 class="fArticle--headline">{{ .Title }}</h2>
         {{ if .IsTranslated }}
         <div class="translatedCard">
@@ -58,51 +43,6 @@
                 <span class="count"></span>
             </button>
         </div>
-        {{ end }}
-        {{ if .Params.tags }}
-        <div class="fArticle--tags">
-            {{ range (.GetTerms "tags") }}
-            <a href="{{ .RelPermalink }}" class="fArticle--tag">{{ .LinkTitle }}</a>
-            {{ end }}
-        </div>
-        {{ end }}
-        {{ if .Site.Params.showAuthor }}
-        <div class="fAuthor">
-            <img src="{{ .Site.Params.authorAvatar }}" class="avatar" height="64" width="64"
-                alt="{{ .Site.Params.authorName }}">
-            <div class="fAuthor--name">{{ .Site.Params.authorName }}</div>
-            <div class="fAuthor--description">{{ .Site.Params.authorDescription }}</div>
-            <div class="fAuthor--icons">
-                {{ partial "sns.html" . }}
-            </div>
-        </div>
-        {{ end }}
-        {{ partial "category.html" . }}
-        {{ partial "related.html" . }}
-        {{ if .Params.comments }}
-        {{ partial "commentlist.html" . }}
-        {{ end }}
-        {{ if or .PrevInSection .NextInSection}}
-        <nav class="navigation post-navigation is-active">
-            <div class="nav-links">
-                {{ if .PrevInSection }}
-                <div class="nav-previous">
-                    <a class="link-reverse" href="{{ .PrevInSection.Permalink }}?ref=footer">
-                        <span class="meta-nav">{{ i18n "article.previous" }}</span><span class="post-title">{{
-                            .PrevInSection.Title }}</span>
-                    </a>
-                </div>
-                {{ end }}
-                {{ if .NextInSection }}
-                <div class="nav-next">
-                    <a class="link-reverse" href="{{ .NextInSection.Permalink }}?ref=footer">
-                        <span class="meta-nav">{{ i18n "article.next" }}</span><span class="post-title">{{
-                            .NextInSection.Title }}</span>
-                    </a>
-                </div>
-                {{ end }}
-            </div>
-        </nav>
         {{ end }}
     </article>
 </main>

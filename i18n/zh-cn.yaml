@@ -28,3 +28,19 @@ article:
 
     readingViews:
         other: " 次阅读"
+
+    stickyPost:
+        other: "置顶"
+
+    previous:
+        other: "前一篇"
+
+    next:
+        other: "下一篇"
+
+search:
+    placeholder:
+        other: "输入内容回车搜索"
+
+    submit:
+        other: "提交"

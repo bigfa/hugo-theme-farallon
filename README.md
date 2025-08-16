@@ -16,6 +16,19 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.7.2
+
+-   make adjcent link under same section
+-   local image resize support
+-   hide year when in the same year
+-   style enhancement
+-   update translation
+-   add term views when term file exists
+-   remote default logo
+
+> [!NOTE]
+> if you want to custom your logo,put `logo.jpg` under your`assets/images/` folder
+
 ### 0.7.1
 
 -   style enhancement

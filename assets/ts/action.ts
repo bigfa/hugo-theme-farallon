@@ -4,6 +4,7 @@ interface farallonActionsOptions {
     singleSelector?: string;
     likeButtonSelctor?: string;
     articleSelector?: string;
+    termSelector?: string;
     viewSelector?: string;
     actionDomain: string;
     text?: string;
@@ -14,11 +15,13 @@ class farallonActions extends farallonHelper {
     likeButtonSelctor: string = ".like-btn";
     articleSelector: string = ".fBlock--item";
     viewSelector: string = ".article--views";
+    termSelector: string = ".fTerm--header";
     actionDomain: string;
     text: string = "";
     likeButton: HTMLElement | null = null;
     post_id: string;
     is_single: boolean = false;
+    is_term: boolean = false;
 
     constructor(config: farallonActionsOptions) {
         super();
@@ -27,12 +30,15 @@ class farallonActions extends farallonHelper {
             config.likeButtonSelctor ?? this.likeButtonSelctor;
         this.articleSelector = config.articleSelector ?? this.articleSelector;
         this.viewSelector = config.viewSelector ?? this.viewSelector;
+        this.termSelector = config.termSelector ?? this.termSelector;
         this.actionDomain = config.actionDomain;
         this.text = config.text ?? this.text;
 
         this.is_single = document.querySelector(this.singleSelector)
             ? true
             : false;
+
+        this.is_term = document.querySelector(this.termSelector) ? true : false;
 
         if (this.is_single) {
             const postSingle = document.querySelector(
@@ -44,6 +50,18 @@ class farallonActions extends farallonHelper {
         } else {
             this.initArticlesView();
         }
+
+        if (this.is_term) {
+            this.initTermView();
+        }
+    }
+
+    initTermView() {
+        const term = document.querySelector(this.termSelector) as HTMLElement;
+        if (!term.dataset.id) return;
+        fetch(this.actionDomain + "post/" + term.dataset.id + "/view", {
+            method: "post",
+        });
     }
 
     initArticleView() {

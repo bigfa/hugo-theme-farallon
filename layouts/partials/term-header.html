@@ -1,0 +1,17 @@
+<!-- check file, if file exists add UniqueID to header data-id -->
+<header class="fTerm--header" {{ with .File }}data-id="{{ .UniqueID }}" {{ end }}>
+    {{ $title := .Title | default .LinkTitle }}
+    {{ if .Params.cover }}
+    {{ with .Resources.Get .Params.cover }}
+    {{ with .Fill "144x144 Center" }}
+    <img src="{{ .RelPermalink }}" alt="{{ $title }}" class="fTerm--cover">
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    <div class="fTerm--content">
+        <h1 class="fTerm--title">{{ $title }}</h1>
+        {{ if .Params.description }}
+        <div class="fTerm--description">{{ .Params.description }}</div>
+        {{ end }}
+    </div>
+</header>

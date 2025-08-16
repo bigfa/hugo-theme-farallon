@@ -1,16 +1,10 @@
 <article class="fBlock--item" itemtype="http://schema.org/Article" itemscope="itemscope" data-id="{{ .File.UniqueID}}">
     <div class="fBlock--content">
         <h2 class="fBlock--title" itemprop="headline">
-            <a href="{{ .Permalink }}">
+            <a href="{{ .Permalink }}" title="{{ .Title }}" aria-label="{{ .Title }}">
                 {{ .Title }}
                 {{ if .Params.weight }}
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    class="icon--sticky" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="w-4 h-4 text-red-400">
-                    <path
-                        d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z">
-                    </path>
-                </svg>
+                <span class="sticky--post">{{ i18n "article.stickyPost" }}</span>
                 {{ end }}
             </a>
         </h2>
@@ -22,8 +16,7 @@
                     d="M512 97.52381c228.912762 0 414.47619 185.563429 414.47619 414.47619s-185.563429 414.47619-414.47619 414.47619S97.52381 740.912762 97.52381 512 283.087238 97.52381 512 97.52381z m0 73.142857C323.486476 170.666667 170.666667 323.486476 170.666667 512s152.81981 341.333333 341.333333 341.333333 341.333333-152.81981 341.333333-341.333333S700.513524 170.666667 512 170.666667z m36.571429 89.697523v229.86362h160.865523v73.142857H512a36.571429 36.571429 0 0 1-36.571429-36.571429V260.388571h73.142858z">
                 </path>
             </svg>
-            <time datetime='{{.Date.Format "2006-01-02 15:04:01" }}' itemprop="datePublished">{{ .Date.Format
-                "2006-01-02" }}</time>
+            {{ partial "time.html" . }}
             {{ end }}
             {{ if .Params.categories }}
             <svg class="icon" viewBox="0 0 1024 1024" width="16" height="16">
@@ -52,7 +45,14 @@
             {{ T "article.readingTime" .ReadingTime }}
         </div>
     </div>
-    {{ if .Content }}
+    {{ if .Params.cover }}
+    {{ with .Resources.Get .Params.cover }}
+    {{ with .Fill "300x200 Center" }}
+    <a href="{{ .Permalink }}" aria-label="{{ .Title }}" class="fBlock--coverLink"><img src="{{ .RelPermalink }}"
+            alt="{{ .Title }}" class="fBlock--cover"></a>
+    {{ end }}
+    {{ end }}
+    {{ else if .Content }}
     {{ $urls := findRE "<img src=\"[^\"|\\\"]*\"" .Content }} {{ if $urls }} {{ $url :=index ($urls) 0 }} {{ $url
         :=(strings.TrimPrefix "<img src=\"" $url) }}
 {{ $url := strings.TrimRight " \"" $url }} <a href="{{ .Permalink }}" aria-label="{{ .Title }}"

@@ -14,6 +14,19 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.7.2
+
+-   上下文连接属于同一类型
+-   本地图片裁切支持
+-   当年时间不显示年
+-   样式改进
+-   更新翻译
+-   分类文件存在时统计浏览量
+-   移除默认 logo 文件
+
+> [!NOTE]
+> 如果你想自定义 logo，把 `logo.jpg` 放在`assets/images/` 文件夹下
+
 ### 0.7.1
 
 -   样式改进

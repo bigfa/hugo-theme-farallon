@@ -9,13 +9,19 @@
     <section class="collectionCard">
         {{ $data := .Data }}
         {{ range $key, $value := .Data.Terms.ByCount }}
-        <div class="collectionCard--item">
+        <div class="collectionCard--item" data-count="{{ $value.Count }}">
             {{ if $value.Page.Params.cover }}
-            <img src="{{ $value.Page.Params.cover }}" class="collectionCard--image">
+            {{ with $value.Page.Resources.Get $value.Page.Params.cover }}
+            {{ with .Fill "508x200 Center" }}
+            <img src="{{ .RelPermalink }}" class="collectionCard--image" alt="{{ $value.Page.Title }}"
+                class="fCategory--cover" />
+            {{ end }}
+            {{ end }}
             {{ end }}
             <div class="collectionCard--content">
-                <a href="{{ $value.Page.Permalink }}">
-                    {{ $value.Page.Title }}<span>({{ $value.Count }})</span>
+                <a href="{{ $value.Page.Permalink }}" title="{{ $value.Page.Title }}"
+                    aria-label="{{ $value.Page.Title }}">
+                    {{ $value.Page.Title }}
                 </a>
                 <div class="collectionCard--description">{{ $value.Page.Params.description }}</div>
             </div>

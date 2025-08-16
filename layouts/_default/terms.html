@@ -10,7 +10,7 @@
         {{ $data := .Data }}
         {{ range $key, $value := .Data.Terms.ByCount }}
         <span class="tagCard--item">
-            <a href="{{ $value.Page.Permalink }}">
+            <a href="{{ $value.Page.Permalink }}" title="{{ $value.Page.Title }}" aria-label="{{ $value.Page.Title }}">
                 {{ $value.Page.Title }} <span>({{ $value.Count }})</span>
             </a>
         </span>

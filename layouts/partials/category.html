@@ -1,8 +1,17 @@
 {{ if .Params.categories }}
 <div class="fCategory--list">
     {{ range (.GetTerms "categories") }}
-    <a href="{{ .RelPermalink }}" class="fCategory--item">
-        <div class="fCategory--cover"><img src="{{ .Params.cover }}" /></div>
+    <a href="{{ .RelPermalink }}" class="fCategory--item" title="{{ .LinkTitle }}" aria-label="{{ .LinkTitle }}">
+        {{ if .Params.cover }}
+        {{ $title := .Title | default .LinkTitle }}
+        <div class="fCategory--cover">
+            {{ with .Resources.Get .Params.cover }}
+            {{ with .Fill "128x128 Center" }}
+            <img src="{{ .RelPermalink }}" alt="{{ $title }}" class="fCategory--cover" />
+            {{ end }}
+            {{ end }}
+        </div>
+        {{ end }}
         <div class="fCategory--content">
             <div class="fCategory--title">{{ .LinkTitle }}</div>
             <div class="fCategory--description">{{ .Params.description }}</div>

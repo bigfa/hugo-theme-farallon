@@ -15,7 +15,7 @@ class farallonBase extends farallonHelper {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.7.1";
+    VERSION: string = "0.7.2";
     like_btn: any;
     selctor: string = ".like-btn";
     actionDomain: string = window.actionDomain;
@@ -158,6 +158,7 @@ class farallonBase extends farallonHelper {
 new farallonActions({
     singleSelector: ".fArticle",
     articleSelector: ".fBlock--item,.fCard--item",
+    termSelector: ".fTerm--header",
     likeButtonSelctor: ".like-btn",
     actionDomain: window.actionDomain,
 });

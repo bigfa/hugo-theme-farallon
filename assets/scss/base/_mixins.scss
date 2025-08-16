@@ -25,6 +25,16 @@
             text-decoration: underline;
         }
     }
+
+    @media screen and (max-width: 768px) {
+        font-size: var(--farallon-text-size-smallest);
+
+        svg {
+            width: 14px;
+            height: 14px;
+            margin-left: 7px;
+        }
+    }
 }
 
 @mixin centered {
@@ -84,7 +94,7 @@
             &:after {
                 border: 12px solid transparent;
                 background-clip: padding-box;
-                content: '';
+                content: "";
                 filter: blur(36px);
                 height: 50%;
                 opacity: 0.8;
@@ -106,7 +116,11 @@
 @mixin block-hover-gradient {
     &:hover {
         background-color: rgba(234, 243, 255, 0.5);
-        background-image: linear-gradient(12deg, #fff 50%, hsla(0, 0%, 100%, 0));
+        background-image: linear-gradient(
+            12deg,
+            #fff 50%,
+            hsla(0, 0%, 100%, 0)
+        );
         // border-radius: 18px;
         transform: none;
         transform-origin: 50% 50% 0px;
