@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main class="site--main">
     <header class="fTerm--header fTerm--header__center">
-        <h1 class="fTerm--title">{{.Title}}</h1>
+        <h1 class="fTerm--title">{{ .Title }}</h1>
     </header>
     <div class="fBblock--list">
         {{- $pages := union .RegularPages .Sections }}
@@ -14,7 +14,6 @@
         {{ end }}
         {{ end }}
     </div>
-    {{ $paginator := .Paginate ($pages) }}
-    {{partial "pagination.html" .}}
+    {{ partial "pagination.html" .}}
 </main>
 {{ end }}

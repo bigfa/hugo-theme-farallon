@@ -46,10 +46,12 @@
         </div>
     </div>
     {{ if .Params.cover }}
+    {{ $link := .Permalink }}
+    {{ $title := .Title }}
     {{ with .Resources.Get .Params.cover }}
     {{ with .Fill "300x200 Center" }}
-    <a href="{{ .Permalink }}" aria-label="{{ .Title }}" class="fBlock--coverLink"><img src="{{ .RelPermalink }}"
-            alt="{{ .Title }}" class="fBlock--cover"></a>
+    <a href="{{ $link }}" aria-label="{{ $title }}" class="fBlock--coverLink"><img src="{{ .RelPermalink }}"
+            alt="{{ $title }}" class="fBlock--cover"></a>
     {{ end }}
     {{ end }}
     {{ else if .Content }}
@@ -57,6 +59,5 @@
         :=(strings.TrimPrefix "<img src=\"" $url) }}
 {{ $url := strings.TrimRight " \"" $url }} <a href="{{ .Permalink }}" aria-label="{{ .Title }}"
         class="fBlock--coverLink"><img src="{{ $url }}" class="fBlock--cover" itemprop="image" alt="{{ .Title }}" /></a>
-    {{ end }} {{
-    end }}
+    {{ end }} {{ end }}
 </article>

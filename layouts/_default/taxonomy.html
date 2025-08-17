@@ -3,7 +3,8 @@
 {{ partial "term-header.html" . }}
 <div class="site--main">
     <div class="fBblock--list">
-        {{ range .Data.Pages }}
+        {{- $paginator := .Paginate .Data.Pages }}
+        {{ range $paginator.Pages }}
         {{ if eq .Type "memo" }}
         {{ partial "memo.html" . }}
         {{ else }}
@@ -11,7 +12,6 @@
         {{ end }}
         {{ end }}
     </div>
-    {{ $paginator := .Paginate (.Data.Pages) }}
-    {{partial "pagination.html" .}}
+    {{ partial "pagination.html" .}}
 </div>
 {{ end }}

@@ -16,6 +16,12 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.7.4
+
+-   style enhancement
+-   fixed pagination error
+-   fixed permalink error
+
 ### 0.7.3
 
 -   fixed avatar logo error in memo post

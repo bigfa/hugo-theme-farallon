@@ -33,7 +33,6 @@
         <div class="fArticle--content fGraph" itemprop="articleBody">
             {{- $TOCEnabled := or .Params.toc (and .Site.Params.toc (ne .Params.toc false)) -}}
             {{- $hasTOC := gt (len .TableOfContents) 32 -}}
-
             {{ if and $TOCEnabled $hasTOC -}}
             <details class="fArticle--toc" open>
                 <summary class="toc-title">{{ i18n "article.tableOfContents" }}</summary>
@@ -62,7 +61,7 @@
         {{ if .Params.tags }}
         <div class="fArticle--tags">
             {{ range (.GetTerms "tags") }}
-            <a href="{{ .RelPermalink }}" class="fArticle--tag">{{ .LinkTitle }}</a>
+            <a href="{{ .RelPermalink }}" class="fArticle--tag" title="{{ .LinkTitle }}">{{ .LinkTitle }}</a>
             {{ end }}
         </div>
         {{ end }}
@@ -87,17 +86,17 @@
             <div class="nav-links">
                 {{ if .PrevInSection }}
                 <div class="nav-previous">
-                    <a class="link-reverse" href="{{ .PrevInSection.Permalink }}?ref=footer">
-                        <span class="meta-nav">{{ i18n "article.previous" }}</span><span class="post-title">{{
-                            .PrevInSection.Title }}</span>
+                    <a class="link-reverse" href="{{ .PrevInSection.Permalink }}">
+                        <span class="meta-nav">{{ i18n "article.previous" }}</span>
+                        <span class="post-title">{{ .PrevInSection.Title }}</span>
                     </a>
                 </div>
                 {{ end }}
                 {{ if .NextInSection }}
                 <div class="nav-next">
-                    <a class="link-reverse" href="{{ .NextInSection.Permalink }}?ref=footer">
-                        <span class="meta-nav">{{ i18n "article.next" }}</span><span class="post-title">{{
-                            .NextInSection.Title }}</span>
+                    <a class="link-reverse" href="{{ .NextInSection.Permalink }}">
+                        <span class="meta-nav">{{ i18n "article.next" }}</span>
+                        <span class="post-title">{{ .NextInSection.Title }}</span>
                     </a>
                 </div>
                 {{ end }}

@@ -1,9 +1,11 @@
 <article class="fCard--item" data-id="{{ .File.UniqueID}}">
+    {{ $link := .Permalink }}
+    {{ $title := .Title }}
     {{ if .Params.cover }}
     {{ with .Resources.Get .Params.cover }}
     {{ with .Fill "736x442 Center" }}
-    <a href="{{ .Permalink }}" class="fCard--coverLink" title="{{ .Title }}" aria-label="{{ .Title }}"><img
-            src="{{ .RelPermalink }}" alt="{{ .Title }}" class="fCard--cover"></a>
+    <a href="{{ $link }}" class="fCard--coverLink" title="{{ $title }}" aria-label="{{ $title }}"><img
+            src="{{ .RelPermalink }}" alt="{{ $title }}" class="fCard--cover"></a>
     {{ end }}
     {{ end }}
     {{ else if .Content }}

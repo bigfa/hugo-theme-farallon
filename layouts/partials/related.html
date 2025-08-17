@@ -8,9 +8,10 @@
             <a href="{{ .RelPermalink }}" title="{{ .Title }}" aria-label="{{ .Title }}">
                 <div class="fRelated--cover">
                     {{ if .Params.cover }}
+                    {{ $title := .Title }}
                     {{ with .Resources.Get .Params.cover }}
                     {{ with .Fill "620x310 Center" }}
-                    <img src="{{ .RelPermalink }}" alt="{{ .Title }}" class="cover">
+                    <img src="{{ .RelPermalink }}" alt="{{ $title }}" class="cover">
                     {{ end }}
                     {{ end }}
                     {{ else if .Content }}

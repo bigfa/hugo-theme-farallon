@@ -1,5 +1,6 @@
 {{ define "main" }}
 <div class="fArchive--main">
+    <h1 class="fArticle--headline">{{ .Title }}</h1>
     {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
     {{ range $pages.ByPublishDate.Reverse.GroupByDate "2006" }}
     <h2 class="fArchive--heroTitle">{{ .Key }}</h2>
