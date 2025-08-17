@@ -16,6 +16,11 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.7.5
+
+-   fixed category archive cover link error
+-   add link shortcode
+
 ### 0.7.4
 
 -   style enhancement

@@ -14,6 +14,11 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.7.5
+
+-   修复分类归档页面封面错误
+-   增加链接短代码
+
 ### 0.7.4
 
 -   样式改进

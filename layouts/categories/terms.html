@@ -17,7 +17,7 @@
                 class="fCategory--cover" />
             {{ end }}
             {{ else }}
-            <img src="{{ .Params.cover }}" alt="{{ $value.Page.Title }}" class="collectionCard--image" />
+            <img src="{{ $value.Page.Params.cover }}" alt="{{ $value.Page.Title }}" class="collectionCard--image" />
             {{ end }}
             {{ end }}
             <div class="collectionCard--content">

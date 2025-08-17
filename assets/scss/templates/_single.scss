@@ -213,3 +213,61 @@
 @import "../modules/categoryCard";
 // Farallon Theme Related Post Styles
 @import "../modules/relatedPost";
+
+.fMixtapeEmbed {
+    display: flex;
+    align-items: center;
+    background-color: var(--farallon-background-gray-light);
+    border-radius: 5px;
+    margin-bottom: 15px;
+
+    .mixtapeImage {
+        width: 120px;
+        height: 120px;
+        background-size: cover;
+        flex: 0 0 auto;
+        border-radius: 0 5px 5px 0;
+
+        @media screen and (max-width: 768px) {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+    .mixtapeContent {
+        flex: 1 1 auto;
+        padding: 0 20px;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        box-shadow: none;
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+        }
+
+        &:hover {
+            color: inherit;
+            box-shadow: none;
+        }
+    }
+
+    .markup--strong {
+        font-size: 16px;
+        font-weight: 700;
+
+        @media screen and (max-width: 768px) {
+            font-size: 14px;
+        }
+    }
+
+    .markup--em {
+        font-style: normal;
+        color: var(--farallon-text-gray);
+        line-height: 1.5;
+        max-height: 3em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
