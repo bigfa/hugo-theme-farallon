@@ -13,10 +13,10 @@ export class farallonComment extends farallonHelper {
     dateFormater: any;
     constructor(config: farallonCommentOptions) {
         super();
-        if (!document.querySelector(".post--ingle__comments")) return;
+        if (!document.querySelector(".fComment--area")) return;
         this.actionDomain = config.actionDomain;
         this.post_id = (
-            document.querySelector(".post--ingle__comments") as HTMLElement
+            document.querySelector(".fComment--area") as HTMLElement
         ).dataset.id;
         this.fetchComments();
         this.init();
@@ -144,9 +144,7 @@ export class farallonComment extends farallonHelper {
                     const form = document.querySelector(
                         ".comment-form"
                     ) as HTMLFormElement;
-                    // @ts-ignore
                     const formData = new FormData(form);
-                    // @ts-ignore
                     const formDataObj: { [index: string]: any } = {};
                     formData.forEach(
                         (value, key: any) => (formDataObj[key] = value)
@@ -180,31 +178,31 @@ export class farallonComment extends farallonHelper {
                                     "#comment_parent"
                                 ) as HTMLInputElement
                             )?.value;
-                            // @ts-ignore
-                            (a.style.display = "none"), // @ts-ignore
-                                (a.onclick = null), // @ts-ignore
-                                ((
-                                    document.getElementById(
-                                        "comment_parent"
-                                    ) as HTMLInputElement
-                                ).value = ""),
-                                n && // @ts-ignore
-                                    i && // @ts-ignore
+                            if (a) {
+                                a.style.display = "none";
+                                a.onclick = null;
+                            }
+                            ((
+                                document.getElementById(
+                                    "comment_parent"
+                                ) as HTMLInputElement
+                            ).value = ""),
+                                n &&
+                                    i &&
                                     n.parentNode &&
                                     n.parentNode.removeChild(n);
                             if (document.querySelector(".comment-body__fresh"))
                                 document
                                     .querySelector(".comment-body__fresh")
                                     ?.classList.remove("comment-body__fresh");
-                            // @ts-ignore
-                            document.getElementById("comment").value = "";
-                            // @ts-ignore
+                            (
+                                document.getElementById(
+                                    "comment"
+                                ) as HTMLTextAreaElement
+                            ).value = "";
                             if (parent_id != "") {
                                 document
-                                    .querySelector(
-                                        // @ts-ignore
-                                        "#comment-" + parent_id
-                                    )
+                                    .querySelector("#comment-" + parent_id)
                                     ?.insertAdjacentHTML(
                                         "beforeend",
                                         '<ol class="children">' + html + "</ol>"

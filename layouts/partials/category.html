@@ -9,6 +9,8 @@
             {{ with .Fill "128x128 Center" }}
             <img src="{{ .RelPermalink }}" alt="{{ $title }}" class="fCategory--cover" />
             {{ end }}
+            {{ else }}
+            <img src="{{ .Params.cover }}" alt="{{ $title }}" class="fCategory--cover" />
             {{ end }}
         </div>
         {{ end }}

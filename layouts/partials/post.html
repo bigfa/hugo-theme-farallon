@@ -8,7 +8,7 @@
                 {{ end }}
             </a>
         </h2>
-        <div class="fBlock--snippet" itemprop="about">{{ .Summary | plainify | truncate 60 }}</div>
+        <div class="fBlock--snippet" itemprop="about">{{ .Summary | plainify | truncate 100 }}</div>
         <div class="fBlock--meta">
             {{ if .Date }}
             <svg class="icon" viewBox="0 0 1024 1024" width="16" height="16">

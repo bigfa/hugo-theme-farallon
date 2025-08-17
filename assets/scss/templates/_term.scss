@@ -214,6 +214,10 @@
     grid-gap: 20px;
     list-style: none;
     padding-top: 15px;
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .link-item {
@@ -264,7 +268,7 @@
     grid-gap: 10px;
     padding: 30px 0 20px;
 
-    .good--list {
+    @media (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
         grid-gap: 15px;
         padding: 10px 0 30px;
@@ -280,14 +284,14 @@
     border-radius: 10px;
     padding: 30px 0 0;
     flex-direction: column;
-    // margin-bottom: 25px;
+
     .img-spacer {
         width: 50%;
         position: relative;
         transition: 0.5s;
     }
+
     &:hover {
-        //background: #eeeef0;
         .img-spacer {
             transform: translate3d(0, -5px, 0);
         }
@@ -305,6 +309,7 @@
     margin-top: 10px;
     line-height: 1.4;
     width: 92%;
+
     .brand {
         color: var(--farallon-text-gray-lightest);
     }

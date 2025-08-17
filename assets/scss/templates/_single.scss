@@ -175,6 +175,34 @@
     }
 }
 
+.fFigure {
+    position: relative;
+
+    .image--likes {
+        user-select: none;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-style: normal;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        fill: #fff;
+
+        svg {
+            margin-left: 3px;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
 // Farallon Theme Graph Styles
 @import "../modules/graph";
 // Farallon Theme Comment Styles

@@ -3,9 +3,19 @@
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
 
-    &.is-active {
+    .count {
+        font-size: 14px;
+        color: var(--farallon-text-light);
+    }
+
+    &.is-active,
+    &:hover {
         svg {
             fill: var(--farallon-main-color);
+        }
+
+        .count {
+            color: var(--farallon-main-color);
         }
 
         .icon--active {
@@ -21,7 +31,7 @@
         display: none;
     }
 
-    .icon--block {
-        display: none;
+    .icon--default {
+        display: block;
     }
 }

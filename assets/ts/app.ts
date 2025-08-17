@@ -15,7 +15,7 @@ class farallonBase extends farallonHelper {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.7.2";
+    VERSION: string = "0.7.3";
     like_btn: any;
     selctor: string = ".like-btn";
     actionDomain: string = window.actionDomain;
@@ -132,7 +132,6 @@ class farallonBase extends farallonHelper {
                     document.querySelector("body")!.classList.remove("auto");
                     document.querySelector("body")!.classList.add("dark");
                     item.classList.add("is-active");
-                    //this.showNotice('夜间模式已开启');
                 } else if (
                     (item as HTMLElement).dataset.actionValue == "light"
                 ) {
@@ -140,7 +139,6 @@ class farallonBase extends farallonHelper {
                     document.querySelector("body")!.classList.remove("auto");
                     document.querySelector("body")!.classList.remove("dark");
                     item.classList.add("is-active");
-                    //this.showNotice('夜间模式已关闭');
                 } else if (
                     (item as HTMLElement).dataset.actionValue == "auto"
                 ) {
@@ -148,7 +146,6 @@ class farallonBase extends farallonHelper {
                     document.querySelector("body")!.classList.remove("dark");
                     document.querySelector("body")!.classList.add("auto");
                     item.classList.add("is-active");
-                    //this.showNotice('夜间模式已关闭');
                 }
             });
         });
@@ -174,4 +171,4 @@ new Douban({
     container: ".db--container",
 });
 
-new imgZoom();
+// new imgZoom();

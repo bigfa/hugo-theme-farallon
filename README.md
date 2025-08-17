@@ -16,6 +16,13 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.7.3
+
+-   fixed avatar logo error in memo post
+-   change summary longth
+-   style enhancement
+-   make remote term cover url compatible
+
 ### 0.7.2
 
 -   make adjcent link under same section

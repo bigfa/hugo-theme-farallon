@@ -16,6 +16,8 @@
             <img src="{{ .RelPermalink }}" class="collectionCard--image" alt="{{ $value.Page.Title }}"
                 class="fCategory--cover" />
             {{ end }}
+            {{ else }}
+            <img src="{{ .Params.cover }}" alt="{{ $value.Page.Title }}" class="fCategory--cover" />
             {{ end }}
             {{ end }}
             <div class="collectionCard--content">
