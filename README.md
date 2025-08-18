@@ -16,6 +16,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Notes
 
+### 0.7.6
+
+-   add custom pagination
+
 ### 0.7.5
 
 -   fixed category archive cover link error

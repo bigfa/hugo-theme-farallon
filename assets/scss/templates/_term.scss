@@ -223,6 +223,9 @@
 .link-item {
     border-radius: 10px;
     padding: 15px;
+    background-color: var(--farallon-background-gray);
+
+    @include block-hover-gradient;
 
     .sitename {
         font-size: var(--farallon-text-size-smallest);
@@ -236,15 +239,6 @@
             color: var(--farallon-text-color);
             margin-bottom: 10px;
         }
-    }
-
-    &:hover {
-        background-color: #fafafa;
-        background: linear-gradient(
-            89.99999999999999deg,
-            rgba(255, 233, 244, 0.3) 0%,
-            rgba(234, 243, 255, 0.5) 100%
-        );
     }
 }
 

@@ -14,6 +14,10 @@ echo "theme = 'farallon'" >> hugo.toml
 
 ## Release Note
 
+### 0.7.6
+
+-   增加自定义分页
+
 ### 0.7.5
 
 -   修复分类归档页面封面错误

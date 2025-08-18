@@ -15,7 +15,7 @@ class farallonBase extends farallonHelper {
     is_single: boolean = false;
     post_id: number = 0;
     is_archive: boolean = false;
-    VERSION: string = "0.7.5";
+    VERSION: string = "0.7.6";
     like_btn: any;
     selctor: string = ".like-btn";
     actionDomain: string = window.actionDomain;
